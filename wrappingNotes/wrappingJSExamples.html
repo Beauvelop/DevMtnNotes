@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style media="screen">
+            body {
+                background-color: rgba(117, 56, 6, 0.84);
+                color: ivory;
+                font-family: "Georgia", sans-serif;
+            }
+            h3 { color: skyblue;}
+        </style>
+        <meta charset="utf-8">
+        <title>wrapping JS functions</title>
+    </head>
+    <body><h3>test area</h3>
+    <script>
+    !function() {
+        var greet = "What's going on?";
+        alert(greet);
+    }();
+    </script>
+        <hr><h1>Wrapping JS</h1>
+    <h3>Example 1</h3>
+    (function() {
+        var greet = "What's going on?";
+        alert(greet);
+    }());
+    <hr>
+    <h3>Example 2</h3>
+    !function() {
+        var greet = "What's going on?";
+        alert(greet);
+    }();<hr>
+    <h3>Example 3</h3>
+     $(document).ready(function() {
+         var greet = "What's going on?";
+         alert(greet);
+});<hr>
+
+    <h3>Example 4</h3><hr>
+    <h3>Example 5</h3><hr>
+    <h3>Example 6</h3><hr>
+
+
+    </body>
+</html>

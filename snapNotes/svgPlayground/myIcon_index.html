@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Snap.svg</title>
+    <script src="snap.svg.js"></script>
+    <style>
+        #myIcon {
+            width: 600px;
+            height: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myIcon"></div>
+
+
+    <script>
+
+        var myIcon = Snap('#myIcon');
+        Snap.load('myIcon.svg', function(data) {
+            myIcon.append(data);
+
+            var house = myIcon.select('#house');
+            // house.attr({fill: "maroon"});
+
+            var bg = myIcon.select('#bg');
+            // bg.attr({fill: "#2F62AD"});
+
+            var ring = myIcon.select('#ring');
+            // ring.attr({fill: "#2F62AD"});
+
+            myIcon.hover(function() {
+                house.animate({transform: 's1.2, 100, 100'}, 1000, mina.elastic);
+                ring.animate({transform: 's1.08, 100, 100'}, 1000, mina.elastic);
+                bg.animate({opacity: .8}, 200, mina.elastic);
+
+            });
+            myIcon.mouseout(function() {
+                house.animate({transform: 's1, 100, 100'}, 1000, mina.elastic);
+                ring.animate({transform: 's1, 100, 100'}, 1000, mina.elastic);
+                bg.animate({opacity: 1}, 200, mina.elastic);
+
+            });
+
+        });
+    </script>
+</body>
+
+</html>

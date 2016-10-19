@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="styles.css" href="/css/master.css" media="screen" title="no title">
+    <title>Command-Line Fun</title>
+    <style media="screen">
+      html {
+        font-family: monospace; sans-serif;
+      }
+    </style>
+  </head>
+  <body><code><pre>
+
+    <h1>Command-Line Fun! --Vocabulary and Tricks</h1>
+
+  <dl>
+mkdir
+touch
+cd ../../<i>folder name</i>/<i>folder name</i>
+clear
+ls -a
+lists all files even those beginning with a dot
+In addition to -a, the ls command has several more options. Here are three common options:
+-a - lists all contents, including hidden files and directories
+-l - lists all contents of a directory in long format
+-t - order files and directories by the time they were last modified.
+-alt is a combination of all of them together
+cp <i>filename  filename</i>
+This copies the directory of one file into another
+  cp's second parameter can be a directory...a target directory to move the copied file.
+
+cp * <i>foldername</i>
+<code>cp shoplist.txt ../<i>todofolder</i></code>
+
+
+mv
+rm
+head <i>filename</i>top portion of file
+tail <i>filename</i>bottom portion of file
+cat <i>filename</i>entire file
+
+curl
+curl http://localhost:3000 // once running a local server, use this command in another window/tab of Terminal
+ping
+ping + ip address
+traceroute
+traceroute + ip address like google 8.8.8.8
+cat <i>filename</i> | grep <i>"word-to-search"</i>
+cat WordsDB.json | grep "thunder"
+cd ~
+move directly to HOME
+<
+<strong><</strong> takes the standard input from the file on the right and inputs it into the program on the left.
+
+
+ls -lah
+
+list allfiles humanReadable
+
+bower list -->lists all dependencies and all stuff installed
+
+bower uninstall jquery --save    --> unstalls it and "--save" takes it out of our JSON file
+
+bower list --paths --> lists the paths used in html
+<a href="paths.png">Here are some paths used by html</a>
+<img src="paths.png" alt="paths" />
+
+sudo npm install graceful -g npm@latest
+<b>npm@latest</b> fixes warnings and updates to latest version
+
+"save-dev"
+</pre></code>
+
+  </body>
+</html>

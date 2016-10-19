@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="styles.css" media="screen" title="no title">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet">
+        <title>css3anim</title>
+    </head>
+
+<body><pre>
+    <div class="outbox3">
+        <h2 class="ctr lemon">infskils css3 ch5.3 animations</h2>
+    <span class="teal">I. Start with @keyframes plus a name</span>
+
+    @keyframes + <i>uniqueName</i>
+    {
+        0% { property: value; }
+        50% { property: value; }
+        100% { property: value; }
+    }
+
+    <span class="teal">II. Apply these to an element</span>
+
+    #exampleBox {
+        animation: uniqueName  2s  500ms  2  normal  ease-in  forwards;
+    }
+
+    <div class="innerboxW"><span class="ctr ivr">Nota Bene:</span>
+    <code>animation-iteration-count: <i>n</i> | infinite;</code>
+    (0 or neg number never starts)
+
+    <code>animation-direction: normal | reverse | alternate</code>
+    (normal is 0% to 100%)
+
+    <div class="ltbg"><code>imation-fill-mode: forwards | backwards | both | none;</code>
+
+    <code>Forwards</code> is most common:
+    We are tell the browser that we want our animated element to hold on to the set of styles defined in the last keyframe.
+    This way, we don’t get that final jump back to the initial state of the element</div>
+    </div>
+    <div class="lavenbox">
+    <span class="teal">There's one more to pay be aware of:
+
+    <code>Animation-play-state: running | paused;</code></span>
+    </div>
+    </div><!--ch end-->
+
+    <div class="box2">
+        <h4 class="reddrk">infskils css3 ch4.1 transitions</h4>
+    1. A start point and an ending point.
+    2. A trigger
+    <div class="squatbox">
+    What can be animated?
+    <ul>
+        <li>padding</li>
+        <li>margin</li>
+        <li>color hex codes</li>
+        <li>font-size</li>
+        <li>scale, etc..</li>
+    </ul>    ...in a word "discrete values".
+    </div>
+    <div class="squatbox rdbg">
+    What <span class="redlite">cannot</span> be animated?
+    <ul>
+        <li>z-index</li>
+        <li>visibility: hidden;</li>
+        <li>color names</li>
+        <li>display: block, etc...</li>
+    </ul>Properties without "in-between states"
+    </div>
+    <h2 class="ltgr ctr">Properties * Duration * Timing * Delay</h2>
+    <div class="innerboxN">transition-property: all;<br><hr><span class="ivr">all props that CAN be transitioned WILL be transitioned.</span></div>
+    <div class="innerboxN">transition-property: none;<br><hr><span class="ivr">disables all.</span></div>
+    <div class="innerbox4"><span class="reddrk">transition-timing-function:</span>
+    ease;
+    ease-in-out;
+    ease-in;
+    ease-out;
+    linear;</div>
+    <div class="cssbox">
+    <span class="reddrk">transition-timing-function: cubic-bezier(x1, y1, x2, y2);</span>
+
+    <a class="underline" href="https://matthewlein.com/ceaser/">ceaser bezier tool link</a>
+    </div>
+    <img src="img/ceasarbezier.png" alt="bezier"/>
+    You can achieve a bounce effect by dragging out of parameters.
+
+    <a class="underline "href="http://cubic-bezier.com/">BETTER TOOL: Cubic Bezier.com link</a>
+    <span class="bldk">There is also an optional delay</span>
+    <div class="box">Transition: <span class="ivr">property  duration  timing-function  delay</span><br>
+    <span class="hilite2">transition: opacity 2s ease 500ms;</span></div>
+    <div class="jsbox">There is also a situation where discrete properties may be animated on same element with different timings.<code>
+    #myElement {
+        font-size: 1vw;
+        color: #000;
+        width: 85vw;
+        transition-property: font-size, color, width;
+        transition-duration: <span class="hilite2">2s, 15s, 1s;</span>
+        transition-delay: ease, linear, ease-out;
+    }
+    #myElement:hover {
+        font-size: 3vw;
+        color: #e24e4e;
+        width: 100vw;
+    }</code>
+    <h5 id="myElement">Try it out!</h5>
+    different properties animate at different rates of speed.
+
+    </div>
+
+</div><!--section end-->
+
+<div class="lavenbox">
+<h4 class="bldk">infskils css3 animations ch3.1-3.2: preserve3d, perspective(), backface-visibility</h4>
+    Default for browsers is: <i>transform-style: flat</i>
+
+    This means 3d stuff all remains in 2d and 3d adjusted elements are all visible.
+
+    <div class="innerbox2">This must be changed to:
+    <i>transform-style: preserve-3d;</i></div>
+
+    We also can add the perspective property to the transform:
+    <div class="innerboxN">perspective(~~px);</div>
+
+    perspective value is distance from the action.
+    Lower numbers => closer (the more pronounced diff is between z-indexed items).
+    Higher numbers => further (less pronounced diff).
+    <div class="container">
+        <div class="b3d shape1">SHAPE 1</div>
+        <div class="b3d shape2">SHAPE 2</div>
+        <div class="b3d shape3">SHAPE 3</div>
+    </div>
+    <div class="squatbox2">
+    .container {
+        ...
+        ...
+        transform-style: preserve-3d;
+        position: relative;
+        transform: rotateX(-5deg) rotateY(-40deg) perspective(1000px);
+    }
+    .colorboxes {
+        ...
+        opacity: .8;
+    	position: absolute;
+    }
+    .shape1 {
+    	transform: translateZ(0px);
+    	background-color: wheat;
+    }
+    .shape2 {
+    	transform: translateZ(120px);
+    	background-color: maroon;
+    	}
+    .shape3 {
+    	transform: translateZ(260px);
+    	background-color: green;
+    }
+    </div>
+    <span class="ivr">backface-visibility: hidden;</span> is very simple.
+
+    When a shape is reversed, the default is visible--so reversed text.
+    backface-vis: hidden disables this.
+
+</div>
+    <div class="box">
+    <h4 class="ltgr">infskils css3 animations ch2.6 Multiple</h4>
+    Use Multiple transform properties all on one line!
+    NO COMMAS!
+
+    <div class="jsbox">
+    -webkit-transform: translate(-20%, -20%)
+                       scale(.5, .5)
+                       rotate(45deg)
+                       skewX(10deg)
+                       skewY(20deg);
+
+</div>
+
+    <span class="ltgr">transform: none;
+    nullifies any transform</span>
+
+    <h4 class="ltgr">infskils css3 animations ch2.5 Origins<h4>
+    Point of rotation.
+
+    <span class="ivr">Transform Origin Property</span>
+    transform origin takes X and Y values.
+
+    Values can be lengths, percentages or the
+    keywords top, left, right, bottom, and center.
+    <div class="compact2">
+        -webkit-transform-origin: 50% 20%;
+    </div>
+
+    <span class="ltgr">neg values also work
+    chrome needs -webkit-</span>
+
+    <h4 class="ltgr">infskils css3 animations ch2.4 Skewing Elements</h4>
+    alters angle of vertical or horiz axis
+
+    <div class="compact2">
+        transform: skewX();
+    or
+        transform: skewY(25deg);
+    </div>
+
+    <span class="ltgr">Important to note that these
+    X and Y values are EITHER OR! You cannot use both values at once. </span>
+
+<h4 class="ltgr">infskils css3 animations ch2.3 rotate</h4>
+    Positive values ==> Clockwise
+    Negative values ==> Counter clockwise
+
+    <div class="compact2">
+        rotateX(value)
+        rotateY(value)
+    or
+        rotate3d(x, y, z)
+    </div>
+
+    <span class="ivr">These are rotating around the very center of
+        the object. In later lessons we can change that behavior.</span>
+
+    <h4 class="ltgr">infskils css3 animations ch2.2 scale</h4>
+    First value effects horiz.
+    Second val effects the vertical scale.
+    Negative numbers reverse it or invert it or both!
+    <div class="compact2">
+        transform: scale(-.5, -.5);
+    or
+        scaleX()
+        scaleY()
+    or
+        scale3d(sx, sy, sz)
+        scaleZ(sz)
+    </div>
+    <div class="box"><span class="ivr">The third value in scale3d or the value in scaleZ affects the scaling along the z-axis (e.g. the imaginary line coming straight out of the screen). </span></div>
+
+
+<h4 class="ltgr">infskils css3 animations ch2.1 translate</h4>
+    It is important to note that transformed shapes have a kind of split-personality.
+
+    While they exist at the location where they are told to "be" they also "occupy" an empty space and nothing "flows" around where they are originally "placed".
+
+    <div class="compact2">
+        transform: translate(-50%, -80px);
+    or
+        translate3d(x, y, z)
+        translateZ(z)
+    or
+        transform: translateX(value);
+        transform: translateY(value);
+    </div>
+    <span class="ltgr">They mimic a kind of visibility: hidden property.</span>
+    <div class="box"><span class="ivr">visibility: hidden
+    hides an element, but it will still take up the same space as before.
+    Translate (like visibility: hidden) preserves the space. AND it doesn't cause a reflow!</span></div>
+    A NOTE ABOUT translateZ(0);
+    This triggers GPU!
+    as does
+    translate3d(0, 0, 0);
+
+</div><!--end of bg-->
+
+</pre>
+</body>
+</html>
+<!-- <div class="box">
+    <h4 class="ltgr">infskils css3 animations ch~~~~~</h4>
+    ed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+    Ut enim ad minim veniam, quis nostrud exerci
+    <div class="compact2">
+        scale3d(sx, sy, sz)
+        scaleZ(sz)
+    Tnary line coming straight out of the screen).
+
+    </div>
+
+    <span class="ltgr">Placeholder Placeholder Placeholder </span>
+
+    <div class="box"><span class="ivr">Placeholder Placeholder Placeholder
+    Placeholder Placeholder Placeholder </span></div> -->

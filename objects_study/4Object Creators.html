@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style media="screen">
+        h3, h2 {
+            text-align: center;
+        }
+        .hilite {
+            color: rgba(10, 247, 155, 1);
+        }
+        
+        .title {
+            font-size: 3vw;
+        }
+        .expl {
+            color: rgb(95, 207, 218);
+        }
+        h2 {
+            color: rgb(245, 179, 48);
+            font-family: Georgia;
+        }
+        .return {
+            background-color: rgba(129, 124, 113, 0.54);
+        }
+        .box {
+            margin: 5%;
+            text-align: left;
+            border: 2px solid orange;
+        }
+
+        li {
+            font-size: 2vw;
+        }
+
+        body {
+            background-color: rgb(83, 113, 95);
+        }
+
+        code {
+            font-size: 2vw;
+            color: rgb(163, 173, 167);
+            background-color: rgba(223, 165, 16, 0.58);
+        }
+    </style>
+    <title>4 Object Creators Patterns</title>
+    </head>
+
+<body>
+    <h3 style="text-align: center">Object Creation Patterns</h3>
+    <hr>
+    <h3>Test Area</h3>
+<script type="text/javascript">
+
+
+
+var peopleDynaProto = function(age, hair, gender) {
+    this.age = age;
+    this.hair = hair;
+    this.gender = gender;
+
+    if (typeof this.showPerson !== 'function') {
+        peopleDynaProto.prototype.showPerson = function() {
+            console.log(this.age + this.hair + this.gender);
+        }
+    }
+}
+
+var jeff = new peopleDynaProto(24, "flat-top", "Male");
+
+jeff.showPerson();
+
+var lenny = new peopleDynaProto(47, "jew-fro", "male");
+
+lenny.showPerson();
+
+
+</script>
+    <hr>
+    <ol>
+        <li>Factory Pattern</li>
+        <li>Constructor Pattern</li>
+        <li>Prototype Pattern</li>
+        <li>Dynamic Prototype Pattern</li>
+    </ol>
+    <h2 class="title">I. Factory Pattern</h2>
+    <code><pre><div class="box">var peopleFactory = function (name, age, height) {
+    var temp = {};
+
+    temp.age = age;
+    temp.height = height;
+    temp.name = name;
+    temp.showPerson = function() {
+        document.write("Name: " + this.name +
+                        "< br>Age: " + this.age +
+                        "< br>Height: " + this.height);
+    };
+    return temp;
+};
+
+var someGuy = peopleFactory("Billy", 35, "8 Feet Tall");
+var someGirl = peopleFactory("Susan", 38, "5 Feet Tall");
+
+someGuy.showPerson();
+    <h4 class="return">    Name : Billy
+    Age: 35
+    Height: 8 Feet Tall</h4>
+someGirl.showPerson();
+    <h4 class="return">    Name: Susan
+    Age: 38
+    Height: 5 Feet Tall</h4></div>
+<ol class="expl">
+<li>Created a var on an anon function (with args).</li>
+<li>Create an empty object in that function.</li>
+<li>Place properties on that object equal to the fn's parameters.</li>
+<li>Place a method on the object to print it.</li>
+<li>Finally, return the entire object.</li>
+<li>Then, simply create more objects with:</li>
+var myObj1 = objFactory(--, --, --);
+</ol>
+<span>BONUS EXAMPLE</span>
+<h5 style="color: black" class="box">var drinkFactory = function(ice, temp, price) {
+    var drink = {};
+
+    drink.ice = ice;
+    drink.temp = temp;
+    drink.price = price;
+    drink.show = function() {
+    document.write("< br>" + drink.ice + "< br>" + drink.temp + "< br>" + drink.price);
+};
+    return drink;
+}
+
+var mydrink = drinkFactory("none", "hot", "$3.00");
+
+mydrink.show();
+</h5>
+
+</pre></code>
+<hr>
+<h2 class="title">II. Constructor Pattern</h2>
+<code><pre>
+<div class="box">var peopleConstructor = function(name, age, height) {
+    <span class="hilite">this.</span>age = age;
+    <span class="hilite">this.</span>height = height;
+    <span class="hilite">this.</span>name = name;
+    <span class="hilite">this.</span>showPerson = function() {
+        document.write("Name: " + this.name +
+                        "< br>Age: " + this.age +
+                        "< br>Height: " + this.height);
+    };
+};
+<span class="pinkish">
+values are waiting to "take" what is fed into the function's args</span></div>
+<span class="expl">
+Unlike the Factory Pattern, since we aren't returning an obj, we have to
+create other objects from the "var peopleConstructor" object with the keyword "new".</span>
+<div class="box"></span>var someGuy = <span class="hilite">new</span> peopleConstructor("Billy", 35, "8 Feet Tall");
+var someGirl = <span class="hilite">new</span> peopleConstructor("Susan", 38, "5 Feet Tall");
+
+someGuy.showPerson();<span class="hilite">--call it</span>
+<h4 class="return">Name : Billy
+Age: 35
+Height: 8 Feet Tall</h4>
+someGirl.showPerson();<span class="hilite">--call it</span>
+<h4 class="return">Name : Susan
+Age: 38
+Height: 5 Feet Tall</h4></div>
+
+<span class="expl">
+Created a var on an anon function (with args). <span class="pinkish">No obj inside this <i>fn!</i></span>
+Created properties with <span class="hilite">.this</span>
+Placed values (to correspond to the function's args).
+Placed a method on the object to print it.
+Finally, <span class="pinkish">we DO NOT return any object.<span>
+
+Then, simply create more objects with:</span>
+var obj1 = new objectConstructor(--, --, --);
+</pre></code>
+
+<code><pre>
+<h5 style="color: black" class="box"><span>BONUS EXAMPLE</span>
+var cakeConstructor = function(size, flavor, kind) {
+  this.size = size;
+  this.flavor = flavor;
+  this.kind = kind;
+
+  this.show = function() {
+    document.write("< br>" + this.size + "< br>" +
+                this.flavor +  "< br>" + this.kind);
+  }
+}
+
+var myCake = new cakeConstructor("large", "lemon", "birthday");
+
+myCake.show();</h5>
+</pre></code>
+
+<hr>
+<h2 class="title">III. Prototype Pattern</h2>
+<code><pre>
+<div class="box">var peopleProto = function(name, age, height) {
+    <span class="expl">(empty anon fn on a var)</span>
+};
+<span class="hilite">this.</span>age = <span class="pinkish">0</span>;
+<span class="hilite">this.</span>height = <span class="pinkish">"no height"</span>;
+<span class="hilite">this.</span>name = <span class="pinkish">"no name"</span>;
+<span class="hilite">this.</span>showPerson = function() {
+    document.write("Name: " + this.name +
+                    "< br>Age: " + this.age +
+                    "< br>Height: " + this.height);
+};
+<span class="pinkish">
+values are defaults shared by all waiting to be overridden
+ by args from the fns of <span class="hilite">new</span> objects</span>
+
+</span>var someGuy = <span class="hilite">new</span> peopleConstructor();
+someGuy.name = "Billy";
+someGuy.age = 35;
+someGuy.height = "8 Feet Tall";
+
+someGuy.showPerson();<span class="hilite">--call it</span>
+<h4 class="return">Billy
+35
+8 Feet Tall</h4>
+var someGirl = <span class="hilite">new</span> peopleConstructor();
+someGirl.name = "Susan";
+someGirl.age = 38;
+someGirl.height = "5 Feet Tall";
+
+someGirl.showPerson();<span class="hilite">--call it</span>
+<h4 class="return">Susan
+38
+5 Feet Tall</h4></div>
+
+<span class="expl">
+All future objects can share everything on the prototype &
+objects can be customized by omitting the ".prototype" method:
+<h5 class="box pinkish">
+pizza.getCrust = function() {
+    return this.crust;
+}
+<span class="hilite">OR...</span>
+pizza.prototype.getCrust = function() {
+    return this.crust;
+}</h5>
+DRY code principles dictate that the showPerson() method (for example)
+is redundant.
+ALSO: all objects have 'latent' default information which could be heavy(?)
+
+Anticipate using <span class="pinkish">console.log(someguy.hasOwnProperty('name'));</span> pretty often
+to determine whether a prop (other than default) exists.
+</span>
+</pre></code>
+
+
+<code><pre>
+BONUS EXAMPLE:
+<h5 style="color: black" class="box">
+var movieProto = function(director, star, rating) {
+};
+
+movieProto.prototype.director = "nobody";
+movieProto.prototype.star = "nobody";
+movieProto.prototype.rating = "unrated";
+
+movieProto.prototype.display = function() {
+    console.log(this.director + " " + this.star + " " + this.rating);
+}
+
+var bladerunner = new movieProto();
+
+bladerunner.director ="Ridley Scott";
+bladerunner.star = "Harrison Ford";
+bladerunner.rating ="Rated-R";
+
+bladerunner.display();
+</h5></pre></code>
+</div>
+<hr>
+<h2 class="title">IV. DYNAMIC Prototype Pattern</h2>
+<h2 class="expl">
+DynamicProto is a bit of a combination of constructor and pure proto
+with a few default properties<h2>
+
+<code><pre>
+<div class="box">
+var peopleDynaProto = function(age, hair, gender) {
+    this.age = age;
+    this.hair = hair;
+    this.gender = gender;
+<span class="pinkish">Here it checks whether 'showPerson' method exists<br> if not, Make it! </span>
+    if (typeof this.showPerson !=== 'function') {
+        peopleDynaProto.prototype.showPerson = function() {
+            console.log(this.age + this.hair + this.gender);
+        }
+    }
+}
+
+var nuPerson = new peopleDynaProto(24, "flat-top", "Male");
+
+nuPerson.showPerson();
+</body>
+
+</html>

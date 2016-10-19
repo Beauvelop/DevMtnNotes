@@ -1,0 +1,85 @@
+QUESTIONS:
+"How do you find the longest word in a string that is not repeated."
+DM: "The Toy problem?"
+
+the 'this' keyword
+TODO: 3  .bind, objects using "this", several essay questions
+
+https://codecard.io/a/sequence/7r6rzD9_R
+
+callback functions
+TODO: 9/9
+https://codecard.io/a/sequence/7E44J9rdV
+
+Object creation/manipulation
+TODO: 4
+https://codecard.io/a/sequence/NYTIFb172
+
+functions and objects
+TODO: 6
+https://codecard.io/a/sequence/d4jgRdzx2
+
+JS Fundamentals IV
+Challenges regarding the "this keyword", .bind(), .call(), and .apply()
+TODO: 2
+https://codecard.io/a/sequence/NY1gPKpju
+
+JS Fundamentals V
+Callbacks
+TODO: 8
+https://codecard.io/a/sequence/B4otuPc52
+
+Dev CODE challenge
+TODO: 1
+https://codecard.io/a/sequence/7Y82i_Zc2
+
+day 5 adv js problems
+TODO: 4
+https://codecard.io/a/sequence/N4cJ_s7lR
+
+Func that returns a full object with props
+TODO: 1
+https://codecard.io/a/sequence/d4PQip7lX
+
+JS Arrays level 2
+TODO: 2
+https://codecard.io/a/sequence/d4EvWJDsy
+
+
+JS objects level 2
+falsy looping getting setting
+https://codecard.io/a/sequence/NrEp1cG0I
+
+
+
+
+
+JS functions level 2
+TODO: 5
+https://codecard.io/a/sequence/B4D9MGm5X
+
+
+
+Javascript Arrays Level 3
+TODO: 3
+https://codecard.io/a/sequence/7EAjKTA0y
+
+Javascript Functions Level 3
+Fun functions with loops and strings
+https://codecard.io/a/sequence/dEvmVkM5f
+
+
+
+
+THIS keyword level II
+ bind
+https://codecard.io/a/challenge/BYLVAPCjX?sequence=d4ThFGO5y
+
+Callbacks level I
+TODO: 4
+https://codecard.io/a/sequence/dr0LJpUhf
+
+
+Callbacks II
+TODO: 4
+https://codecard.io/a/sequence/d4mO_MUpf

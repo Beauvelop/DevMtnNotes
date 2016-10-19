@@ -1,0 +1,142 @@
+Node Notes
+==============CodeSchool Node Intro series Vid 1/7 ===============
+
+Blocking code vs Non-Blocking code.
+
+sync vs async?
+
+Asynch is code that "delegates" to a function and then moving on to more functions.
+
+This is essentially achieved by inserting a func as a parameter.
+
+In other words, by using a callback function.
+
+
+Event Loops
+
+Node runs and registers
+-Request
+-Connection
+-Close
+==> Node sees these all as EVENTS. These events are triggered and can trigger even more events.
+All events enter an Event Queue which are then, processed one at a time.
+===============codeschool Node intro vid#2
+objects in Node emit events.
+-if they emit events, they INHERIT from the Event Emitter constructor
+
+-----custom event emitter------
+var EventEmitter = require('events').EventEmitter; --requires the EE class
+var logger = new EventEmitter(); --error, warn, info
+
+//on the error event, run this callback
+logger.on('error', function(message) {
+  console.log('ERR: ' + message);
+});
+//we can then call the error emit event with...
+logger.emit('error', 'You f*cked up!');
+------end------
+So, to review:
+1)http.createServer([requestListener])
+this returns a web server object
+(this is a function that is automatically added to the 'request' event).
+
+Class: http.Server --is an EventEmitter emitting...
+  Event: 'request'
+	function(request, response) {  }
+(this is emitted each time there is a request)
+
+the following code:
+http.createServer(function(request, response){.......});
+
+Can ALSO be written thus:
+var server = http.createServer();
+server.on('request', function(request, response){ ......});
+
+--if we want to call a function upon close we can insert a callback
+server.on('close', function(){   .......   });
+
+=========codeschool Node Ch 3 Streams =======
+
+request is a "readable stream" & a "response" is a writeable stream.
+
+IF all we need is to read data from a readable stream and write data from a writeable stream...
+
+request.pipe('response') --> This is a shorcut in Node if...
+
+
+
+
+// this code
+
+
+
+==lynda node first look==
+require('os')
+
+process.version -- known as a process global
+
+read evaluate print loop -REPL interface
+
+> os.type
+[Function: getOSType]
+> os.type();
+'Darwin'
+
+os.type identifies as a function. It is run with ();
+
+The 'global' keyword will show us every var that is available in the global scope
+
+In order to read the value of the var that you just typed so just enter "_" and it will return that value
+
+in terminal enter "node" without any file name and you will enter the ">" prompt just like that in the chrome devtools console
+
+--Q: How do I get out?   A: Hit ctrl-C twice   --OR-- hit ctrl-D  once  --OR-- process.exit();
+(the exit function off of the process global)
+
+-g flag installs the npm module as a "global module"
+
+==lynda node first look==Ch 3.1
+
+NPM command uses the package.json file to identify dependencies
+
+dependencies are stored within the "node_modules" folder within your project
+
+You can also define local modules  (./"localmodule.js") --in order to separate data from code.
+
+in your script you can "require" that file:   the "./~~~" tells node to load a local module and not look for it elsewhere.
+
+
+NPM seach | grep markdown
+
+This command will whittle down your search more efficiently. (grep unavailable on windows)
+
+
+Ch4.2
+The readline module allows for user to do prompts
+
+var rl = require('readline');
+
+var prompts = rl.createInterface(process.stdin, process.stdout);
+prompts.question("Hey, are you good or bad?", function (response) {
+var message = '';
+if (response === "good") {
+message = "Oh, good. Me too";
+} else {
+message = "Ugh, that sucks, Dude.";
+}
+console.log(message);
+
+process.exit();
+
+});
+
+Ch4.3
+
+===
+var argv = require('optimist').argv,
+	$ = require('jquery'),
+	fs = require('fs');
+===
+
+optimist allows us to use the command line
+fs is node's way of allowing us to use the file system.

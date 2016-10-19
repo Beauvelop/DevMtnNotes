@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+    <html>
+
+    <head>
+    <link rel="stylesheet" href="styles.css">
+    <title>General JS Notes</title>
+    </head>
+    <body>
+    <h1 class="redlite ctr">My Closure Notes</h1><pre>
+
+<div class="outbox"><h3 class="ctr">my Custom <i>"Meta-" </i>Closure</h3><pre>
+    Here's a closure describing learning closures :)
+    <code class="wh">It has a switch statement remembering increments
+    along the path to understanding closures.</code>
+
+    <div class="inbox1"><span class="redlite">    Learning Closures takes 100 hours of Effort();
+    This is comprised of several <span class="bldk">studySprints();</span>
+</span><code class="wh">
+    function Effort() {
+      var grasp = 0;
+
+      <span class="redlite">return</span> function graspOfClosures(hours) {
+        var headway = hours;
+        var msg = '';
+        grasp = grasp + headway;
+        switch (grasp > 0) {
+          case (grasp >= 100):
+            msg = "You've mastered closures!";
+              break;
+          case (grasp > 90):
+            msg = grasp + "%...A-A-A-A-Almost!";
+            break;
+          case (grasp > 60):
+            msg = "My GOD! you'are at " + grasp + "%! so close!";
+            break;
+          case (grasp >= 40):
+            msg = grasp + "% is great! Don't stop!";
+            break;
+          case (grasp > 20):
+            msg = "Nice! " + grasp + "% is good...Keep going!";
+            break;
+          default:
+            msg = "You've learnt " + grasp + "%. Study moar.";
+        }
+        return msg;
+      }
+    }
+
+    var studySprint = new Effort();
+
+    <span class="bldk">studySprint(20)
+    studySprint(<input class="inval" id="inVal" type="text" name="name" value="10">); <div class="enter" id="funCall">Enter</div>
+    Returns <span id="return" class="redlite"></span>
+</span></code>
+
+    </div>
+    <div class="jsbox"><h2 class="ctr">Here is a DM example</h2>
+    function makeCalculator(startnum) {
+        // var startNum
+        var total = startnum;
+            return {
+                add: function(added) {
+                        total += added;
+                        },
+                mult: function mult(multed) {
+                        total *= multed;
+                },
+                sub: function(subbed) {
+                        total -= subbed;
+                        },
+                div: function(divved) {
+                        total /= divved;
+                        },
+                log: function() {
+            document.write(total);
+                }
+            }
+
+        }
+
+        var calc1 = makeCalculator(3);
+        calc1.add(7);
+        calc1.sub(2);
+        calc1.log();
+        <cite>
+                <a href="https://vimeo.com/180077708">Class Link</a></cite>
+    </div>
+
+    <div class="testbox"><h2 class="ctr">Here is a Tuts+ Example</h2><cite>Tuts+ vid 46</cite>
+    function Order() {
+        var total = 0;
+
+        return function addProduct(price) {
+            var salesTax = price * 0.17;
+            var fee = price * 0.05;
+
+            total += price + salesTax + fee;
+
+            return total;
+        }
+    }
+
+    <span class="wh">This is a constructor function with a returning function.
+    Thus, we have a closure.
+
+    And now, to make the function work for us...</span>
+
+    var myOrder = new Order();
+
+    console.log(myOrder(100));
+    console.log(myOrder(200));
+
+</div>
+<div class="jsbox3">
+    var counter = function() {
+
+        var count = 0;
+
+        return function() {
+            console.log(++count);
+        };
+    }
+
+    var c1 = counter();
+
+    c1();
+    console.log("< br>");
+    c1();
+    var c2 = counter();
+    console.log("< br>");
+    c2();
+    console.log("< br>");
+    c1();
+
+
+
+</div></pre></div>
+<div class="grtransbox">
+<h3 class="chtitle">Front-end Masters: Rethinking Asynch 3 ex1 solution</h3>
+<pre>
+    Here is one example given of "callback Hell" with Fake Ajax calls.
+    The challenge is to call three files & print them in order.
+    We have to manage the responses--if file 2 and 3 return before file 1--DONT
+    Print unil file 1 returns.
+
+    It starts with the following code:
+    <div class="jsbox"><code>    function getFile(file) {
+        fakeAjax(file, function(text) {
+            <span class="gr">//do smthing.</span>
+        });
+    }
+    getFile("file1");
+    getFile("file2");
+    getFile("file3");</code></div>
+
+    <span class="commentxt">// above, we have a closure.
+    Because of closure, we're going to know which one of the 3 files came back.</span>
+
+    One way to deal with this is with a "handleResponse <i>fn</i>"
+    <div class="jsbox">
+
+    function handleResponses(filename, contents) {
+        if (!(filename in responses)) { <span class="gr">making sure I've not seen this
+        and store it in an object</span>
+        responses[filename] = contents;
+        }
+    }
+    var responses = {}; <span class="gr">This variable is to "hold" response data,
+    that I'm unable to print at the moment.</span>
+    </div>
+    This handleResponses is going to be called three separate times, but we're unsure of the order. Our challenge is to "handle that concurrency".
+    <div class="jsbox">function handleResponses(filename, contents) {
+        if (!(filename in responses)) {
+
+        responses[filename] = contents;
+        }
+        var filenames = ["file1", "file2", "file3"];
+        for (var i = 0; i < filnames.length; i++) {
+            if (filenames[i] in responses) {
+
+            } else {
+                return; // or "break;"
+            }
+        }
+    }
+    var responses = {};
+</div>
+
+    </div>
+
+
+</pre>
+</div>
+<hr>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+function Effort() {
+  var grasp = 0;
+    return function graspOfClosures(hours) {
+      var headway = hours;
+      var msg = '';
+      grasp = grasp + headway;
+      if ((grasp < 1) || !(Number.isInteger(grasp))) {
+          msg = "WTF?";
+      } else {
+      switch (grasp > 0) {
+          case (grasp >= 100):
+              msg = "CONGRATULATIONS! You've mastered closures!";
+              break;
+          case (grasp > 90):
+                  msg = grasp + "%...A-A-A-A-Almost!";
+                  break;
+          case (grasp > 60):
+                  msg = "My GOD! you'are at " + grasp + "%!! Almost there!";
+                  break;
+          case (grasp >= 40):
+                  msg = grasp + "% is great! Don't stop!";
+                  break;
+          case (grasp > 20):
+              msg = "Nice! " + grasp + "% is good. Keep going! It will come.";
+              break;
+          default:
+              msg = "You've learnt " + grasp + "%. Looks like you need to study more.";
+      }
+    }
+      return msg;
+  }
+}
+
+var studySprint = new Effort();
+
+$('#funCall').on('click', function () {
+    var param = $('#inVal').val() % 100;
+    var run = studySprint(param);
+    $('#return').text(run);
+});
+
+});
+
+
+
+    </script>
+</body>
+
+</html>

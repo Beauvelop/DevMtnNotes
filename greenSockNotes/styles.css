@@ -1,0 +1,581 @@
+body {
+    font-size: 1.5vw;
+    font-family: "Source Code Pro", monospace;
+    letter-spacing: 0.2vw;
+    color: black;
+    background-color: #557c50;
+}
+
+img {
+    position: relative;
+    width: 30vw;
+    left: 2vw;
+}
+.commentxt {
+    color: rgba(143, 148, 146, 0.67);
+}
+.teal {
+    color: rgb(106, 159, 158);
+    font-size: 1.8vw;
+}
+.wh {
+    color: white;
+    font-weight: lighter;
+}
+.reddrk {
+    color: brown;
+    font-weight: lighter;
+    font-family: "Source Code Pro", monospace;
+}
+.redlite {
+    color: #ff3f45;
+}
+.mango {
+    color: rgb(175, 99, 29);
+}
+.aqua{
+    color: rgb(112, 189, 194);
+}
+.bldk {
+ color: rgb(30, 31, 41);
+ font-family: Helvetica;
+ line-height: 2vw;
+}
+.pinkish {
+    color: rgb(237, 162, 162);
+}
+.lemon {
+    color: rgb(217, 202, 105);
+}
+.gr {
+    color: rgb(102, 191, 134);
+    font-weight: bolder;
+}
+.chtitle {
+    color: rgb(94, 155, 185);
+    font-family: "Source Code Pro", monospace;
+    font-weight: lighter;
+}
+.ivr {
+    color: wheat;
+    font-family: "Source Code Pro", monospace;
+    font-weight: 400;
+}
+.blLite {
+    color: rgb(136, 191, 218);
+}
+.ltgr {
+    color: rgb(136, 218, 189);
+}
+.hilite2 {
+    color: #6bf57f;
+    font-family: "Source Code Pro", monospace;
+    /* font-weight: 700; */
+}
+.ltbg {
+    padding: 1%;
+    background-color: rgba(225, 237, 237, 0.16);
+}
+.ltbg2 {
+    padding: 1%;
+    background-color: rgba(225, 237, 237, 0.36);
+    font-size: 1.6vw;
+}
+.testbox {
+    width: 85vw;
+    margin: 2vw;
+    padding: 3%;
+    color: rgb(203, 184, 136);
+    background-color: rgba(104, 133, 129, 0.5);
+    box-shadow: 10px 10px 25px black;
+    font-family: monospace;
+    font-size: 1.8vw;
+    font-weight: bold;
+}
+.squatbox {
+    /*line-height: 2.3vh;*/
+    width: 70vw;
+    border: 1px solid white;
+    font-weight: 400;
+    background-color: rgba(0, 0, 0, 0.47);
+    padding: .5vw;
+    margin: auto;
+}
+.squatbox2 {
+    background-color: rgba(26, 36, 47, 0.52);
+    line-height: 1vw;
+    margin: auto;
+    padding: .5%;
+    width: 60vw;
+    color: lightgrey;
+    border: 1px solid black;
+    font-size: 1.2vw;
+    font-family: "Source Code Pro", monospace;
+    position: relative;
+}
+
+.compact {
+    color: wheat;
+    margin: auto 20vw;
+    font-family: "Source Code Pro", monospace;
+    font-size: 1.5vw;
+    padding: 2% 2% 1% 2%;
+    background-color: rgb(92, 127, 142);
+    width: 50;
+    border: 1px solid wheat;
+}
+.compact2 {
+    color: rgba(169, 194, 157, 1);
+    margin: auto 10vw;
+    font-family: "Source Code Pro", monospace;
+    font-size: 1.5vw;
+    padding: 2% 2% 1% 2%;
+    background-color: rgba(37, 70, 89, 1);
+    width: 65vw;
+    border: 1px solid wheat;
+}
+.compact3 {
+    color: rgba(169, 194, 157, 1);
+    margin: auto 5vw;
+    font-family: "Source Code Pro", monospace;
+    font-size: 1.5vw;
+    padding: 2% 2% 1% 2%;
+    background-color: rgb(51, 80, 52);
+
+    border: 1px solid white;
+}
+
+.txtbox {/*outer*/
+    /*position: relative;*/
+    width: 90vw;
+    margin: 1vw;
+    padding: 1%;
+    color: wheat;
+    border: 1px solid rgb(84, 39, 10);
+    background-color: rgba(39, 62, 50, 0.78);
+    font-family: sans-serif;
+    font-size: 2.5vw;
+    font-weight: lighter;
+    letter-spacing: 0.1vw;
+}
+.outbox {
+    width: 90vw;
+    margin: 2vw 1vw;
+    padding: 2%;
+    color: rgb(173, 173, 149);
+    background-color: rgba(238, 97, 97, 0.2);
+    border: 2px solid black;
+    font-size: 2vw;
+    font-weight: lighter;
+    letter-spacing: 0.1vw;
+}
+.outbox2 {
+    width: 90vw;
+    margin: 1vw;
+    padding: 2%;
+    color: rgba(164, 160, 136);
+    border: 1px solid coral;
+    background-color: rgba(40, 42, 44, .75);
+    font-family: sans-serif;
+    font-size: 2vw;
+    font-weight: lighter;
+    letter-spacing: 0.1vw;
+}
+
+.outbox3 {
+    width: 95vw;
+    padding: auto;
+    color: rgba(255, 206, 166, 1);
+    border: 1px solid white;
+    background-color: rgb(175, 119, 174);
+    font-family: sans-serif;
+    font-size: 1.5vw;
+    font-weight: lighter;
+    letter-spacing: 0.2vw;
+    /*position: absolute;*/
+}
+
+.outbox4 {
+    width: 90vw;
+    margin: 1vw;
+    padding: 2%;
+    color: rgba(164, 160, 136);
+    border: 1px solid coral;
+    background-color: rgba(0, 166, 7, 0.24);
+    font-family: "Source Code Pro", monospace;
+    font-size: 2vw;
+    font-weight: lighter;
+    letter-spacing: 0.1vw;
+}
+
+.outbox5 {
+    width: 90vw;
+    margin: 1vw;
+    padding: 2%;
+    color: #72b3f6;
+    border: 1px solid ivory;
+    background-color: #4c635e;
+    font-family: "Source Code Pro", monospace;
+    font-size: 2vw;
+    font-weight: lighter;
+    letter-spacing: 0.1vw;
+}
+
+.innerboxN {
+    width: 40vw;
+    margin: 1vw 10vw auto 10vw;
+    padding: 0% 1%;
+    color: black;
+    border: 1px solid rgba(185, 185, 185, 0.68);
+    background-color: rgb(173, 88, 73);
+    box-shadow: 10px 10px 25px black;
+    font-family: "Source Code Pro";
+    font-size: 1.8vw;
+}
+.innerboxN1 {
+    width: 50vw;
+    margin: 0vw 10vw;
+    padding: 0% 1%;
+    color: black;
+    border: 1px solid rgba(185, 185, 185, 0.68);
+    background-color: #dacb95;
+    box-shadow: 3px 3px 15px black;
+    font-family: "Source Code Pro";
+    font-size: 1.6vw;
+}
+.left {
+    text-align: left;
+}
+.innerboxW {
+    width: 70vw;
+    margin: 0% 2%;
+    padding: 0% 1%;
+    color: black;
+    border: 1px solid rgba(185, 185, 185, 0.68);
+    background-color: #e8bb81;
+    box-shadow: 10px 10px 25px black;
+    font-family: "Source Code Pro";
+    font-size: 1.5vw;
+}
+.innerboxLeft {
+    width: 60vw;
+    margin: 1vw 10vw auto 10vw;
+    padding: 0% 1%;
+    color: black;
+    border: 1px solid rgba(185, 185, 185, 0.68);
+    background-color: rgb(173, 88, 73);
+    box-shadow: 10px 10px 25px black;
+    font-family: "Source Code Pro";
+    font-size: 1.8vw;
+}
+.innerbox2 {
+    width: 75vw;
+    margin: 0% 2%;
+    padding: 1%;
+    color: ivory;
+    box-shadow: 5px 5px 15px black;
+    font-family: "Lucida Console", sans-serif;
+    font-weight: lighter;
+    font-size: 1.5vw;
+    background-color: rgba(205, 10, 10, 0.52);
+    position: relative;
+}
+
+.innerbox3 {
+    width: 85vw;
+    margin: 1vw auto auto 2vw;
+    padding: 1%;
+    color: black;
+    border: 1px solid navy;
+    background-color: rgba(219, 180, 93, 0.72);
+    box-shadow: 10px 10px 25px black;
+    font-family: "Source Code Pro", monospace;
+    font-size: 1.7vw;
+    font-weight: 700;
+}
+
+.innerbox4 {
+    width: 75vw;
+    margin: 1vw auto auto 1vw;
+    padding: 1%;
+    color: deepskyblue;
+    border: 1px solid maroon;
+    background-color: rgba(163, 144, 76, 0.19);
+    box-shadow: 5px 5px 15px black;
+    font-family: "Source Code Pro", monospace;
+    font-size: 1.7vw;
+    font-weight: 400;
+}
+
+.grtransbox {
+    width: 90vw;
+    margin: 1vw;
+    padding: 1%;
+    color: rgb(255, 234, 145);
+    background-color: rgba(52, 60, 56, 0.78);
+    border: 1px solid white;
+    box-shadow: 5px 5px 15px black;
+    font-family: "Source Code Pro", monospace;
+    font-size: 1.7vw;
+    font-weight: 400;
+}
+.grtransbox2 {
+    width: 70vw;
+    margin: 1vw;
+    padding: 1%;
+    color: rgb(255, 234, 145);
+    background-color: rgba(52, 60, 56, 0.78);
+    border: 1px solid white;
+    box-shadow: 3px 3px 10px black;
+    font-family: "Source Code Pro", monospace;
+    font-size: 1.7vw;
+    font-weight: 400;
+}
+
+.ans {
+    padding: 0;
+    -webkit-filter: blur(10px);
+    font-family: "Source Code Pro", monospace;
+    display: inline;
+    font-size: 1.8vw;
+    opacity: 1%;
+}
+.ans:hover {
+    /*-webkit-filter: blur(0px);*/
+    animation: blurtxt .5s 1 forwards;
+}
+@-webkit-keyframes blurtxt {
+    0% {
+        -webkit-filter: blur(5px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+.ctr {
+    text-align: center;
+}
+code {
+    font-size: 1.8vw;
+    font-family: "Source Code Pro", monospace;
+}
+
+.b {
+    font-weight: bold;
+}
+.b2 {
+    font-size: 2.5;
+}
+#bigpic {
+    width: 60%;
+}
+
+.list1> li {
+    color: rgb(78, 199, 173);
+    font-family: Georgia;
+}
+.warn {
+    color: rgb(204, 99, 99);
+}
+
+a {
+    color: aqua;
+    text-decoration: none;
+    padding: 1%;
+    margin: auto;
+}
+
+.formal {
+    font-family: times;
+}
+
+.informal {
+    font-family: italic;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+p {
+    font-size: 1.5vw;
+    color: ivory;
+}
+.sm {
+    font-size: 1.3vw;
+}
+.med {
+    font-size: 1.5vw;
+    color: ivory;
+}
+
+li {
+    font-size: 1.5rem;
+    list-style: none;
+}
+.box {
+    font-family: "Source Code Pro", monospace;
+    padding: 2%;
+    margin: 2%;
+    color: rgba(235, 177, 224, 0.8);
+    background-color: rgba(68, 48, 64, 0.6);
+    padding: auto, 30%, auto, 30%;
+    text-align: left;
+    border: 1px solid skyblue;
+}
+.box2 {
+    padding: 1%;
+    margin: 0% 2%;
+    color: rgb(157, 209, 208);
+    box-shadow: 10px 15px 5px rgba(0, 0, 0, 0.69);
+    border: 1px solid white;
+    text-align: left;
+    background-color: rgba(153, 32, 32, 0.29);
+}
+.lavenbox {
+
+    padding: 0% 1%;
+    color: black;
+    width: 90vw;
+    margin: auto;
+    font-family: Georgia;
+    font-size: 1.7vw;
+    border: 1px solid ivory;
+    text-align: left;
+    background-color: rgba(205, 10, 10, 0.12);
+}
+.htmlbox {
+    width: 85vw;
+    color: black;
+    padding: 1%;
+    margin: 5% 3%;
+    font-size: 1.5vw;
+    border: 1px solid lightblue;
+    background-color: rgba(191, 134, 134, 0.43);
+}
+
+.jsbox {
+    color: rgb(27, 46, 61);
+    padding: 0% 1%;
+    margin: 0% 3%;
+    font-size: 1.5vw;
+    border: 1px solid rgb(166, 147, 80);
+    background-color: rgb(255, 244, 149);
+    font-weight: bold;
+}
+.jsbox2 {
+    background-color: rgba(48, 13, 7, 0.75);
+    padding: 0% 1%;
+    margin: 0% 3%;
+    font-family: "Source Code Pro", Helvetica;
+    font-weight: 400;
+    border: 1px solid white;
+    color: rgb(255, 244, 149);
+}
+.jsbox3 {
+    background-color: rgba(48, 13, 7, 0.45);
+    padding: 2% 1%;
+    width: 85vw;
+    font-family: "Source Code Pro", Helvetica;
+    font-weight: 400;
+    border: 1px solid white;
+    color: rgb(255, 244, 149);
+}
+.cssbox {
+    color: ivory;
+    padding: 0% 1%;
+    margin: 0% 3%;
+    font-size: 1.5vw;
+    border: 2px solid orange;
+    background-color: rgb(115, 158, 104);
+}
+.inspectbox {
+    color: black;
+    box-shadow: 4px 4px 8px black;
+    padding: 2%;
+    width: 90vw;
+    margin: auto;
+    font-size: 1.8vw;
+    border: 1px solid black;
+    background-color: rgb(134, 134, 128);
+}
+.inspectbox2 {
+    color: black;
+    box-shadow: 4px 4px 8px black;
+    padding: 0%;
+    width: 90vw;
+    margin: auto;
+    font-size: 1.8vw;
+    border: 1px solid black;
+    background-color: #79b08e;
+}
+i {
+    color: wheat;
+}
+
+.box4 {
+    width: 75%;
+    padding: 2%;
+    margin: auto;
+    border: 1px solid teal;
+    border-radius: 5%;
+    background-color: #dacb95;
+}
+
+pre {
+    white-space: pre-wrap;
+}
+.container {
+    border: 1px solid skyblue;
+    margin: auto;
+    width: 12vw;
+    height: 12vw;
+    transform-style: preserve-3d;
+    position: relative;
+    transform: rotateX(-5deg) rotateY(-40deg) perspective(1000px);
+}
+.b3d {
+    opacity: .8;
+	height: 10vw;
+	width: 10vw;
+	position: absolute;
+}
+.shape1 {
+	transform: translateZ(0px);
+	background-color: wheat;
+}
+.shape2 {
+	transform: translateZ(120px);
+	background-color: maroon;
+	}
+.shape3 {
+	transform: translateZ(260px);
+	background-color: green;
+	}
+    .rdbg {
+        background-color: rgba(52, 25, 26, 0.81);
+        border: 1px solid white;
+        color: rgb(181, 161, 91);
+    }
+    #myElement {
+        font-size: 1vw;
+        color: #000;
+        width: 50vw;
+        transition-property: font-size, color, width;
+        transition-duration: 1s, 15s, 1s;
+        transition-delay: ease, linear, ease-out;
+    }
+    #myElement:hover {
+        font-size: 3vw;
+        color: #e24e4e;
+        width: 70vw;
+    }
+.2vw {
+    font-size: 2vw;
+}
+.innerbox2 .b2 {
+    font-size: 2.5;
+}

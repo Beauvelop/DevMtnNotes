@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>PLSITE js jq</title>
+     <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <h1>Pluralsight js jq and the DOM</h1>
+<div class="testbox">
+<script>
+document.write("TestArea<hr>");
+
+
+
+
+
+document.write("<br>"+"placeholder");
+
+
+</script>
+</div>
+<h3 class="chtitle">Video placeholder : placeholder</h4>
+<code><pre>
+
+<div class="jsbox"><h4 class="ctr">Types as Args</h4>var sum placeholder placeholder
+
+    placeholder placeholder
+
+placeholder placeholderplaceholder placeholderplaceholder placeholder//<button class="ans">5</button>
+
+</div>
+placeholder placeholder
+<ul class="redlite">
+    <li>placeholder</li>
+    <li>placeholder</li>
+</ul>
+</pre></code>
+<hr>
+<h3 class="chtitle">Video 4.1JS: types as arguments</h4>
+<code><pre>
+
+<div class="jsbox"><h4 class="ctr">Types as Args</h4>var sum = function(x + y) {
+    return (++x) + (++y.val);
+}
+
+a = 1;
+b = {val: 2};
+c = sum(a,b);
+//<button class="ans">5</button>
+
+</div>
+<div class="txtbox">js sees a function and creates a call object.
+a {fn} with a prototype pointer to an OBJ
+                SUM <span class="redlite">---prototype---></span>OBJECT
+it then sets sum to point to the <i>{fn}</i>
+                SUM ----> <i>{fn}</i><span class="redlite">---prototype---></span>OBJECT
+it then creates addresses for a & b, (types, values and properties)
+                a ----> 1
+                b ----> OBJ --val-->2
+Next, its going to call the sum() fn.
+                sum(a, b)
+creates a new call object containing variables & reference to '.this'.
+it translates the variables to x & y.
+because a is primitive it's passed by value so x
+is going to point to a copy of a.
+y points to what b points to. Hence, "passed by reference".
+                x = a;
+                y = b.val;
+Then code runs. increments both. passes c as 5.
+</div>
+[return to this to explain it out***]
+<span class="redlite">
+    Primitives are passed by value Get a copy
+    Objects are passed by value
+</span>
+
+<div class="jsbox"><h4 class="ctr">Types as Args</h4>var a = {};
+
+for (var i = 0; i< 3; i++) {
+    a[i] = function() {
+        alert(i);
+    }
+}
+a[0]();// returns <button class="ans">3</button>
+a[1]();// returns <button class="ans">3</button>
+a[2]();// returns <button class="ans">3</button>
+</div>
+<div class="jsbox3">var counter = function() {
+    var count = 0;
+
+    return function() {
+        return ++count;
+    };
+};
+
+var c1 = counter();
+c1();//<button class="ans">false</button>
+c1();//<button class="ans">false</button>
+var c2 = counter();
+c2();//<button class="ans">false</button>
+
+</div>
+
+</pre></code><hr>
+
+
+
+</div><h3 class="chtitle">Video 3.2 JS: comparison operators Explained</h3>
+<code><pre>
+    <div class="jsbox">
+    var obj1 = {};
+    var obj2 = {};
+
+    obj1 === obj2;
+    // returns <button class="ans">false</button>
+
+    var str1 = "blah"
+    var str2 = "blah";
+
+    str1 === str2;
+    // returns <button class="ans">true</button>
+</div>
+js only produces one "blah" in memory. One value.
+both str1 & str2 pointers only reference the same address. They have the same value.
+
+Objects, however, have different addresses.
+
+
+<br>
+<div class="testbox">
+    A neat little trick for Math.floor() is ~~n <br>
+In JavaScript, you can use a double bitwise negation (~~n)
+ as a replacement for Math.floor(n)(if n is a positive number)
+or parseInt(n, 10) (even if n is negative).
+</div>
+
+</pre></code>
+<hr>
+
+<h3 class="chtitle">Video 2.3 JS: The delete keword</h3>
+    <code><pre>
+    <div class="jsbox">var me = {
+        myName: {
+            first: "Leroy"}
+            },
+    myname = me.myName;
+    <span class="whLite">delete me.myName;</span>
+    return myName.first;
+    //<button class="ans">Leroy</button>
+    </div>
+    Above we have scope (global var), we have a "me" pointer and we have 2
+    objects in memory.
+    Note that <i>name</i> is also a variable with (global) scope.
+
+    *<i>me</i> points to <i>name</i> which points to <i>first</i> value: "Leroy"
+    me <span class="whLite">-></span> name <span class="whLite">-></span> first = "Leroy"
+    <span class="redlite">and var name is...</span>
+    name <span class="whLite">-></span> first = "Leroy"
+
+    Name points to the <i>first</i> object and remains intact.
+    The delete operator cuts the me <span class="whLite">-></span> name connection.
+    <h2>Therefore delete only removes pointers and not memory.</h2>
+<br><div class="jsbox2">
+    <span class="mango">by reference vs. by value</span>
+
+    var friend = "John";
+
+    The magic is in the "=" assignment. It points the <i>friend "key"</i> to an
+    address which is going to give us TYPE, PROPERTIES & VALUE<h4>    ADDRESS    VALUE
+        10010:      callObject
+        10010:      friend
+        <span class="reddrk">10010:      20010</span>
+        10010:      .....
+        ......         .....
+        20010:      STRING
+        20010:      6 <i>(length)</i>
+        20010:      John
+        20010:      ....</h4>
+    </div>
+    </pre></code>
+
+    <hr>
+
+
+
+<h3 class="chtitle">Video 2.2 JS: data types, operators</h4>
+    <code><pre>
+    <div class="jsbox">var me = {
+        myName: {first: "Leroy"}
+        },
+        myName = me.myName;
+    myName = {first: "Larry"};
+    return me.myName.first;              //<button class="ans">"Leroy" (because of different scope)</button>
+    </div><br><div class="jsbox2"><span class="mango">by reference vs. by value</span>
+
+    var friend = "John";
+
+    The magic is in the "=" assignment. It points the <i>friend "key"</i> to an
+    address which is going to give us TYPE, PROPERTIES & VALUE<h4>    ADDRESS    VALUE
+        10010:      callObject
+        10010:      friend
+        <span class="redLite">10010:      20010</span>
+        10010:      .....
+        ......         .....
+        20010:      STRING
+        20010:      6 <i>(length)</i>
+        20010:      John
+        20010:      ....</h4>
+    </div>
+    </pre></code>
+
+    <hr>
+
+
+<h3 class="chtitle">Video 1.03 JS: Features</h4>
+        <h4>Compilation and execution happens together.<br>
+        There is no distinction between memory that is used for code & execution and the memory that is used for data.</h4>
+        <br><hr>
+
+
+<h3 class="chtitle">Video 1_02: The birth and life of an alert();</h3>
+    <ol>
+        <li>get request: GET http://wwww... to a server</li>
+        <li>server responds with the html</li>
+        <li>browser passes off to webkit</li>
+        <li>Webkit will process the html, parse it and build DOM elements one by one head, meta script</li>
+        <li>finding a tag it will pass it to V8 the js interpreter</li>
+        <li>V8 will break it into an abstract syntax tree</li>
+        <li>js will lookup alert and call it with "hello world"</li>
+        <li>popup showsup and freezes until user hits ok</li>
+        <li>then the DOM will continue to fill body>h1>bodyclose>htmlclose</li>
+    </ol>
+    <hr>
+
+
+</body>
+
+
+</html>

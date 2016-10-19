@@ -1,0 +1,15 @@
+May I as you a quick question?
+I need some advice.
+
+I have only been coding for 12 months.
+
+I have a free month to study either.
+WAAPI, GreeSock, SNAP, or another tech.
+
+
+
+I am full of enthusiasm & a focused learner but I'm not sure whether I should know a little bit about a lot. Or a lot about one specific technology.
+
+So, WAAPI is likely to be the way things head for the browsers in the next few years. but it will take time to implement and the specs are still changing. so what you learn might not stay stable, I dunno.
+
+GreenSock is AMAZING and I highly recommend it especially if you want the best tools now. I also don't think it will go away just because WAAPI comes out, particularly because they are so far ahead and have a lot to offer in terms of cross-browser stability (something we won't be sure about with WAAPI because it depends on independant browsers). SnapSVG is actually not an animation library- it's meant to be the jquery of SVG. Dmitri, who wrote it, told me he never intended it to be used heavily for animation and recommends GreenSock. Even the animation demos for Snap have a lot of CSS Animations in them if you dig into the code :)

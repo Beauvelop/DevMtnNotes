@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Questions For Preston</title>
+    </head>
+    <style>
+    body {
+        background-color: #4d4242;
+        color: ivory;
+    }
+
+    </style>
+    <body>
+<h1>Questions For Preston</h1>
+
+
+
+Question For Preston:
+
+1. Why build Angular with the need for ng-cloak? That is, why wasn't it hardcoded into the api to begin with?
+Is there any use case for NOT using it on a production site?
+
+2.
+What is the propertyIsEnumerable use case where it returns false?
+
+Does it simply check whether it belongs to an obj? or is it qualitatively different from hasOwnProperty?
+
+what does it mean to say that in js functions are first class?
+
+3.
+--- .sort() with a "comparison function":
+
+I can go thru this in devtools debugger and watch the the values of A & B get changed.
+
+var nums = [3, 20, 1000];
+nums.sort(function(a, b) {
+    if (a < b) {
+        return -1;
+    } else if (a === b){
+        return 0;
+    } else {
+        return 1;
+    }
+});
+console.log(nums);
+
+My question is: How does it change the order of the Array?
+(No counter or 'placeholder' var is used to store results exists!)
+--Should I just resolve to trust that V8 is working it's magic and move on with my life? :)
+-------
+
+Here are some random questions that I've been wrestling with & that I've had a hard time getting info about.
+
+Browser Paint question
+If a square 'rendered' with css or .js (whose x and y coords offset it outside of the viewport) & it is animating... is there processing occuring underneath the hood?
+
+How about if it is obscured behind another shape (or image) with a higher z-index and-in fact-does not "paint" to the page?
+
+Let's say it is animating... Does the browser engine process calculations as though it were?
+------
+
+
+
+Should car be capitalized?
+----
+var car = {
+    engine: "V8",
+    topSpeed: "195mph",
+    mpg: 34,
+    getFacts: function() {
+        var report = this.engine + " : "+ this.topSpeed + " : " + this.mpg;
+        return report;
+    }
+};
+car.getFacts();
+
+---- "or is capitalization only used in function declarations (and future calls to) Constructor functions?"
+
+
+
+Q 4 Preston:
+
+function Car(engine, topSpeed, mpg, nickName) {
+    this.engine = engine;
+    this.topSpeed = topSpeed;
+    this.mpg = mpg;
+    this.nickName = nickName;
+
+    this.getFacts = function() {
+    return this.engine + " : "+ this.topSpeed + " : " + this.mpg;
+    };
+    this.greet = function(nickName) {
+        alert("Hi, " + this.nickName + "! I'm " + nickName);
+    }
+}
+var hisCar = new Car("v6", "200", 35, "Rusty");
+var herCar = new Car("v8", "120", 30, "Slick");
+
+console.log(hisCar.greet(herCar));
+
+// How would you get one car to "greet" another car and self-introduce?
+// this.greet = function(nickName) {
+//     alert("Hi, " + this.nickName + "! I'm " + nickName);
+// }
+// This gives me "Hi, Rusty! I'm [object Object]"
+
+
+
+---
+Q 4 Preston
+
+which is more performant?
+
+In JavaScript:
+
+object.onclick=function(){myScript};
+
+In JavaScript, using the addEventListener() method:
+
+object.addEventListener("click", myScript);
+
+---
+
+Q 4 Preston:
+
+Do you have a link to simply describe pass by value vs pass by reference?
+--this example is from from Lynda "practical & effective js"--
+
+"Primitive Values are passed to FNs as a distinct copy of themselves. Changing them has no effect"
+function f(x) {
+    x += 5; // no effect
+}
+
+function h () {
+    var x = 5;
+    f(x); // x is still 5
+}
+----------
+Composite Objects are passed by reference.
+("changing their contents inside a FN, that change
+Does have an effect")
+
+function f (obj) {
+    //this has an effect
+    obj.d = new Date(2009, 12);
+}
+function h () {
+    var x = new Object();
+    x.d = new Date();
+    f(x); // x.d has changed
+}
+
+-------------
+
+
+
+Q 4 Preston:
+
+If <i>this</i> is inside of a function that is part of an object...
+
+var car = {
+    color: "red",
+    sound: function() {
+        this.horn = "honk!";
+        return this.horn;
+    }
+}
+
+console.log(car.color);
+console.log(car.sound());
+
+
+Then, this points to the object itself.
+
+HOWEVER...
+
+if this is inside of a constructor function...
+
+function Person(name) {
+this.name = name;
+}
+var bob = new Person("Bob");
+
+document.write(bob.name); // Bob
+
+This points to the the instance created by the function
+
+
+Question I. Is the above sentence correct?
+        II. Is the car object properly constructed? --if so
+        III. Is it absolutely necessary for me to have to have the line "return this.horn;" in order to access
+        the string "honk!"? --is there another way?
+
+
+Q 4 Preston:
+
+What is the difference? --I seem to be getting 5 immediately:
+
+setTimeout(alert("Five"), 5000);
+setTimeout(function(){ alert("Seven"); }, 7000);
+
+
+
+-----------------
+
+Timers question #2: Any way of doing this by hiding the global var?
+
+'use strict';
+// var counter = 0;
+function heartBeat() {
+    // var counter;
+    console.log("thump, thump");
+
+    counter+= 1;
+    if (counter === 10) {
+        clearInterval(interval);
+    }
+
+}
+
+var interval = setInterval(heartBeat, 2000);
+var counter = 0;
+
+
+
+Question: Setting aside issues of best practice (which prefer string literals to constructors)...How to operate on myObjString so as to render
+
+myObjString = { 1: "H",
+            2: "u",
+            3: "l",
+            4: "l",
+            5: "o"
+        };
+---------
+
+
+
+
+    Only the .data() API reads HTML5 data-* attributes, and it does so once.
+The in-memory data object for an element is initialized from those data-* attributes the first time you call .data() for the element. Any subsequent changes to the attributes are ignored, since jQuery has already cached the data.
+
+Rule: If HTML5 data-* attributes change during program execution, use jQuery's .attr() method to get the current values.
+
+</div>
+
+1. rgba() affects a single property, like color, background-color or border-color, of elements targeted by CSS and only of these elements.
+2. Opacity affects all properties (the whole outlook) of targeted elements along with all their DOM tree children.
+
+
+The difference between window.load()
+and $(document).ready(function() {
+    })
+and
+document.addEventListener("DOMContentLoaded", function() {
+
+})
+and
+(function($) {
+
+    })(jQuery);
+
+stopPropagation(): For something like this, it's too abstract 4 me. I need to see
+what propagation is, before I can understand and recognize the motivation for creating this in the api in the first place. --No one teaches that.
+
+Is there a way to view in the chrome devtools, the keys and values set by jq's data() method?
+
+How many files does a browser d/l from a single domain?
+Is there a limit?
+
+Difference between $scope and .this
+
+What is an object instance property.
+
+NB: The value of '.this' depends on the object used
+to call that method.
+
+What does that really mean?
+--Can you give me an example of this statement?
+
+
+
+What does it mean to say that js has first level functions?
+
+plsight js fund jq adv DOM vid 2.5 summary
+is using a bad example. ("Why bad?")
+
+Why design js with both call() and apply()?
+why not just use apply(~~,["arg"])
+--It seems like it's wet code?
+
+
+
+in AJAX readystate ===4 is good. but what does 1, 2, 3 mean? --just curious--
+
+<code><pre>
+
+-----------
+var me = {
+    name: {
+        first: "Tom"
+    }
+  },
+  name = me.name;
+
+name = {
+    first: "Jerry"
+};
+me.name.first;
+----------
+
+
+
+------
+
+[proto chain -> "__proto__ chain"].
+
+
+What is the difference between a proto chain and a prototype chain?
+
+</pre></code>
+
+window.name is a property which is almost certainly being type-coerced to
+a string. Therefore you get [object Object].
+
+"We should change this slide".
+
+name is "a special variable" essentially in the global context.
+
+If we did this in node.js, this wouldn't happened.
+
+Running it in a browser, we're at the mercy of the env. we're running it in.
+
+    </body>
+</html>

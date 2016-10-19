@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+
+    <html>
+
+    <head>
+    <link rel="stylesheet" href="styles.css">
+    <title>General JS Notes</title>
+    </head>
+    <body>
+    <h1 class="redlite ctr">General JS Notes from videos and DM</h1><pre>
+
+<!-- <div class="outbox"><h3 class="ctr">VidNamePlaceholder</h3><pre>
+    PlaceholderPlaceholderPlaceholder
+    <code class="wh">codePlaceholder</code>
+
+    explainPlaceholderPlaceholderPlaceholder
+    <code class="wh">codePlaceholder</code>
+    <code class="wh">codePlaceholder</code>
+
+    <div class="inbox1"><span class="redlite">Remember: </span>grep searches are cool:
+    <code class="wh">git log --grep="button"
+    //<span class="ans">'use strict'</span></code>
+
+
+    </div>
+    </pre>
+    </div>
+    <hr> -->
+
+<div class="outbox"><h3 class="ctr">DM Lecture </h3><pre>   LINK: <a class="wh" href="https://vimeo.com/143905477">JSON, REST, and Promises - October 28, 2015</a>
+    <div class="inbox2">
+
+    Anatomy of a URL
+    <code class="bl sm">https://www.itunes.com/search?callback.angular.callbacks._3&term=song</code>
+    <span class="bl">?</span> --means I'm going to send key/value pairs
+    <span class="bl">term</span>-(could be any search term: Adele, U2, etc.)
+
+    API: is a program to program an interface.
+    (a way for a program to interface with another program.)
+
+    A REST is the protocol for WEB-APIs.
+
+    REST (formal definition):<span class="ans bl"> Representational State Transfer</span>
+
+    "Representation" -> MODEL!
+    "State" -> a snapshot of things at any particular time or state.
+
+    A protocol is a set of guidelines. Standardized instructions.
+
+    CRUD= <span class="ans">create, read, update, delete.</span>
+
+    What are the four <span class="bl">WEB</span> versions of CRUD?<h4 class="bl ctr ans">GET PUT POST DELETE</h4>
+
+<h3 class="chtitle ctr">REST API</h3>Four Parts that make a web transmission are...<div class="plainBox"><span class="ans">    1)Address -
+    2)Header - (meta-information)
+    3)Authorization
+    4)Body</span></div>
+
+    <span class="ans bl">GET: </span> http://www.devmounta.in/api/students
+    <span class="ans bl">GET: </span> http://www.devmounta.in/api/student/999
+
+
+    <span class="ans bl">PUT: </span> http://www.devmounta.in/api/student/123/?name=
+              'Natasha Widow'&origin='KGB'&brskills='Kung-fu and sniper-skills'
+
+    <span class="ans bl">POST: </span> http://www.devmounta.in/api/student/
+
+
+    <span class="ans bl">BODY: </span>OBJECT { sent in the body}
+
+    <span class="ans bl">DELETE: </span> http://www.devmounta.in/api/student/999</div>
+
+    You can now consult an API (like twitter API)
+    <div class="inbox1"><code class="wh">Number one rule of dealing with APIs:</code>
+    <span class="redlite">THE SERVER MAKES ALL THE RULES.
+
+    What methods to use.
+    What URLS to use.
+    What data format.
+    What data you can get back.<span></div></pre>
+    <h3 class="chtitle ctr">A PROMISE</h3>Four Parts that make a web transmission are...<div class="plainBox">
+    $http.get('https://anyURLgoesHERE.com/get/Dogs')
+        .then(function(dogs)) {
+            var status = dogs.status;
+            var data = dogs.data;
+        })
+
+    $http({<span class="redlite">pass in an object</span>
+        method: "GET",
+        url: 'https://anyURLgoesHERE.com/get/Dogs',
+    }).then(function(response)) {
+        var status = response.status;
+        var data = response.data;
+    })</div>
+    GOTO: <a class="wh" href="http://http.cat">Funny Website Explaining Status</a>
+    <div class="jsbox2">
+    Let's talk about promises...
+    <code class="sm">angular.service('peopleService', function(errorHandler,$http) {
+            this.getAnyPeople = function() {
+                return $http.get('https://IfoundAllPeople/getEverybody' peopleNum)
+                .then(function(response) {
+                    return response.data.people;
+                })
+            }
+    })</code>
+    <span class="reddrk">Make the request</span>
+    <span class="wh">return $http.get('https://IfoundAllPeople/getEverybody'</span>
+
+    <span class="reddrk">Function says I don't have that, but when I do, I'll let you know.</span>
+    <span class="wh">               .then(function(response) {
+                    return response.data.people;
+                })</span>
+
+    <span class="bldk">When you get it back, here's a function
+    that you can call that takes in a param: response</span>
+
+    Lots depends on the format the server gave use the data in.
+    -It could be response.data or respose.data.people, etc.
+
+    <code>   {
+        "count" : 17,
+        "people": [{
+            "name": "Joe",
+        }....]
+      }
+    [**This part of the lecture finishes at 1:00:00]</code>
+
+    Using a promise
+    <ol>
+        <li>Sucess Function</li>
+        <li>Error Function</li>
+    </ol>
+    some servers do some don't use this.
+
+GET data with a promise --> ".then"
+
+we expect this promise to call a function and we expect a response.
+            .then(function(response)){
+                return response.data
+}
+
+--> .then in our controller as well.
+
+inject $http into the service as a dependency
+
+PUT
+POST
+DELETE
+Lecture @ 1:03
+Jeremy creats a CRUD app.
+
+
+    </div>
+
+    </div>
+    <hr>
+
+
+
+
+
+
+<div class="outbox"><h3 class="ctr">A smarter way to learn Javascript random Notes</h3><pre>
+
+    parseInt(); converts all strings, including strings comprising
+    floating-point numbers, to integers. And: It doesn't round.
+    It simply lops off the decimals.
+
+    <div class="inbox1">    <code class="wh">var myParsedNum = parsedInt(1.99999);</code>
+     //<span class="ans"> 1(!)</span>
+
+     In this situation we are to use parseFloat();
+     in order to preserve the values.
+     <code>
+     var myFractional = parseFloat("1.9999");</code>
+
+     <code class="wh">var scoreAvg = Math.ceil(.000001);</code>
+    //<span class="ans"> 1</span>
+
+     <code class="wh">var score = Math.floor(.9888)</code>
+    // <span class="ans"> 0</span>
+
+    <code class="wh">var score = Math.floor(-.0001)</code>
+    // <span class="ans"> -1</span></div>
+
+    The following will render a num with a decimal of two places.
+    <code class="wh">12.3456789.toFixed(2);</code>
+    // <span class="ans"> "12.34"</span>
+
+    toFixed(); WITHOUT PARAMETERS will<span class="ans"> round the number to an integer.</span>
+    <code class="wh">var num = 1.5;
+        num.toFixed();</code>
+    // <span class="ans"> 2 </span>
+
+    <code class="wh">var num = 1.4;
+        num.toFixed();</code>
+    // <span class="ans"> 1 </span>
+
+
+    <div class="inbox1"><span class="redlite">Remember: </span>
+    A number modified by toFixed(<span class="redlite">num</span>) gives us <span class="ans"> a STRING OBJECT</span></code>
+     </div>
+    <span class="ans"> Number();</span> turns a string into a number<br>
+    <span class="ans">toString();</span> turns a number into a string
+
+    </pre></div>
+    <hr>
+
+<div class="jsbox2">Let's Stop to Marvel at POLYMORPHISM
+<code><pre>
+function polyFunction(arg1, arg1) {
+
+var result = arg1 + arg2;
+
+return result;
+}</pre></code></div>
+
+
+
+<div class="outbox"><h3 class="ctr">Tuts+ JS fundamentals Vid#26 working with FUNCTIONS</h3><pre>
+        1) .length <i>(property)</i>
+
+        2) call(); method
+        3) apply(); method
+        4) bind(); method
+
+<div class="testbox"> These methods can manipulate <br>the '.this' property in a function.</div>
+
+
+</div>
+    <div class="inbox1"><span class="redlite">"A Nice JavaScript call(); Implementation"</span>
+    <code class="wh">
+  var myCar = {
+      car: "miata"
+      };
+
+  function colorIt(color) {
+      return document.write('< h3 style="color:' + color +
+    '">' + this.car + '');
+  }
+
+  colorIt.call(myCar, "yellow");</code>
+  // <span class="ans"> Miata</span>
+
+
+        </div>
+        </pre>
+        </div>
+        <hr>
+
+
+
+
+
+
+</h3>
+
+
+
+</h3>
+<h3>
+ polyFunction("hello", "world!"); //  would return a concatenated string
+<br>polyFunction( 200, 500); //  would return the sum of the two numbers
+</h3>
+    <br>----------<i>End of example of POLYMOPHISM</i>----------</h3>
+
+    <hr>
+    <pre>
+
+</pre>
+
+
+
+
+
+
+
+
+</dl>
+
+
+
+
+
+
+
+
+
+<hr>
+
+    <h3>
+    <dl>
+      <dt>var film = {</dt>
+      <dd>  star: "Matt Damon",<br>
+        title: "Bourne",</dd>
+      };
+      <dt>function review() {</dt>
+      <dd>  document.write("The film " + this.title + " stars " + this.star + ".");</dd>
+    }<br>
+    --- thus far...<span style="color: brown">'.this' is undefined</span> unless we use <span style="color: #639">the call(); method</span>--<br></h3><h3 style="color: #484848">
+    review.call(film);</h3>
+  </dl>
+<h3><span style="color: navy">// The film Bourne stars Matt Damon.</span> <br></h3>
+
+<h4>So the object (film) that is passed to the call(); method becomes the 'this' in the function <br>that the call(); method is invoked on--namely--review().
+</h4>
+<h3>
+    <br>----------<i>Another example (changing the review function a bit)</i>----------<br>
+    <dt>var film = {</dt>
+    <dd>  star: "Matt Damon",<br>
+      title: "Bourne",</dd>
+    };
+    <dt>function review(starNumber) {</dt>
+    <dd>      document.write("The film " + this.title + " stars " + this.star + <br>
+      <span style="color: brown">" and received "+ starNumber + " out of 5 stars."</span>);</dd>
+  }
+<h4>**We've specified that review takes an arg. All we need do is pass a second arg to call();</h4>
+<h3><br>
+review.call(film, 4); //  'four' (as a str) or 4 (as a Num) both are okay!
+
+<br><br><span style="color: navy">The film Bourne stars Matt Damon and received 4 out of 5 stars.<br>
+</span> <br> It is important to note that with the call(); method we MUST specify the args independently---Not so, with the apply(); method. --these can be an arbitrary amount.
+</h3>
+
+<h3><span style="color: brown">The apply();</span> method <br>does more-or-less the same. <br>
+  apply(); invokes a function and allows us to specify what '.this' means inside the function invoked.<br>
+  apply(); also accepts args. <br><br>However, instead of accepting 0~>N arguments, <br>
+  it accepts a single argument after the first argument which is an array to passed into the function after it is invoked.<br>
+  This is the only difference.<br>It is useful when we don't know how many args are to be passed to the function being invoked.<br>
+<br>
+<br>----------APPLY(); method can perform the same action on multiple functions----------<br>
+
+<dt>var <span style="color: green">film</span> = {</dt>
+<dd>  star: "Matt Damon",<br>
+  title: "Bourne",</dd>
+};
+<dt>function <span style="color: #ECF0F1">review</span>(<span style="color: brown">starNumber</span>) {</dt>
+<dd>      document.write("The film " + this.title + " stars " + this.star + <br>
+" and received "+ <span style="color: brown">starNumber</span> + " out of 5 stars."</span>);</dd>
+}
+
+<h3>
+<dl><dt>function suggest(<span style="color: #ECF0F1">activity</span>, <span style="color: green"></span>, <span style="color: brown">args</span>){</dt>
+<dd>    <span style="color: #ECF0F1">activity</span>.apply(<span style="color: green"></span>, <span style="color: brown">args</span>);</dd>
+  }
+<br>
+  suggest(<span style="color: #ECF0F1">review</span>, <span style="color: green">film</span>, <span style="color: brown">[2]</span>);
+</dd>
+
+
+</dl>
+<span style="color: navy">The film Bourne stars Matt Damon and received <span style="color: brown">2</span> out of 5 stars.
+</span> <br>
+
+
+<ol>Args in the <span style="color: #861F09">apply(); method:</span>
+  <li>name of function to be invoked</li>
+  <li> used as '.this'</li>
+  <li>args as Array passed to the function</li>
+</ol>
+</h3>
+<h3>Okay, so let's add another function:<br>
+<dl><dt>function restaurant(name, food) {
+</dt>
+
+  <dd>document.write("Instead of watching " + this.title + "...We could also go to a " + name + " and pick up some " + food);</dd>
+}
+</dl>
+</h3>
+
+<h2>
+suggest(restaurant, film, ['Subway', 'sandwiches']);<h2>
+<h3>This calls a different function and passes two args indirectliy--ultimately into the restaurant function.
+  <ul>
+    <li>it calls the proper function</li>
+    <li>it establishes the referent for '.this'</li>
+    <li>it passes the requisite arguments for the restaurant function</li>
+  </ul>
+
+// the use-case for apply(); is if you don't know how many args there are in the Array
+
+<h2>-----------------------apply(); example---------------------------</h2>
+<h3><dl>
+
+<dt>var heather = {</dt>
+<dd>name: 'Heather',<br>
+major: 'Art History'</dd>
+}<br>
+<dt>var jen = {</dt>
+<dd> name: "Jen",<br>
+  major: "Sculpture"</dd>
+}<br>
+<dt>function interests(genre, artist) {</dt>
+<dd>document.write("Since " + this.name + " is a "+ this.major + " major, perhaps " + genre + " might be fun to study!<br> We have many pieces by " + artist + " in the university gallery!");</dd>
+}
+<dt>function advice(activity, , args){ </dt>
+<dd style="color: brown">activity.apply(, args);</dd>
+}<br><br>
+advice(interests, heather, ['Surrealism', 'Magritte']);<br>
+advice(interests, jen, ['Classical Sculpture', 'The Greeks']);
+
+</dl></h3>
+<span style="color: #484848">// fed from  the <code>advice(x,y,z);</code> <i>fn</i> call....<i>fn</i> advice's purpose is to separate
+  <ol>
+    <li>x = function name to operate y & z on.</li>
+    <li>y = "call to the " to create a referent for '.this'</li>
+    <li>z = "the args to feed to the <code>interests();</code> <i>fn</i> call"</li>
+  </ol> </span>
+  <h3 style="color: navy">Since Heather is a Art History major, perhaps Surrealism might be fun to study! <br>We have pieces by Magritte in the university gallery!</h3>
+  <h3 style="color: navy">Since Jen is a Sculpture major, perhaps Classical Sculpture might be fun to study! We have many pieces by The Greeks in the university gallery!</h3>
+  <br>
+<h2>------------------------An example of bind();----------------</h2>
+
+<h4><dl><dt>var heather = {</dt>
+  <dd>name: 'Heather',<br>
+  major: 'Art History'</dd>
+}
+<br>
+<dt>function schedule(lunchCount, classes) {<span style="color: #484848">// LunchCount comes first!! IMPORTANT!</span></dt>
+<dd>  if (!this.total) {
+    this.total = 0;     <span style="color: #484848"><br>// if it has a property called total --> if not we give it one and set it to zero</span><br>
+  }<br>
+  document.write("Class load: " + classes);<br>
+  document.write("Total lunchours " + lunchCount);<br>
+  this.total += classes += lunchCount || 0; <span style="color: #484848"><br>//  --if lunchCount isn't fed into the function we just add zero</span><br>
+  return this.name + ' will have spent a total of ' + this.total + ' hours at school';</dd>
+}<br>
+var heathersSchedule = schedule.bind(heather, 1);<br>
+document.write(heathersSchedule(4));  <br>
+document.write(heathersSchedule(1));   <br>
+document.write(heathersSchedule(3));   <br>
+</h4>
+
+<h3>
+<span style="color: #484848">
+<br>  Class load: 4
+<br>  Total lunchours 1
+<br>  Heather will have spent a total of 5 hours at school
+<br>
+<br>  Class load: 1
+<br>  Total lunchours 1
+<br>  Heather will have spent a total of 7 hours at school
+<br>
+<br>  Class load: 3
+<br>  Total lunchours 1
+<br>  Heather will have spent a total of 11 hours at school </span><br>
+
+
+</h3>
+
+<h3 style="color: #639">Lunch hours is constant, but class hours accumulates. Heather's one hour lunch has been bound to the schedule function</h3>
+
+<h3 style="color: brown">The beauty of the bind(); method is that we can set a different '.this' arg (other than heather) and a different arg for the lunch arg if we wish.</h3>
+<h3>
+<dt>var nerd = { <dt>
+  <dd>name: 'nerd' </dd>
+}<br>
+
+var nerdSched = schedule.bind(nerd, 0.5);<br>
+document.write(nerdSched(4));   <br>
+document.write(nerdSched(1));   <br>
+document.write(nerdSched(3));   <br>
+</dl>
+<br>
+<span style="color: #484848">
+
+Class load: 4
+<br>Total lunchours 0.5
+<br>nerd will have spent a total of 4.5 hours at school
+<br>
+<br>Class load: 1
+<br>Total lunchours 0.5
+<br>nerd will have spent a total of 6 hours at school
+<br>
+<br>Class load: 3
+<br>Total lunchours 0.5
+<br>nerd will have spent a total of 9.5 hours at school
+</span>
+</h3>
+
+
+<hr>
+
+
+
+
+
+
+
+<hr>
+
+
+
+
+
+
+
+
+
+
+
+<hr>
+
+
+
+
+
+
+
+
+<hr>
+
+
+
+
+
+    <hr>
+
+
+
+
+
+
+<hr>
+
+
+
+<hr>
+
+
+
+<hr>
+
+
+
+
+
+</code> <br><br>
+
+
+
+
+
+<hr>
+
+
+
+        <hr />
+
+
+
+
+
+
+
+
+
+
+
+<!--  ************************************* -->
+
+            <h3 style="color: blue"><code>Lynda debugging web Vid Ch2.5</code></h3>
+
+            <dl>
+                <dt><code>Debugger STEPPING functions<br />
+    <br />
+    Breakpoints can be edited to contain an expression on rt. click<br />
+    Chrome has DOM breakpoints: When .js modifies a DOM element, you can pause the
+    debugger.<br />
+    This must be done in the ELEMENTS tab in the inspector and not in the SOURCE
+    tab.<br />
+    "breakpoints"<br />
+    <br /></code></dt>
+
+                <dt><code>Chrome (&amp;?) has EVENT LISTENER breakpoints that can alert upon
+    predefined events mouseclick, animation, script, etc.<br /></code></dt>
+
+                <dd><code><code>try{<br />
+    //some code<br />
+    } catch(e) {<br />
+    // execute something }<br /></code></code>
+                </dd>
+
+                <dd>
+                    <br />
+                </dd>
+            </dl>
+
+            <h3 style="color: green">Try/Catch blocks do not show up in the exception handler of
+  the debugger. They are native to the code.<br />
+  However there is an Exception Checkbox in the event listener in the debugger.</h3>
+            <hr />
+
+            <h3 style="color: blue">Lynda Vid Ch2.4</h3>
+
+            <dl>
+                <dt>Editing Breakpoints -- Making Conditional Breakpoints<br />
+    <br />
+    Breakpoints can be edited to contain an expression on rt. click<br />
+    Chrome has DOM breakpoints: When .js modifies a DOM element, you can pause the
+    debugger.<br />
+    This must be done in the ELEMENTS tab in the inspector and not in the SOURCE
+    tab.<br />
+    "breakpoints"<br />
+    <br /></dt>
+
+                <dt>Chrome (&amp;?) has EVENT LISTENER breakpoints that can alert upon predefined
+    events mouseclick, animation, script, etc.<br /></dt>
+
+                <dd><code>try{<br />
+    //some code<br />
+    } catch(e) {<br />
+    // execute something }<br /></code></dd>
+
+                <dd>
+                    <br />
+                </dd>
+            </dl>
+
+            <h3 style="color: green">Try/Catch blocks do not show up in the exception handler of
+  the debugger. They are native to the code.<br />
+  However there is an Exception Checkbox in the event listener in the debugger.</h3>
+            <hr />
+
+            <h3 style="color: blue">Lynda Vid Ch2.3</h3>
+
+            <dl>
+                <dt>debugger basics<br />
+    <br />
+    Call Stack<br />
+    "debugger;"<br />
+    "breakpoints"</dt>
+            </dl>
+
+            <h3 style="color: green">debugger breakpoints 'live' beyond reload. They reveal scope,
+  callstack etc.<br />
+  ALSO console.error(); Formats console txt as an error</h3>
+            <br />
+            <hr />
+<hr>***<hr>
+            <hr />
+
+
+
+
+<hr>                    <br />
+
+
+            <h3 style="color: blue">Lynda Debugging: First 2 chapters</h3>
+
+            <dl>
+                <dt>BreakPoint:</dt>
+
+                <dd>Stop &amp; Step</dd>
+
+                <dt>StepOver:</dt>
+
+                <dd>Execute the line you're on step to the next.</dd>
+
+                <dt>StepInto:</dt>
+
+                <dd>Takes into next fn call.</dd>
+
+                <dt>StepOut:</dt>
+
+                <dd>Takes out of current fn</dd>
+
+                <dt>Watch:</dt>
+
+                <dd>allows you to track a variable or expression</dd>
+
+                <dt>Callstack:</dt>
+
+                <dd>series of fns that were called to get to where we stopped</dd>
+
+                <dt>Frames:</dt>
+
+                <dd>usually a fn calls that comprise a call stack.</dd>
+
+                <dt>Same-origin Policy</dt>
+
+                <dd>All assets need to to come from the same place. (File URL PLUS AJAX may cause problems)
+                </dd>
+            </dl>
+
+            <p>*often the solution can be simply running your own web-server</p>
+
+            <dl>
+                <dt>CORS: Cross-Origin resource sharing</dt>
+
+                <dd>A Web-security policy. Access-control for Ajax. A way for AJAX to authenticate which servers are allowed to use their stuff.</dd>
+            </dl>
+            <hr />
+
+
+
+
+            <!--RANDOM VOCAB-->
+
+
+</code>
+</body>
+
+</html>

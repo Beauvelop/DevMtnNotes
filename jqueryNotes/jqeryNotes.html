@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <title>Jquery Notes</title>
+    <link rel="stylesheet" href="styles.css" media="screen" title="no title">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet">
+<script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+<script>
+// $(function() {
+//     var t = $('.chtitle');
+//     t.on("mouseover mouseleave", highlight);
+//     t.on('click',function(evt) {
+//     t.off('mouseover mouseleave', highlight);
+//     t.html('<p>shut down</p>');
+// });
+//
+// function highlight(evt) {
+//
+//
+// }
+// $("#test").attr("data-poop", "doodoo");
+// alert(JSON.stringify($('#test').data(), null, ""));
+    // $('span').wrapAll('<div style="border: 12px solid white">');
+// console.log($('span').css("font-size"));
+    // var newText = $("<h4>Hey There, World!</h4>");
+    // $('.ans').appendTo("#test");
+ // $('div').text(newText); // [object Object]
+ // $('div').text(newText.html()); // Hey There, World!
+ // $('div').html(newText); // Hey There, World!
+ // $('div').text(newText.text()); // [object Object]
+ // $('div').html(newText.html()); // Hey There, World!
+// });
+    </script>
+    <div class="testbox">
+        <h1 id="test">Hello</h1>
+</div>
+    <hr>
+
+<h1 class="redlite">JQ Notes</h1>
+
+<div class="outbox2">
+    <h1 class="chtitle">Inskills jq vid 2.1</h1><pre>
+    jQuery() == $();
+
+    the CSS method
+    <p>
+        Here is a p manipulated by css.
+    </p>
+    $("p").css("color", "yellow");
+    $("h1").css("font-style", "italic");
+
+    This can be written as a js object!
+    <div class="cssbox"><code><pre>
+    var p = $("p");
+    p.css(
+        {
+            "color", "yellow",
+            "font-style", "italic"
+        }
+    );</pre></code></div>
+    As a general rule: What you can do in html/css.
+    It's quicker and better for progressive enhancement.
+
+<h1 class="chtitle">Inskills jq vid 3</h1>
+    Selectors: a bit of css
+
+    <i>header *</i> selects what?
+    <div class="ans">
+        any descendant of a header tag
+        [all things WITHIN a header]
+    </div>
+    <i>article p</i> selects what?
+    <div class="ans">
+        all p tags within an article
+    </div>
+    <i>p.warning</i> selects what?
+    <div class="ans">
+        all p tags with the class of warning
+    </div>
+
+
+<h1 class="chtitle">Inskills jq vid 3.3</h1>
+    Advanced selectors which analyze the attributes
+
+    Select any element with an <i>href</i> attr
+    <div class="ans">
+        <i>[href]</i>
+
+        <span class="lemon">(of course this would be far easier simply to enter <i>a</i>)</span>
+    </div>
+    "selectors" inside "[]" are referred to as:
+    <div class="ans">
+        attribute selectors
+    </div>
+    You can also use logic inside these selectors.
+    What would select all href tags
+    that are NOT http://www.google.com ?
+    <div class="ans">
+        <i>[href<span class="redlite">!=</span>"http://www.google.com"]</i>
+    </div>
+    what does <i>[href^="http://www"]</i> select?
+    <div class="ans">
+        This selects all the links that START WITH "www".
+    </div>
+    Those are for filtering 'starts'. How about selecting all links
+    that END in ".com"?
+    <div class="ans">
+        <i>[href$=".com/"]</i>
+    </div>
+    What do you use to find certain text within the link?
+    <div class="ans">
+        <i>[href*="about"]</i>
+    </div>
+    This finds all the links with
+    the text: "about".
+
+
+<h1 class="chtitle">Inskills jq vid 3.4</h1>
+    More Advanced selectors
+
+    Separate all selectors with a comma and you are able to...
+    <div class="ans">
+        select all of those elements on the page.
+        <i>h1, h2, dt, dd, code</i>
+    </div>
+    Separate these tags with a space:
+    <i>article  h2</i>
+    This line is selecting
+    <div class="ans">
+        all of the h2s within the article
+    </div>
+    How about <i>article <span class="warn">> </span>ul</i>
+    <div class="ans">
+        This finds the DIRECT CHILD <i>ul</i> of that article-parent.
+    </div>
+    What does the plus sign do? <i>+</i>?
+    <div class="ans">
+        The second "argument" is selected ONLY IF it has the first "argument"
+    before it.
+    </div>
+    <i>hr + div</i> selects?
+    <div class="ans">
+        ALL the children divs that have hr directly preceeding them.
+        ** needs explanation**
+
+        Think of this as collecting all of the children,
+        except the first child.
+    </div>
+    Then, there is the <i>~</i>.
+    <i>p ~ p</i> selects all the paragraphs that have
+    AT LEAST ONE PREV sibling.
+
+    Question: How does <i>p + p</i> differ from <i>p ~ p</i> ?
+    <a href="http://stackoverflow.com/questions/26282375/difference-between-the-selectors-div-p-plus-and-div-p-tilde">StackOverflow's Cage-Match: ~ vs + </a>
+
+    okay... Now give me the first child of a < ul> container?
+    <div class="ans">
+        <i>ul:first-Child</i>
+    </div>
+    last child?
+    <div class="ans">
+        <i>ul:last-Child</i>
+    </div>
+    Find and select all <i>p</i>s that are the only child of their parent?
+    <div class="ans">
+        <i>p:only-Child</i>
+    </div>
+
+
+</div><!-- txtbox close -->
+
+
+<h2 class="chtitle">Lynda jQ essence vid2.7</h2>
+    <div class="outbox3"><pre>
+    Get all the < code>s and give me the length of that collection
+    <div class="ans">
+        $('code').length;
+    </div>
+    Get an array of matched DOM elements
+    <div class="ans">
+        get();
+    </div>
+    Access a single DOM element at the index of that matched set (array)
+    <div class="ans">
+        get(<i>index</i>);
+    </div>
+    Search for descendent elements that
+    match the description of a certain expression
+    <div class="ans">
+        find(<i>expression</i>)
+        <span class="blLite">$("div").find("i").css("color", "red");</span>
+
+    </div>
+
+    Execute a function within the context of each matched element
+    <div class="ans">
+        .each(<i>function</i>)
+
+        <div class="compact2">
+        $(function() {
+        var opacity = 0;
+        $('div.ans').each(function() {
+            $(this).css("opacity", opacity);
+            opacity+= .05;
+        })</div>
+    </div>
+
+
+</pre></div><!--outbox3-->
+
+<h2 class="chtitle">Lynda jQ essence vid2.9</h2>
+    <div class="box"><pre>Statement chaining
+
+    .after() method in action
+
+    <span class="warn">< a href="www.google.com">google< /a>
+    < a href="www.npr.org">npr< /a>
+    < a href="www.reddit.com">reddit< /a></span>
+    <div class="innerboxW"><span class="ans">$("a[href$='.org']").after("This is an NGO");</span></div>
+
+    </pre></div>
+
+<h2 class="chtitle">Lynda jQ essence vid3.0~1</h2>
+    <div class="box"><pre>Manipulating
+    .html() method
+    .text() method
+
+    .html() <i>without params</i>
+    <div class="ans">
+        gets html content
+    </div>
+    .html() <i>with params</i>
+    <div class="ans">
+        sets html content
+    </div>
+
+    Same goes for <i>text()</i>
+
+
+    <span class="warn">IMPORTANT:</span>
+    The main difference between html() and text()
+    <div class="ans">
+    <i class="redlite">html()</i> will create actual html for you if you pass HTML CODE to it.
+
+    for <i class="redlite">text()</i>, if you pass a string, like
+    <span class="lemon">< h1>Hello World< /h1></span>
+
+    entire line of code will be rendered to the page.
+
+    </div>
+    <span class="warn">Given the folling...</span>
+    <div class="squatbox box"><ul id="list1"><li class="a">item 1</li>
+            <li class="a">item 2</li>
+            <li class="b">item 3</li>
+            <li class="b">item 4</li></ul></div>
+    <div class="htmlbox">    $("document").ready(function() {
+        var list = $('#list1');
+        alert(list.text());
+    });</div>
+    <img src="img/textMethod.png" alt="textmethod" />
+
+    <div class="htmlbox">$("document").ready(function() {
+        var list = $('#list1');
+        alert(list.html());
+    });</div>
+    <img src="img/htmlMethod.png" alt="" />
+    </pre><br>
+    <div class="cssbox"><h3 class="ctr mango"> text() vs html()</h3><pre>$(function() {
+        var newText = $("< h4>Hey There, World!< /h4>");
+    $('div').text(newText); <span class="formal ans reddrk">// [object Object]</span>
+    $('div').text(newText.html()); <span class="formal ans reddrk">// Hey There, World!</span>
+    $('div').html(newText); <span class="formal ans reddrk">// Hey There, World!</span>
+    $('div').text(newText.text()); <span class="formal ans reddrk">// [object Object]</span>
+    $('div').html(newText.html()); <span class="formal ans reddrk">// Hey There, World!</span>
+    })();</pre></div>
+    <br></pre>
+    </div>
+</div> <!--ch end-->
+
+<h3 class="chtitle">Lynda jQ essence vid3.2: Attr Methods</h3>
+    <div class="outbox5"><pre>
+    .attr(<i>name</i>)
+    <span class="b bldk">Find attr in matched elem. If none exists, returns <i class="lemon">undefined</i></span>
+
+    .attr(<i>properties</i>)
+    <span class="b bldk">Sets attr in matched elem using JSON.</span>
+    <div class="innerboxN"><pre>$('img').attr( {
+        src: "images/logo2.png",
+        title: "New Logo",
+        alt: "newLogo"
+    })</pre>
+    </div>
+    .attr(<i>key, value</i>)
+    <span class="b bldk">This is great for ONE single attr that you want to set</span>
+    <div class="innerboxW">$('img').attr("src", "images/newLogo.jpg");</div>
+    .attr(<i>key, function</i>)
+    <span class="b bldk">This is great for calculating [FOR ONE] attr many different
+    values: For example using a <i>fn</i> to spit out numbered images and setting
+    them to src!</span><div class="compact">$('a').attr("target", "_blank");</div>
+    <span class="b bldk">   This sets all links to open in a new window.</span>
+
+    .removeAttr(<i>name</i>)
+    <span class="b bldk">This simply removes the named attr of the matched element.</span>
+
+    You can also remove a link with .removeAttr("href")
+    </pre>
+    </div> <!--ch end-->
+
+
+
+
+</div>
+
+<h3 class="chtitle">Lynda jQ essence vid3.3: inserting content</h3>
+    <div class="grtransbox">
+    <div class="innerboxN">
+    <h5 class="ctr">INSIDE elements</h5><pre>
+    <i>prepend()</i>
+    <i>prependTo()</i>
+    <i>append()</i>
+    <i>appendTo()</i>
+    </pre>
+    </div>
+    <pre>
+
+        <span class="b bldk">Difference between these two is very simple</span>
+        .append() takes content: append(<i class="wh">content</i>)
+        .appendTo() takes a selector appendTo(<i class="wh">selector</i>)
+
+        .append(content) places content into the element
+        .appendTo(selector) appends selector to a specified set of elems.
+
+    </pre>
+    <div class="box2"><h5 class="ctr blLite">What does this mean?</h5><pre>
+    Give me the last p and append it to the first p!
+    <div class="ans">
+        $('p:last').appentTo('p:first');
+    </div>
+    <i class="warn">REMEMBER:</i><span class="wh"> Target is the 'parameter' of the appendTo() method</span>
+
+    </pre>
+    </div>
+
+    <div class="innerboxN">
+    <h5 class="ctr">OUTSIDE elements</h5><pre>
+    <i>after()</i>
+    <i>insertAfter()</i>
+    <i>before()</i>
+    <i>insterBefore()</i>
+    </pre></div>
+    <pre>
+
+        <span class="b bldk">after() & before() both take content</span>
+
+        .after(<i class="wh">content</i>)
+        .before(<i class="wh">content</i>)
+
+        .instertAfter(<i class="wh">selector</i>)
+        .instertBefore(<i class="wh">selector</i>)</pre>
+        <div class="compact">
+            $('div.ans:last').insertBefore("div:first");
+        </div>
+</div> <!--end of chapter-->
+
+<h3 class="chtitle">Lynda jQ essence vid3.4: wrapping content</h3>
+<div class="outbox4">
+<span class="b redlite">    The Wrap Function:</span>
+        <pre>.wrap(<i class="wh">html</i>)
+        <span class="b bldk">Wraps matched elems and places them EACH IN TURN
+            inside the html here</span>
+        <div class="box">
+            $('span').wrap('< div style="background-color: red">');
+
+        </div>
+    .wrap(<i class="wh">element</i>)
+        <span class="b bldk">wraps each matched elem with specified element</span>
+
+        .wrapAll(<i class="wh">html</i>)
+        <span class="b bldk">Rather than wrapping EACH of the elems in a given tag,
+        this takes ALL of the matching elems and wraps them into one package</span>
+        .wrapAll(<i class="wh">element</i>)
+        <span class="b bldk">wraps all matched elem with specified element</span>
+
+        .wrapInner(<i class="wh">html</i>)
+        <span class="b bldk">Placeholder</span>
+        .wrapInner(<i class="wh">element</i>)
+        <span class="b bldk">Placeholder</span>
+
+        .replaceWith(<i class="wh">content</i>)
+        <span class="b bldk">replaces with whatever content you provide as a parameter</span><div class="innerboxN">
+    $('span').replaceWith("POOP");
+    // returns lots of "POOP"
+        </div>
+        .replaceAll(<i class="wh">selector</i>)
+        <span class="b bldk">Placeholder</span>
+        .empty()
+        <span class="b bldk">removes all child nodes from the set of the elem that
+        you're calling it on</span>
+        .remove()
+        <span class="b bldk">Removes all matched elems from the DOM</span>
+        .clone()
+        <span class="b bldk">This just makes copies. Clones matched dom elems</span>
+        .clone(bool)
+        <span class="b bldk">If true, this will copy not just the elems,
+        but ALSO EVENT HANDLERS</span>
+
+    </pre>
+</div><!--ch end-->
+
+<h3 class="chtitle">Lynda jQ essence vid3.5: Working with CSS</h3>
+<div class="lavenbox"><pre>
+
+
+    .css(<i>name</i>)
+    returns the value of whatever property you name!
+    <div class="box">
+    console.log($('span').css("font-size"));  // 24.5888px
+    </div>
+    css.(properties)
+    uses JSON
+    <div class="htmlbox"><pre>
+    $('span').css(
+            {
+            color: "pink",
+            fontsize: "3vw",
+            fontfamily: "Arial"
+            }
+    );</pre></div>
+    .css(<i>name</i>,<i>value</i>)
+    sets value of A SINGLE PROPERTY
+    <span class="bldk">If an integer is entered, it will be converted to px</span>
+    <span class="warn">However z-index, opacity, font-weight, line-height are
+    NOT effected</span>
+    <div class="ltbg"><h3 class="ctr wh">All about jq class methods...</h3>
+    addClass(<i>class</i>)
+    <span class="b bldk">Adds class you specify</span>
+
+    hasClass(<i>class</i>)
+    <span class="b bldk">Returns a Boolean! It returns TRUE if at least one of elems
+        has the specified class</span>
+
+    removeClass(<i>class</i>)
+    <span class="b bldk">Removes class</span>
+
+    toggleClass(<i>class</i>)
+    <span class="b bldk">adds class if not present, removes class if it is present</span>
+
+    toggleClass(<i>class</i>, <i>switch</i>)
+    <span class="b bldk">if the switch is TRUE, adds class. if FALSE, removes
+        specified class</span>
+
+
+</pre></div></div> <!--ch end-->
+
+<h3 class="chtitle">Lynda Essentials jq vid 3.6 Data Attribute</h3>
+
+    <div class="outbox3"><pre>
+
+    .data()
+
+    .removeData()
+    <pre>
+
+    <div class="innerboxLeft"><span class="hilite2">Setting</span>
+    data(key, value)
+    data(obj)</div>    <div class="box">
+    $("#test").attr("data-poop", "doodoo");
+    <span class="teal"> This will actually add a data- attr to the DOM.
+    Ordinarily, jquery's data() doesn't do that.<span>
+        <div class="htmlbox"><pre><code>    $('#div1').data("key1", 1234);
+    $('#div1').data("key2", "Beau ");</code></pre></div>    These two will use jquery to <span class="wh">associate data</span>
+
+    <span class="warn">HOWEVER,</span>They do NOT add data attributes!</div>
+    </pre>
+
+    <div class="innerboxLeft">
+    <span class="hilite2">Getting</span>
+    data(key)
+    data()</div>
+
+    <div class="compact2"><pre>
+    If I have:
+    <div class="box">
+        $("#test").attr("data-poop", "doodoo");
+    </div>...(added by jquery)...<br>
+    And/OR if I have
+    <div class="box">
+        < h1 id="test" data-poop="doodoo">Effluent< /h1>
+    </div>Added by HTML.
+    <span class="warn">Really doesn't matter</span>
+    </pre></div>I can read the value to the key in that html <br>
+    It takes a JSON object and can read it as a javascript object.<div class="jsbox"><pre>
+        JSON.stringify($('#test').data(), <span class="reddrk">null*</span>, "  ")
+    <span class="gr">*null is a 'replacer element' (unnecessary)
+    "  " spaces are for js pretty printing</pre></span>
+    </div>
+    <div class="innerboxN">
+    This gives me:<br><img src="img/prettyPoop.png" alt="" />
+    </div>
+</div><!--ch end-->
+
+<h3 class="chtitle">Lynda Essentials jq vid 4.2 Events: (binding and unbinding)</h3>
+    <div class="outbox"><pre>
+    EVENTS: Event handler attachments
+    on()
+    off()
+    toggleClass()
+    <div class="compact2"><pre><span class="redlite">A nice jquery & vanilla js function</span>
+    $(function() {
+        var t = $('#test');
+        t.on("mouseover mouseleave", highlight);
+
+        t.on('click',function(evt) {
+            t.off('mouseover mouseleave', highlight);
+            t.html('< p>shut down< /p>');
+        });
+    });
+
+        function highlight(evt) { <span class="lemon">//outside load fn!!</span>
+            var t = $('#test');
+            t.toggleClass('hilite2');
+        }
+    });</pre></div>
+
+    <span class="pinkish">Events: Lyn jq essentials vid 4.4: Event Properties</span>
+    <pre>(These are some props available)
+    type <span class="wh">click, mousedown, etc.</span>
+    target  <span class="wh">The elem that triggered the event </span>
+    data  <span class="wh">data passed to bind function</span><i>(optional)</i>
+    pageX/pageY <span class="wh">coords of mouse at time of firing of event</span>
+    result <span class="wh">data passed by the last handler function</span>
+    timestamp <span class="wh">Time when event occurred</span>
+    preventDefault() <span class="wh">prevents browser from executing default action</span>
+    isDefaultPrevented(); <span class="wh">verifying</span>
+    stopPropagation(); <span class="wh">stops bubbling of the even to parents</span>
+    isPropagationStopped();
+
+
+    <div class="jsbox"><pre>
+    $('div').click(function(evt) {
+        $(this).html(
+        'pageX: ' + evt.pageX +
+        '< br>pageY: ' + evt.pageY +
+        '< br>type: ' + evt.type  +
+        '< br>target: ' + evt.target );
+    });</pre><span class="gr">put this against a div and it will record clicks and details about the event</span><img src="img/pageXY.png" alt="pageXY" /></div></pre>
+    <span class="pinkish">Events: Lyn jq essentials vid 4.5: Misc Events</span><br>
+    $(<i class="warn">selector</i>).one(<span class="wh">type, data, handler</span>)
+        Works much the same as <i class="blLite">bind()</i> but is only ever executed once
+        for each of the matched elems that the event is bound to.
+        **Used only if you want the event to happen once. --Click
+        again and it will not respond.
+
+    $(<i class="warn">selector</i>).trigger(<span class="wh">event, data</span>)
+
+    $(<i class="warn">selector</i>).triggerHandler(<span class="wh">event, data</span>)
+
+    These last two execute or "trigger" events <span class="warn">from within your code--</span>
+    AS IF USER has triggered it ( with "click", "Mouseover" , etc.).
+
+    These both influence the concomitant behavior of the browser.
+
+    <span class="wh">trigger()</span> can make browser "pretend" as though it has been
+    clicked (or other event).
+
+    <span class="wh">triggerHandler()</span> triggers event WITHOUT simulating browser
+    functions
+    <h4 class="hilite2">practical events ch 4.6: hover() & "Event Delegation"</h4>
+    <img src="img/evens.png" alt="" />
+    I want to hit every other li in a < ul> tag
+    with a .hilite class.
+    What jq do I use?<div class="innerboxW"><div class="ans reddrk">$('ul li:even').addClass('hilight');</div></div><pre><code><span class="hilite2">hover event takes two args</span>
+    .hover(
+        function () {<span class="pinkish">when mouse enters</span>
+        },
+        function () {<span class="pinkish">when mouse leaves</span>
+    });
+    <div class="jsbox">    $(function() {
+        $('li').hover(function() {
+            $(this).toggleClass('hilite');
+        }, function () {
+            $(this).toggleClass('hilite');
+        })
+    });</div></code>
+    <h3 class="chtitle">ch4.6 @ 4:00 [js event Delegation]</h3><div class="compact"><img src="img/evens.png" alt="evens" /><br><span class="bldk med">Event Delegation:</span>
+
+    It's very simple.
+
+    The list above is a ul of eight < li>s.
+
+    If I attach a click event to each < li>,<hr><code class="bldk">$('li').on('click', function(evt) {
+        alert("clicked");
+    })</code><hr>this will be a burden on the processor and bad perf.
+
+    Instead, I simply attach a click event to the parent < ul> and then delegate the <span class="reddrk b">"triggering"</span> to the child element.
+
+    ONE CLICK EVENT... listens for click-events on the list items.<hr><code class="bldk ">$('ul').on("click", <span class="b reddrk">'li'</span>, function(evt) {
+        alert("clicked");
+    });</code><hr>Only handle events when they come from list items.</div>
+    <div class="innerbox3">
+    <span class="reddrk">Bubbling 101</span>
+    Browsers take care of this automatically.
+    When an element is clicked and there isn't a handler on that element
+    the action "bubbles up" to the parent.<br>
+    <img src="img/evtAtTheRoot.png" alt="" /><br>
+    Events always begin at the root.
+    They travel down to the "leaf" or place where the event is attached.
+    This touches every single HTML elem along its path.
+
+    This is known as the "capturing phase" or "Phase I".<br>
+    <img src="img/phase2.png" alt="" /><br>
+    The "bubbling phase" or "Phase II" is when it travels upward.
+    <div class="jsbox">
+        var clickbutton = document.querySelector("#myButton");
+        clickbutton.addEventListener("click", showAlert, <span class="reddrk">true</span>);<br><span class="gr">True means: Capture (phase I)<br>False means: Bubble (phase II)</span></div>
+    This is important because every node in this tree "overhears" the event. And <span class="reddrk">if there is an event listener</span> on any one of those nodes, they can trigger an action.
+    So... Therefore we need <span class="mango">stopPropagation()</span><div class="innerboxW">function handleClick(evt) {
+        evt<span class="mango">.stopPropagation();</span>
+        <span class="commentxt">// do something</span><br>}</div>
+    This stops the event in EITHER PHASE that it's currently in.<img src="img/stopped.png" alt="stopped" />
+
+    <div class="innerboxW wh"><a href="https://www.youtube.com/watch?v=0sfPDJiMTXk">Bubbling and Propagation Video Link</a></div>
+</div></pre></span> <!--ch end-->
+</div>
+
+<h3 class="chtitle">Lynda Essentials jq vid 5.1 hiding and showing animation effects</h3>
+<div class="outbox4"><h5 class="blLite">SHOW HIDE TOGGLE</h5><pre><div class="ltbg">    show();
+    show(speed, callback);
+    <span class="lemon">Specifies speed &
+    Fires an optional callback AFTER completion</span>
+    hide();
+    hide(speed, callback);
+    <span class="lemon">Fires callback AFTER completion</span>
+    toggle();
+    toggle(switch);
+    <span class="lemon">TRUE shows all, FALSE hides all</span>
+    toggle(speed, callback);
+    <span class="lemon">Fires callback AFTER completion</span></div>
+    <div class="innerboxW">$(function() {
+    var box = $('#box'), show = $('#show'),
+    hide = $('#hide');
+
+    show.on("click", function() {
+        box.show("slow", <span class="reddrk">function() {
+            alert("complete!")
+        });</span><span class="gr"> // callback</span>
+    });
+
+    hide.on("click", function() {
+        box.hide("slow");
+    });<br>});</div>
+</pre></div>
+<h3 class="chtitle">Lynda Essentials jq vid 5.2 Fading</h3>
+<div class="outbox5"><h5 class="blLite">Fadein FadeOut FadeTo</h5><pre><div class="ltbg">    fadeIn(speed, callback);
+    <span class="bldk">gives speed &
+        Fires an optional callback AFTER completion</span>
+    fadeOut(speed, callback);
+    <span class="bldk">Specifies speed &
+        Fires an optional callback AFTER completion</span>
+    fadeTo(speed, opacity, callback);
+    <span class="bldk">Fires callback AFTER completion</span></div></pre>
+    <h5 class="blLite">vid 5.3 Sliding</h5><pre><div class="ltbg">
+    slideDown(speed, callback)
+    <span class="bldk">gives speed & fires callback</span>
+    slideUp(speed, callback)
+    <span class="bldk">gives speed & fires callback</span>
+    slideToggle(speed, callback)
+    <span class="bldk">gives speed & fires callback</span>
+
+    <div class="compact2"><span class="blLite">CSS Relevance:
+    <span class="lemon">display:none</span> will not be available in the page and does not occupy any space.
+    <span class="lemon">visibility:hidden</span> hides an element, but it will still take up the same space as before. The element will be hidden, but still affect the layout.</span></pre>
+
+    <h3 class="chtitle">Lynda Essentials jq vid 5.4 Animate()</h3><pre>
+    <h5 class="blLite">animate() stop()</h5><pre><div class="ltbg">    animate(<i>params, duration, easing, callback</i>);
+    <span class="bldk b">params: </span>Elem properties to animate
+    <span class="bldk b">duration: </span>in milliseconds
+    <span class="bldk b">easing: </span>"linear" or "swing"
+    <span class="bldk b">callback: </span><span class="pinkish">fn</span> to fire upon completion<br>
+    animate(<i>params, options</i>);
+    <span class="bldk b">params: </span>Elem properties to animate
+    <span class="bldk b">options: </span>an object set in obj notation-style(see below)
+
+    stop();
+    <span class="bldk b">stops animation</span>
+    <div class="compact2"><span class="blLite">Object Notation Example:</span><hr>
+    multibtn.on("click", function() {
+        box.animate({
+            marginLeft: "20vw",
+            fontSize: "4vw",
+            opacity: "0.2"
+        }, 4000);
+    });
+    </div>
+
+</div>
+Quick CSS Selection Quiz:
+<div class="innerboxW">Set a css style for a div (whose class is "poop") that is contained inside a div with the id of "dog".
+<div class="innerboxN ans">
+#dog div.poop { color: "red"}
+</div>
+</div>
+<!--ch done-->
+
+<h3 class="ctr mango">VII. Lyn JS & JSON vid 3.3 jquery & JSON</h3>
+    <div class="outbox5 sm"><span class="lemon">These are not what you call...
+        These are what get called for you when something interesting happens
+    during the lifecycle of an ajax request.</span>
+    <div class="squatbox"><ul>
+            <li>.ajaxComplete()</li>
+            <li>.ajaxError()</li>
+            <li>.ajaxSend()</li>
+            <li>.ajaxStart()</li>
+            <li>.ajaxStop()</li>
+            <li>.ajaxSuccess()</li>
+        </ul></div>
+
+
+        For example: You may wish to use ajaxStart() and .ajaxComplete() to print to the page
+        info to let user know that an ajax request is happening so "pls be patient...".
+    <div class="ltbg">
+    $(document).ready(function() {
+        $(document).ajaxStart(function () {
+            <span class="ivr">console.log("AJAX starting");</span>
+        });
+
+        $(document).ajaxStop(function () {
+            <span class="ivr">console.log("AJAX request ended");</span>
+        });
+
+        $(document).ajaxSend(function () {
+            <span class="ivr">console.log("About to request data...");</span>
+        });
+
+        $(document).ajaxComplete(function () {
+            <span class="ivr">console.log("Everything's finished!");</span>
+        });
+
+        $(document).ajaxError(function (evt, jqXHR, settings, err) {
+            <span class="ivr">console.log("Hmmm. Seems like there was a problem: " + err);</span>
+        });
+
+        $(document).ajaxSuccess(function () {
+            <span class="ivr">console.log("Looks like everything worked!");</span>
+        });
+
+        <span class="ltgr">The meat of the request begins here</span>
+        getData();
+        });
+
+        function getData() {
+            $.get("testdata.txt", successFn);
+        }
+
+        function successFn(result) {
+            console.log("Setting result");
+        $("#content").append(result);
+        }
+
+        function errorFn(xhr, status, strErr) {
+        alert(strErr);
+    }
+    </div>
+
+    </div><!--endof ch 8.4-->
+
+<h3 class="ctr mango">Lyn JQ Essentials: vid 8.3 Jquery's datatypes:
+    an ajax call to flickr</h3>
+    <div class="compact3">
+    Dealing with data coming back from the server.
+    It may be JSON or XML or binary format...etc.
+    <span class="warn">$.getJSON()</span><br><img src="img/json.png" alt="json" /><hr>
+    <div class="squatbox2 sm">
+
+    $(document).ready(function() {
+      getJSONData();
+    });
+
+    function getJSONData() {
+      var flickrAPI =
+            "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+      <span class="warn">$.getJSON</span>(flickrAPI, {
+          tags: "space", <span class="aqua"> - this is the topic "tag" content</span>
+          tagmode: "any",
+          format: "json",
+          },
+          successFn);
+    }
+
+    function getXMLData() {
+    }
+
+    function successFn(result) {
+      $.each(result.items, function(i, item){ <span class="aqua">-- i is "index"</span>
+          <span class="warn">$("< img>")</span>.attr("src", item.media.m).appendTo("#content");
+          <span class="aqua">- jquery's html constructor</span>
+          if (i == 4) { <span class="aqua"> - limits the num of photos to come back</span>
+              return false; <span class="aqua"> - tells $.each() iterator to stop running</span>
+          }
+      });
+    }
+
+    function errorFn(xhr, status, strErr) {
+      alert(strErr);
+    }
+    </div>
+
+
+    </div>
+
+<h3 class="ctr mango">Lyn JQ Essentials: vid 8.2 Jquery's Ajax Helper methods</h3>
+    <div class="compact2">Some Methods that help with common tasks when using ajax
+    <ul>
+    <li><i>$.get()</i> - loads data from server with an HTTP GET request</li>
+    <li><i>$.load()</i> - loads data from server and places html into matched selector</li>
+    <li><i>$.getJSON()</i> - loads json data from server with http GET request</li>
+    <li><i>$.post()</i>- loads with a POST function (to manipulate data)</li>
+</ul><img src="img/get.png" alt="get" /></div>
+
+        <div class="cssbox"><span class="bldk">with simple get();</span><br>
+    $(document).ready(function() {
+        getData();
+    });
+
+    function getData() {
+        <span class="reddrk">$.get</span>("testdata.txt", <span class="reddrk">name of successFn</span>)
+    }
+    function successFn(result) {
+        console.log("setting result");
+        $('#content').append(result);<span class="reddrk"><--appending content to selector</span>
+    }
+    function errorFn(xhr, status, strE rror) {
+        console.log("There was an error");
+    }
+    <span class="bldk">This is so common that jquery gives you a shorthand to accomplish this entire task</span></div>
+        <div class="cssbox"><span class="bldk">with load();</span><br>
+    $(document).ready(function() {
+    getData();
+    });
+
+    function getData() {
+        <span class="reddrk">$('#content').load("testdata.txt")</span>
+    }
+
+    function successFn(result) {
+        console.log("setting result");
+    }
+
+    function errorFn(xhr, status, strE rror) {
+        console.log("There was an error");
+    }</div>
+
+</div><br> <!--ch 8.2 end-->
+
+<h4 class="ctr mango">Lyn JQ Essentials: vid 8.1 Jquery's Simple Ajax method</h4><br>
+    <pre><div class="squatbox">Basic jq Ajax call format
+    <ul>
+    <li>url</li>
+    <li>type</li>
+    <li>datatype</li>
+    <li>success</li>
+    <li>error</li>
+    </ul></div>
+
+    <div class="lavenbox">
+    $(document).ready(function() {
+        getData();
+    });
+
+    function getData() {
+        $.ajax({
+            url: "testdata.txt", <span class="lemon">//this example's local path</span>
+            type: "GET",
+            datatype: "text",
+            success: successFn,
+            error: errorFn,
+            complete: function(hxr, strErr) {
+                console.log("Request is complete")
+            }
+        });
+    }
+    function successFn(result) {
+        console.log("setting result");
+        $('#content').append(result);
+    }
+    function errorFn(xhr, status, strE rror) {
+        console.log("There was an error");
+    }
+
+</div> <!--ch 8.1 end-->
+
+
+</pre>
+
+
+<script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+<!-- <script src="jquery.min.js"></script> -->
+<!-- <script>
+$(function() {
+
+});
+</script> -->
+</body>
+
+</html>

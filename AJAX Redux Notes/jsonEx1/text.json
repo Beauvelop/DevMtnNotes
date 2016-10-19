@@ -1,0 +1,39 @@
+{
+    "entry1": {
+        "word": "first",
+        "meaning": "First words meaning",
+        "example": "First Ward example",
+        "tag": ["tagPlaceHolder"]
+    },
+    "entry2": {
+        "word": "second",
+        "meaning": "Second word meaning",
+        "example": "Second word example",
+        "tag": ["tagPlaceHolder"]
+    },
+    "entry3": {
+        "word": "third",
+        "meaning": "Third word meaning",
+        "example": "Third word example",
+        "tag": ["tag3"]
+    },
+    "entry4": {
+        "word": "fourth",
+        "meaning": "Fourth word meaning",
+        "example": "Fourth word example",
+        "tag": ["tagPlaceHolder"]
+    },
+    "entry5": {
+        "word": "fifth",
+        "meaning": "F word meaning",
+        "example": "Fifth word example",
+        "tag": ["tagPlaceHolder"]
+    },
+    "entry6": {
+        "word": "sixth",
+        "meaning": "Meaning of the six word",
+        "example": "Six word examples",
+        "tag": ["tagPlaceHolder"]
+
+    }
+}

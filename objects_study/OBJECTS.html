@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet">
+  <meta charset="utf-8">
+  <title>OBJECT NOTES</title>
+  <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+  <h2 class="chtitle">OBJECTS Notes<span class="hilite1">A Study of Objects and their Uses</span></h2>
+  <div class="testbox">
+  <script type="text/javascript">
+  (function() {
+  'use strict'; console.log("<h2>Test Area:<hr>");
+
+
+  var PolyProto = function() {
+  //(empty anon fn on a var)
+};
+PolyProto.prototype.name = "john smith";
+PolyProto.prototype.background = "unknown";
+PolyProto.prototype.party = "unknown";
+PolyProto.prototype.donors = "unknown";
+PolyProto.prototype.scandal = "none yet";
+
+PolyProto.prototype.showProfile = function() {
+  document.write("Name: " + this.name +
+      "<br>background: " + this.background +
+      "<br>party: " + this.party +
+      "<br>donors: " + this.donors +
+      "<br>scandal: " + this.scandal);
+};
+
+var leroyJ = new PolyProto();
+leroyJ.name = "Leroy Jenkins";
+leroyJ.background = "Golf Caddy";
+leroyJ.donors = "NRA";
+leroyJ.scandal = "Gamer Troll";
+
+document.write("Let's look at Leroy<br>");
+document.write("donors? " + ('donors' in leroyJ));
+document.write("has own prop donors?" + leroyJ.hasOwnProperty('donors'));
+document.write("<br> enumerable?");
+document.write(leroyJ.propertyIsEnumberable('this.name'));
+// leroyJ.showProfile();
+
+var dCheney = new PolyProto();
+dCheney.name = "Dick Cheney";
+//leave out background
+dCheney.party = "Republican";
+//leave out donors exploiting the use of prototypal inheritance
+dCheney.scandal = "Terrible Marksmanship";
+
+dCheney.showProfile();
+
+// document.write("<br>"+ ('donors' in dCheney));
+// document.write(dCheney.hasOwnProperty('donors'));
+//Your code above HERE
+console.log("</h2>");})();</script>
+
+</div>
+
+    <h2 class="chtitle">First, let's make an Array</h2><code><pre>
+<div class="jsbox">var flavors = ["grape","mint","lime"];
+</div>
+<div class="txtbox">Arrays are ALSO objects. An index (or "key") is given for each element.
+    {0: "grape",
+     1: "mint",
+     2: "lime"};<div class="jsbox">console.log(flavors[1]);
+    <span class="mango">//"mint"</span></div>
+    If we add properties to the Array (as we might to an object)<code class="redlite">
+    flavors.love = "chocolate";
+    flavors.hate = "cherry";
+</code>
+    ...we can't access those objects.
+<div class="jsbox">for (var i = 0; i < flavors.length; i++) {
+        console.log(" " + flavors[i]);
+    }
+    //<div class="ans">grape mint lime -<i>only those accessible by ints</i></div></div>
+    But with the properties' keys we can!<div class="jsbox">for (var prop in flavors) {
+            console.log(prop + " ");
+        }
+    //<div class="ans">0 1 2 love hate</div></div>
+    using these 'keys' we can point all values in the Array.<div class="jsbox">for (var prop in flavors) {
+            console.log(<span class="hilite2">flavors[prop]</span> + " ");
+        }
+    //<div class="ans">grape mint lime chocolate cherry</div>
+
+sanity check!
+    <span class="hilite2">typeof </span>flavors;
+    //<div class="ans">object</div>
+
+Wait! What made it?
+    (flavors)<span class="hilite2">.constructor</span>;
+    //<div class="ans">function Array() { [native code] }</div>
+
+</div><div class="txtbox2"><h3 class="ctr">Parse and display objects keys and values</h3><div class="jsbox3">var shape = {
+    kind: 'triangle',
+    color: 'green',
+    size: 'medium',
+    animation: 'none'
+};
+
+function getObject(obj) {
+    for (var prop in obj) {
+        console.log(prop + ' : ');
+        if (obj.hasOwnProperty(prop)) {
+            console.log(obj[prop] + '< br>');
+        }
+    }
+}
+
+getObject(shape);
+</div>
+shape passed into getObject() produces:<div class="testbox">    kind : triangle
+    color : green
+    size : medium
+    animation : none</div>
+</div>
+
+<div class="txtbox2">
+Let's put a function in an object
+<div class="jsbox2"><code>var boat = {
+    sails: 2,
+    captain: "Ahab",
+    <span class="mango">launch: function(crewMembers) {
+        if (crewMembers > 4) {
+            console.log("Set Sail!");
+        } else {
+            console.log("Maybe later.");
+        }
+    }</span>
+}
+boat.launch(5);
+//<div class="ans">Set Sail!</div>
+boat.launch(3);
+//<div class="ans">Maybe Later.</div></code></div>
+If this looks like a method...that's because IT IS!
+launch() is an <span class="hilite2">'own' method</span> on the object boat.
+<div class="jsbox2">var propcheck = boat<span class="wh">.hasOwnProperty</span>('launch');
+console.log(propcheck);
+//<div class="ans">true</div>
+</div>
+
+The following method verifies the enumerability of user-defined
+properities.
+
+The <span class="hilite2">.propertyIsEnumerable()</span> method tells whether you
+can iterate over it in a <i>for in loop</i>.
+<div class="jsbox2">var iterPropCheck = boat<span class="wh">.propertyIsEnumerable</span>('captain');
+console.log(iterPropCheck);
+//<div class="ans">true</div></div>
+Properties that are inherited from the prototype chain
+are not enumerable.
+<div class="jsbox2">var iterPropCheck = boat<span class="wh">.propertyIsEnumerable</span>('length');
+console.log(iterPropCheck);
+//<div class="ans">false</div>
+</div>
+</div>
+<h4 class="ctr chtitle">Object Creation: Four Ways...</h4><div class="txtbox2"><div class="jsbox4"><h5 class="ctr wh">Factory Pattern</h5>var dateFactory = function(food, fun, end) {
+    var temp = {};
+
+    temp.food = food;
+    temp.fun = fun;
+    temp.printPlan = function() {
+        console.log(temp.food + " & " + temp.fun);
+    };
+    return temp;
+}
+var tonight = dateFactory("Italian", "movie");
+var autumnDate = dateFactory("Pizza", "bowling");
+
+tonight.printPlan();
+autumnDate.printPlan();
+
+//<div class="ans redlite">Italian & movie</div>
+//<div class="ans redlite">Pizza & bowling</div>
+</div>
+Does not use "new" keyword.
+Must use <code>return temp;</code> or the object doesn't "leave" the factory.
+<div class="txtbox3">An anon function (with args) on a var.
+An y object.
+Properties on that object equal to the fn's parameters.
+A method on the object to print it.
+Finally, return the entire object.
+
+Then, simply create more objects with:
+var myObj1 = objFactory(--, --, --);</div>
+<div class="compact">Remember: Factory Pattern
+    <ol>
+<li>Make Empty Object</li>
+<li>Return Object</li>
+<li>No "new" keyword</li>
+</ol></div>
+
+<div class="txtbox3"><div class="jsbox4"><h5 class="ctr wh">Constructor Pattern</h5>var TrioConstructor = function(strings, keys, percussion) {
+    this.percussion = percussion;
+    this.strings = strings;
+    this.keys = keys;
+    this.play = function() {
+        console.log("Percussion: " + this.percussion +
+                        "< br>keys: " + this.keys +
+                        "< br>Strings: " + this.strings);
+    };
+};
+
+<span class="redlite">values are waiting to "take" what is fed into the function's args</span>
+</div>
+Nothing is constructed yet.
+There is no <code>return ...;</code> statement.
+We must use <code class="wh">new</code> to construct objects.
+<div class="jsbox4">var myTrio = <span class="wh">new</span> TrioConstructor("Cello", "Piano", "Drums");
+var newJazz = <span class="wh">new</span> TrioConstructor("Bass", "Xylophone", "Bongos");
+
+<span class="redlite">Finally, we need to call these.</span>
+myTrio.play();
+//<div class="ans redlite">Percussion: Drums
+  Keys: Piano
+  Strings: Cello</div>
+newJazz.play();
+...</div>
+<div>Remember: Constructor Pattern
+    UpperCase Name
+    ".this" keyword
+    "new" keyword</div></div>
+
+<div class="txtbox3"><h2>Let's create customer with a <span class="redlite">constructor function</span>
+<div class="jsbox2">
+    function Customer() {
+        this.legality= false, <span style="color: #666">// default </span>
+        this.canDrink = function(age) {
+        if (age >=21) {
+            this.legality = true;
+            console.log("Legal Drinker.");
+        } else {
+            console.log("Don't serve alcohol.");
+        }
+      };
+    }
+    <span style="color: brown">var sue = new Customer();</span>
+    //creating a new instance of customer
+    sue.canDrink(32);</code>
+    </div>
+    <span class="wh">
+    NB: The value of '.this' depends on the object used
+    to call that method.</span></div>
+    <i>Methods</i> are really an OO term for functions
+    They are added to the CLASS using the .prototype object
+    <div class="testbox"><span class="wh">// Constructor function creates a new obj</span>
+
+<code>function CustomerBill( parkedHrs, dinnerTab) {
+    this.parkedHrs = parkedHrs * 10;
+    this.dinnerTab = dinnerTab;
+}
+<span class="wh">// .prototype EXTENDS our object</span>
+CustomerBill<span class="redlite">.prototype</span>.subtotal = function() {
+    this.subtotal = this.parkedHrs + this.dinnerTab;
+    return this.subtotal;
+ }
+CustomerBill<span class="redlite">.prototype</span>.tip = function() {
+    this.tip = this.subtotal *0.20;
+    return this.tip;
+}
+CustomerBill<span class="redlite">.prototype</span>.total = function() {
+    this.total = this.subtotal + this.tip;
+    return this.total
+}
+
+<span class="wh">// We call our new object CREATING AN INSTANCE of a new object</span>
+var greg = new CustomerBill(2,50);
+  console.log("Greg's sub is " + greg.subtotal());
+  console.log("Greg's tip is " + greg.tip());
+  console.log("Greg's total is " + greg.total());
+</code>
+// Greg's sub is 70
+// Greg's tip is 14
+// Greg's total is 84</div>
+
+<div class="compact">We can check whether greg is an
+
+example or "instance" of any object with:
+
+<span class="blLite">greg instanceof CustomerBill</span>
+
+// true</div>
+
+<div class="txtbox3">BONUS EXAMPLE of Constructor Pattern
+
+var CakeConstructor = function(size, flavor, kind) {
+  this.size = size;
+  this.flavor = flavor;
+  this.kind = kind;
+
+  this.serve = function() {
+    console.log("< br>" + this.size + "< br>" +
+                this.flavor +  "< br>" + this.kind);
+  }
+}
+
+var myCake = new CakeConstructor("large", "lemon", "birthday");
+var herCake = new CakeConstructor("small", "vanilla", "cup");
+
+myCake.serve();
+<div class="compact">large
+lemon
+birthday
+</div>
+<span class="pinkish">We can also add a method on this object</span>
+
+CakeConstructor.prototype.eat = function() {
+    console.log("yum! I love " + this.flavor + " cake!");
+}
+
+herCake.eat();<div class="compact">yum! I love vanilla cake!
+</div>
+<span class="wh">Let's give myCake a method</span>
+
+myCake.vomit = function() {
+    console.log("ble~e~e~ech!");
+}
+myCake.vomit(); <div class="compact">ble~e~e~ech!</div>
+herCake.vomit();
+<div class="compact reddrk"><b>Uncaught TypeError:
+    herCake.vomit is not a function</b></div>
+<span class="redlite">However, if we build it on the prototype on the Constructor</span>
+CakeConstructor.prototype.vomit = function() {
+    console.log("Yuck! Ble~e~e~ch!!!! This " + this.kind +" cake tastes like @#$!!")
+}
+
+herCake.vomit();<div class="compact">Yuck! Ble~e~e~ch!!!!
+This cup cake tastes like @#*$!!</h2></div>
+It works! myCake.vomit() has, in fact, been overridden!
+All future objects share this method.
+
+That is the black art of prototyping!
+</div>
+<div class="txtbox3"><h4 class="ctr pinkish">III. Prototype Pattern</h4>Let's make some politicians<div class="jsbox4">
+
+  var PolyProto = function() {
+  //(empty anon fn on a var)
+};
+PolyProto.prototype.name = "john smith";
+PolyProto.prototype.background = "unknown";
+PolyProto.prototype.party = "unknown";
+PolyProto.prototype.donors = "unknown";
+PolyProto.prototype.scandal = "none yet";
+
+PolyProto.prototype.showProfile = function() {
+  document.write("Name: " + this.name +
+      "< br>background: " + this.background +
+      "< br>party: " + this.party +
+      "< br>donors: " + this.donors +
+      "< br>scandal: " + this.scandal);
+};
+<span class="pinkish">
+Prop values are defaults shared by all waiting to be overridden
+    by args from the <i>fn</i>s of new objects</span>
+
+var leroyJ = new PolyProto();
+leroyJ.name = "Leroy Jenkins";
+leroyJ.background = "Golf Caddy";
+leroyJ.donors = "NRA";
+leroyJ.scandal = "Gamer Troll";
+
+leroyJ.showProfile();
+
+<div class="compact">Name: Leroy Jenkins
+Background: Golf Caddy
+Party: unknown
+Donors: NRA
+Scandal: Gamer Troll
+</div>
+
+<span class="pinkish">Pros:</span> <span class="wh">This is good if you want to use defaults for many objects.
+It can be good to customize unique objects.
+Also: --Easy, one-line construction for new objects.
+<code>var someobj = new ProtoObj();</code> --the constructor is clean!
+New objects <i>can</i> be very lightweight.
+
+
+<span class="pinkish">Cons: </span><span class="wh">cumbersome... Let's say I have 20 objects.
+Some have bespoke properties unique to each object
+and some are defaults.
+Anticipate using <span class="lemon">Obj.hasOwnProperty('~~~')</span> often</span>
+
+<span class="wh">Let's make a new PolyProto object:</span>
+<div class="greyBox">
+var dCheney = new PolyProto();
+dCheney.name = "Dick Cheney";
+<span class="gr">leave out .background</span>
+dCheney.party = "Republican";
+<span class="gr">leave out .donors & use prototypal inheritance</span>
+dCheney.scandal = "Bad Marksmanship";
+
+dCheney.showProfile();
+
+<div class="compact">Name: Dick Cheney
+background: unknown
+party: Republican
+donors: unknown
+scandal: Bad Marksmanship
+</div>
+</div>
+
+There are two checks in order to keep track:
+<div class="jsbox">console.log('donors' in dCheney);
+dCheney.hasOwnProperty('donors');</div>
+"OwnProperty" here, means it is itsown bespoke property.
+
+<div class="compact-w"><b>Remember: Prototype Pattern<ol>
+<li>Anon <i>function</i> on a var.</li><ul>
+    <li><i>fn</i> signature is empty</li>
+    <li><i>fn</i> body is empty</li>
+</ul>
+<li>Initialize defaults</li>
+<li>"new" keyword</li>
+<li>"new" constructor's <i>fn</i> signature is also empty</li>
+</ol></b></div>
+Issue:
+document.write(dCheney.propertyIsEnumberable('name'));
+
+ALSO what is 'defineproperty' operator?
+
+ to distinguish own vs ...?
+This seems not to recognize the object dCheney
+
+    </div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Quiz: What pattern is this?
+    <div class="txtbox3 wh">
+    var drinkMaker = function(booze, mix, fruit) {
+        var template = {};
+
+        template.alcohol = booze;
+        template.fizz = mix;
+        template.garnish = fruit;
+        template.serve = function() {
+            console.log(template.alcohol + template.fizz + template.garnish);
+        }
+        return template;
+    }
+    var rumCoke = drinkMaker("rum", "Coke", "orange slice");
+    rumCoke.serve();
+    //
+    var ginTonic = drinkMaker("gin", "tonic", "lemon");
+    ginTonic.serve();
+    //
+
+    This pattern is a<div class="ans">Factory Pattern</div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    </pre></code>
+
+
+
+
+
+    <h2>
+
+
+
+
+
+<blockquote cite="http://">FUN FACT:
+        Functions have prototypes. Objects have __proto__ s.
+</blockquote>
+
+=====It is useful occasionally to override the inherited methods on Javascript objects====
+  <h3>Lynda: Practical and Effective JS #5.02 "defining common obj methods"</h3>
+  <br>toString(); or valueOf(); is often overridden equals() & compareTo() are also often re-created or overridden.
+  <br><br>
+  equals(); method--counterintuitively-- <i>DOES NOT</i> compare values but compares whether the compared objecs <br>are <i>referring</i> to the same object.
+  <br>If you wish to see if they
+
+===This (above) needs work ===
+
+<br><br><br>
+
+==Find out (at runtime) what type an object is with the <span style="color: brown">instanceOf </span>operator ====<br><br>
+  <code>console.log(greg instanceof Object); <span style="color: #777">// true</span><br>
+    console.log(greg instanceof CustomerBill); <span style="color: #777">// true</span><br>
+  </code>
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>====Linking to a JSON file ==================<br><br>
+
+Use this snippet of code to link to that file and use <span style="color: brown">JSON.parse();</span> to create a javascript object from a JSON object <br><br>
+<code>
+
+var xmlhttp = new XMLHttpRequest(); <span style="color: brown">  // new request</span><br>
+var json;<span style="color: brown">  // create json variable</span><br><br>
+
+xmlhttp.open("GET", "WordsDB.json", true);     <span style="color: brown">  // links to file</span><br>
+xmlhttp.send();<span style="color: brown">// ????</span><br><br>
+
+xmlhttp.onreadystatechange = function() {  <span style="color: brown">  // monitors and updates changes</span>
+  if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {  <span style="color: brown">// ?????</span><br>
+    json = JSON.parse(xmlhttp.responseText);  <span style="color: brown">// reassign & then parse that baby!</span><br>
+    console.log(json);  <span style="color: brown">  // check it out in console</span><br>
+  }
+
+  for (var property in json) {
+    console.log(json[property]["word"] + "< br>");<br>
+    console.log(json[property]["meaning"] + "< br>");<br>
+    console.log(json[property]["example"] + "< br>");<br>
+    console.log(json[property]["tag"] + "< br>");
+  }<br>
+
+
+
+
+
+};<br>
+
+</code>
+
+
+</code>
+</h2>
+
+
+<code><pre>
+
+    VI. Lyn JS&AJAX vid 2.2 Modifying Arrays
+
+        looping through an array nested within an obj.
+
+        < script>
+        var info = {
+        		"full_name" : "Ray Villalobos",
+        		"title" : "Staff Author",
+        		"nested" : [
+        				{ "key1" : "value1" },
+        				{ "key2" : "value2" },
+        				{ "key3" : "value3" },
+        				{ "key4" : "value4" },
+        				{ "key5" : "value5" }
+        			]
+        		};
+        var output = '';
+        var len = info.nested.length;
+
+        for (var i = 0; i < len; i++) {
+        	for (var prop in info.nested[i]) {
+        		output += '< li>' + [prop]+': ' + info.nested[i][prop] + '< /li>';
+        	}
+        }
+
+        var update = document.getElementById('links');
+        update.innerHTML = output;
+
+        </ script>
+</pre></code>
+  </body>
+</html><!--
+
+======================NOTES==================
+
+
+
+
+
+
+
+
+
+
+-->

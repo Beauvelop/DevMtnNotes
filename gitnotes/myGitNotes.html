@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>myGitNotes</title>
+    <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+    <h1>Useful Git Notes & commands</h1><pre>
+
+<div class="jsbox"><h3>Setting and Checking global settings: Name, Email etc.</h3>
+    <code>
+    CHECKING:
+    git config --list
+
+    SETTING:
+    git config --user.name "Leroy Jenkins"
+    git config --user.email "leroy.html@gmail.com"<hr>
+
+    STARTING Locally:
+    git init
+    git status
+
+    <span class="warn">tag a file I don't want tracked</span>
+    touch .gitignore
+    <div class="cssbox"> <b>.gitignore file</b>
+
+    *.DS_Store
+    .gitignore
+
+    </div>
+
+    REMOVE everything from staging area
+    git reset
+
+    Clone repo into a folder
+    1. cd into folder
+    2. git clone <url> .     the<span class="warn"> dot</span> indicates "current directory"
+    <span class="reddrk">UPDATE: Seems not to need a "dot"</span>
+
+    --
+    let's see info about that remote repo
+    git remote -v
+    <div class="squatbox">
+    origin
+    https://github.com/herrbischoff/awesome-osx-command-line.git (fetch)
+
+    origin
+    https://github.com/herrbischoff/awesome-osx-command-line.git (push)
+
+    <i class="blLite">This gives info about what's on my location on my local machine</i>
+
+    Difference between <i>git fetch origin & git pull origin</i>
+    git fetch origin just fetches from the repository on the net
+    It DOES NOT MERGE into your work. (That must be done manually)
+
+    git pull origin fetches AND merges into your work
+    
+    <i></i>
+    </div>
+    git branch -a
+    <div class="squatbox">
+    * master
+      remotes/origin/HEAD -> origin/master
+      remotes/origin/gh-pages
+      remotes/origin/master
+    </div>
+</code>
+
+</div>
+<div class="outbox"><h3>Lynda Git Essentials 3.1~4 Init Repo</h3>
+    remove and add username
+    <code class="wh">git config --global --unset-all user.name
+  git config --global --add user.name LeroyJenkins</code>
+
+  open file in atom
+    <code class="wh">atom README.md</code>
+
+  open hidden files
+    <code class="wh">ls -la</code>
+
+  <div class="inbox1"><span class="redlite">Remember: </span>.git/config file has config info local to that repo
+  </div>
+  </div><hr>
+
+<div class="outbox"><h3>Lynda Git Essentials 3.5 Logging</h3>
+    View a certain number of commits
+    <code class="wh">git log -n <i>-number-</i></code>
+
+    View commits since a date or until a certain date.
+    <code class="wh">git log --since=2014-03-12</code>
+    <code class="wh">git log --until=2014-03-12</code>
+
+    View commits by a certain person
+    <code class="wh">git log --author="Leroy"</code>
+
+    <div class="inbox1"><span class="redlite">Remember: </span>grep searches are cool:
+    <code class="wh">git log --grep="button"</code>
+
+    This searches COMMIT MESSAGE text.
+    </div>
+
+    </div><hr>
+
+<div class="outbox"><h3>Lynda Git Essentials 4 SHA-1</h3>
+    Git generates a checksum --> a SHA(1)
+
+    <span class="wh">Each SHA-1 value contains three meta-things
+
+    parent
+    author
+    commit message</span>
+
+
+    <div class="inbox1"><span class="redlite">Remember: </span>Git's algorithm gives us a 40-digit number is the SHA or the commit ID.
+    </div>
+  </div><hr>
+
+<div class="outbox"><h3>Lynda Git Essentials 4.3 HEAD</h3>
+      HEAD is a pointer
+      Always to the tip of the current branch in our repo.
+
+      <span class="wh">HEAD points to the last state or place in our repo branch.
+      Much like a tape recorder.
+      Wherever the HEAD is positioned. THAT is where we will start recording next</span>
+
+      <div class="inbox1"><span class="redlite">Remember: </span>Checkout another branch and it will go to the tip of that branch.
+      </div>
+      </div><hr>
+
+<div class="outbox"><h3>Lynda Git Essentials 5.3 Diff delete moving files</h3>
+      Delete a file
+      <code class="wh">git rm -f firstFile.txt</code>
+      You will have to commit this delete.
+
+      View changes to a file
+      <code class="wh">git diff</code>
+
+      View git diff in staging index
+      <code class="wh">git diff --staged</code>
+
+      When moving or changing names, Git identifies as prev as deleted
+      and new named file as new file.
+      <code class="wh">git diff --staged</code>
+
+      <div class="inbox1"><span class="redlite">Remember: </span>Git move and git rename are the same operation
+
+          <code class="wh">git mv testFile.txt tstFile.txt</code>
+      </div>
+      </div><hr>
+
+  <hr>
+  <div class="outbox"><h3>Lyn Git Essentials ch6</h3>
+
+      A way to color ONLY WHAT YOU HAVE CHANGED...
+      <code class="wh">git diff --color-words filename.html</code>
+      Puts changes side-by-side
+
+      Jumping over staging area directly to commit.
+      Instead of git add . (or adding one by one)
+      <code class="wh">git commit -am "HERE IS COMMIT MSG"</code>
+      Good for only modifications
+      Files that aren't tracked or those that are being deleted
+      don't get included.
+
+      A way to color ONLY WHAT YOU HAVE CHANGED...
+      <code class="wh">git diff --color-words filename.html</code>
+
+      add all changes within a folder (or "directory")
+      <code class="wh">git add folderNam/ .</code>
+
+      Try to keep commits together in coherent changes
+      as a best practice.
+
+
+      Placeholder
+      <code class="wh">Placeholder</code>
+      Placeholder
+  </div>
+
+    </pre>
+</pre></code>
+
+</body>
+</html>

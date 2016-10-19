@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../styles.css" media="screen" title="no title">
+    <meta charset="utf-8">
+    <style media="screen">
+        img {
+            width: 48vw;
+            height: 48vw;
+        }
+        div {
+            z-index: 0;
+        }
+        #photoShow div {
+            position: absolute;
+        }
+        .z2 {
+            z-index: 2;
+        }
+        .z1 {
+            z-index: 1;
+            opacity: 1.0;
+        }
+
+
+    </style>
+    <title>jq playground</title>
+</head>
+
+<body>
+    <div id="photoShow">
+        <div><img src="cat.gif" alt="" /></div>
+        <div><img src="preacher.jpg" alt="" /></div>
+        <div><img src="god.jpg" alt="" /></div>
+        <div><img src="dog.gif" alt="" /></div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
+<script>
+    $(function() {
+        $('#photoShow div:first').addClass('z2').next().addClass('z1');
+        console.log("first line");
+        setInterval("rotateImages()", 10000);
+    });
+
+    function rotateImages() {
+        var start = $('#photoShow div:first');
+
+        var active = $('.z2');
+        var bg = $('.z1');
+        // if ($('#photoShow:lastChild').hasClass('z2')) {
+        //     start.addClass('z1');
+        // }
+        // if ($('#photoShow:secondChild').hasClass('z1') && start.hasClass()) {
+        //     start.addClass('z2');
+        // }
+
+        active.animate({opacity: 0}, 5000, function() {
+        bg.removeClass('z1');
+        bg.next().addClass('z1');
+        active.removeClass('z2');
+        active.next().addClass('z2');
+        });
+    };
+</script>
+
+</body>
+
+</html>

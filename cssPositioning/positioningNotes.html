@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css" media="screen" title="no title">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet">
+    <title>PositioningNOTES</title>
+</head>
+<body>
+<h1>CSS Positioning NOTES</h1>
+<div class="outbox5"><h3 class="ivr">CSS Positioning css-tricks vid</h3><pre>
+
+    <a class="gr underline" href="https://youtu.be/gKvxlYCzJXw">Youtube Vid Link</a>
+    <div class="squatbox lemon"><i>5 position</i>
+    relative
+    absolute
+    fixed
+    sticky
+    <span class="commentxt">inherit
+    static</span>
+    </div>
+    So let's say I've got this box
+    <div class="boxA">
+    <pre>
+    position: <span class="reddrk b">static;</span>
+    left: 50vw;
+    </pre>
+    </div>
+    <span class="med">left attr is useless without <i>position: relative;</i> in order to make it moveable.</span>
+
+    There. That's better.</pre>
+
+    <div class="boxB">
+    <pre>
+    position: <span class="reddrk b">relative;</span>
+    left: 50vw;
+    </pre>
+    </div>
+    We could even put a <i>top: 10vw;</i> in there to offset it from it's home.
+    <div class="boxC">
+    <pre>
+    position: relative;
+    left: 50vw;
+    <span class="reddrk b">top: 5vw;</span>
+    </pre>
+    </div>
+    <span class="med">It will not disturb 'the flow' of other stuff around it.
+    Remember: It is anchored to, or truly "occupies" the space way to the left and above.</span>
+<hr>
+    Ok, so in this next <i>static</i> box, let's nest a span in the html:<br>
+    <div class="boxA b bldk sm framed"><pre>
+    < div class="myBox">
+        < span>Hi World!< /span>
+    < /div>
+    <span class="wh">I'm right here.</span>
+    <span class="lemon">.myBox {
+        width: 40vw;
+        height: 40vw;
+        position: static;
+    }</span></pre></div><br>
+
+    Let's change the span's position to absolute
+    <pre>
+
+<div class="innerboxN1">
+    .myBox {
+        position: static;
+    }
+    span {
+        right: 0px;
+        position: absolute;
+    }</div>
+    </pre>
+    <div class="boxA framed">
+        <span class="ba wh">I'm over here!</span>
+    </div>
+    <pre>
+
+    The browser renders element absolutely...at a position 0px from the right.
+
+    However, as soon as its parent is positioned "relative".
+
+    <div class="innerboxN1">
+    .myBox {
+        position: <span class="b reddrk">relative;</span>
+    }
+    span {
+        right: 0px;
+        position: absolute;
+    }</div>
+    Parent gives child a relative context, so we get:    </pre>
+
+    <div class="boxE framed">
+
+    <span class="abs">*Phew! I'm back.</span>
+
+</div><pre>
+
+    The child is positioned absolutely...<span class="b pinkish">relative to it's parent.</span>
+
+    <i>Parent gives it 'relative' context within which to be absolute.</i>
+
+    Another example:</pre>
+
+    <div class="boxE framed"><pre class="bldk">
+
+    < div class="mybox">
+        < div id="toprt">in the corner!
+        < / div>
+    < / div></pre>
+    <div class="topRtBox">
+        In the corner!
+    </div>
+    </div>
+    <div class="innerboxN1"><pre>
+    .mybox {
+        position: relative;
+    }
+    #toprt {
+        top: 0px;
+        right: 0px;
+        position: absolute;
+    }</pre></div><hr><pre><h3 class="funfact">Z-Index FUN FACT!</h3>
+    Z-Index vis-a-vis positioning is often overlooked.
+    <div class="innerbox2">
+    Z-Index ONLY "engages" under 3 condtions:
+
+    <span>The Z-indexed element <i class="underline">itself</i> MUST be either:
+    <div class="ans">
+    1. fixed
+    2. relative
+    3. absolute
+    </div>
+    <h2 class="gr">This is true regardless of the parent's positioning!</h2>
+</span></div><hr>
+Here we have a 3 different configurations:
+
+<span class="ivr">1.</span>
+blu-relative;
+red-static;
+</pre>
+
+<div class="dad">
+    <p class="rot90">position: relative;</p>
+<div class="blChild example"><pre>
+top: 0px;
+left: 0px;
+position: relative;</pre>
+</div>
+
+<div class="rdChild example"><pre>
+left: 135px;
+top: 175px;
+position: static;</pre></div>
+</div>
+
+
+<!-- SECOND EXAMPLE -->
+<pre>
+<span class="ivr">2.</span>
+blu-relative;
+red-absolute;
+</pre>
+
+<div class="dad">
+    <p class="rot90">position: relative;</p>
+<div class="blChild2 example"><pre>
+top: 0px;
+left: 0px;
+position: relative;</pre>
+</div>
+
+<div class="rdChild2 example"><pre>
+left: 135px;
+top: 175px;
+position: absolute;</pre></div>
+</div>
+<!-- 3rd EXAMPLE -->
+<pre>
+<span class="ivr">3.</span>
+blu-absolute;
+red-absolute;
+</pre>
+<div class="dad">
+    <p class="rot90">position: relative;</p>
+<div class="blChild3 example"><pre>
+top: 0px;
+left: 0px;
+position: absolute;</pre>
+</div>
+
+<div class="rdChild3 example"><pre>
+left: 135px;
+top: 175px;
+position: absolute;</pre></div></div>
+
+<h2>You can NOW go forth and play with the z-index to your heart's content! :)</h2>
+</div>
+</body>
+</html>
+
+<!-- <div class="outbox5"><h3 class="ivr">Tuts+ SNAP SVG animations ch5.~~~~~:</h3>
+<div class="squatbox lemon">
+stuff
+to
+list
+</div>
+    <div class="squatbox2">TweenLite<b>.to</b>(< <i>elem</i> >, < <i>time</i> >, {<i>attributes</i>});</div>
+<div class="innerbox2">
+code stuff
+some more code stuff
+</div>
+<span class="ltgr">Placeholder Placeholder Placeholder </span>
+<div class="box"><span class="ivr">Placeholder Placeholder Placeholder
+Placeholder Placeholder Placeholder </span></div>
+</div> -->

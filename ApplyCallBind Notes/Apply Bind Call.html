@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+    <style media="screen">
+    body {
+    background-color: rgb(56, 82, 71);
+    }
+    #note {
+      font-family: sans-serif;
+      letter-spacing: .1em;
+    }
+    </style>
+    <meta charset="utf-8">
+    <title>Apply Bind Call example</title>
+    </head>
+    <body>
+    <hr>
+    <h4>TESTING AREA</h4><hr>
+    <script type="text/javascript">
+    (function() {
+    'use strict';
+    document.write('<h3 style="color: rgb(158, 141, 118)">');
+
+
+
+
+
+
+
+
+
+    var film = {
+    star: "Matt Damon",
+    title: "Bourne",
+    };
+
+    function review(starNumber) {
+    document.write("The film " + this.title + " stars " + this.star +
+    " and received "+ starNumber + " out of 5 stars.");
+    }
+    function suggest(activity, film, args){
+    activity.apply(args);
+    }
+    suggest(review, film, [2]);
+
+
+
+
+
+document.write("</h2>");
+    })();
+
+    </script><hr>
+
+    <br><h2>----------call(); method is actually pretty simple It tells the function what '.this' is!---------</h2><br>
+<h2>Here we'll have call(); --with one arg<code>
+<dl>
+
+<dt>var breakfast = {</dt>
+<dd>     meal: "eggs & coffee",<br>
+      time: "8:00am",</dd>
+    };
+<br>
+<dt>    var lunch = {</dt>
+  <dd>    meal: "a sandwich and a beer", <br>
+      time: "noon",</dd>
+    };<br>
+
+<dt>    var dinner = {</dt>
+      <dd>meal: "roast chicken with wine",<br>
+      time: "9:00pm",</dd>
+    };<br>
+
+<dt>    function mealPlan() {</dt>
+    <dd>  document.write("At around " + this.time +<br> " we're probably going to have " + this.meal +".");</dd>
+    }<br>
+
+    mealPlan.<span style="color: rgb(145, 129, 73)">call(</span>lunch<span style="color: rgb(145, 129, 73)">);</span><br>
+<br>
+// At around noon we're probably going to have a sandwich and a beer.
+
+
+</code>
+</h2>
+<hr>
+<h2>--------------------Here we'll have call(); --with two args <br> <br>First, let's make mealPlan() take an argument...<br><code>
+<dl>
+
+<dt>var breakfast = {</dt>
+<dd>     meal: "eggs & coffee",<br>
+      time: "8:00am",</dd>
+    };
+<br>
+<dt>    var lunch = {</dt>
+  <dd>    meal: "a sandwich and a beer", <br>
+      time: "noon",</dd>
+    };<br>
+
+<dt>    var dinner = {</dt>
+      <dd>meal: "roast chicken with wine",<br>
+      time: "9:00pm",</dd>
+    };<br>
+
+<dt>    function mealPlan(<span style="color: rgb(144, 94, 120)">location</span>) {</dt>
+    <dd>  document.write("At around " + this.time +<br> " we're probably going to have " + this.meal +". Why
+      don't we meet at " + <span style="color: rgb(144, 94, 120)">location</span> + "?");</dd>
+    }<br>
+
+    mealPlan.<span style="color: rgb(145, 129, 73)">call(</span>dinner, <span style="color: rgb(144, 94, 120)">"Denny's"</span><span style="color: rgb(145, 129, 73)">);</span><br>
+<br>
+// At around 9:00pm we're probably going to have roast chicken with wine. Why don't we meet at Denny's?
+</cod>
+
+<ul>
+  <li><h3 id="note" style="color: rgba(142, 196, 201, 0.74)">So 1st arg of call()--determines what is '.this'.</h3></li>
+    <li><h3 id="note" style="color: rgba(142, 196, 201, 0.74)">2nd arg is the parameter fed to the function referred to by that which the .call() is placed!</h3></li>
+</ul>
+
+<br>
+
+
+
+
+</code>
+</h2>
+
+
+  </dl>
+
+<hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <br><h2>----------APPLY(); method can perform an action on multiple functions----------</h2><br>
+<h2>
+  <code>
+    <dt>var <span style="color: green">film</span> = {</dt>
+    <dd>  star: "Matt Damon",<br>
+      title: "Bourne",</dd>
+    };<br><br>
+    <dt>function <span style="color: rgb(101, 126, 131)">review</span>(<span style="color: rgb(156, 116, 47)">starNumber</span>) {</dt>
+    <dd>      document.write("The film " + this.title + " stars " + this.star + <br>
+    " and received "+ <span style="color: rgb(156, 116, 47)">starNumber</span> + " out of 5 stars."</span>);</dd>
+    }
+
+
+    <dl><dt>function suggest(<span style="color: rgb(101, 126, 131)">activity</span>, <span style="color: green">film</span>, <span style="color: rgb(156, 116, 47)">args</span>){</dt>
+    <dd>    <span style="color: rgb(101, 126, 131)">activity</span>.apply(<span style="color: green"></span><span style="color: rgb(156, 116, 47)">args</span>);</dd>
+      }
+    <br>
+      suggest(<span style="color: rgb(101, 126, 131)">review</span>, <span style="color: green">film</span>, <span style="color: rgb(156, 116, 47)">[2]</span>);
+    </dd>
+
+</code>
+    </dl>
+    <span style="color: navy">The film Bourne stars Matt Damon and received <span style="color: rgb(156, 116, 47)">2</span> out of 5 stars.
+    </span> <br>
+
+
+    <ol>Args in the <span style="color: #861F09">apply(); method:</span>
+      <li>name of function to be invoked</li>
+      <li> used as '.this'</li>
+      <li>args as Array passed to the function</li>
+    </ol>
+  </h2>
+
+
+  </body>
+</html>

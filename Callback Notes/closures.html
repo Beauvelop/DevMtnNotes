@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+    <html>
+
+    <head>
+    <link rel="stylesheet" href="styles.css">
+    <title>General JS Notes</title>
+    </head>
+    <body>
+    <h1 class="redlite ctr">My Callback Notes</h1><pre>
+
+<div class="outbox"><h3 class="ctr">my Callback Notes</h3><pre>
+    
+
+    <code class="wh">Notes from "Redemption from Callback Hell</code>
+    <a href="https://youtu.be/hf1T_AONQJU">Video Link</a>
+    I view this link as a pre-cursor to understanding Promises.
+
+	<a href="https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html">Article: "We have a problem with Promises"</a>
+    
+
+    <div class="inbox1"><span class="redlite">    Learning Closures takes 100 hours of Effort();
+    This is comprised of several <span class="bldk">studySprints();</span>
+</span><code class="wh">
+In a callback there are no return statements.
+
+In a callback there is no "throw".
+
+There is no stack.
+
+Using Callbacks you don't have any guarantees.
+
+[how many times does it get called?]
+
+functions can do 3 things:
+1)return
+2)throw
+3)have side-effects
+
+We've removed the first two.
+3) we are simply "calling the callbacks"
+
+Promises
+
+Deferred
+Futures --(python?)
+
+[promises/A+]
+
+A promise is an ASYNCHRONOUS VALUE
+
+An object that will--in some point on the future--WILL
+have a value.
+
+
+.then requires two args
+
+first is the fulfillment handler
+(ie) "this is the value of the promise"
+
+second is the rejection handler
+"This is the reason why the promise is not valid"
+
+This is like RETURN & THROW
+
+
+---------
+var user = getUser('bJackson');
+var name = user.name;
+
+//becomes
+
+
+getUser('bJackson').then(function(user) {
+	return user.name;
+});
+
+------
+
+From sync to async
+
+----synchronous---
+var user = getUser('bJackson');
+if(!user) throw new Error('no user!');
+var name = user.name;
+
+//becomes
+
+
+(promise equivalent)
+--async--
+getUser('bJackson').then(function (user) {
+	if (!user) throw new Error('no user!');
+	//otherwise...
+	return user.name;
+})
+----
+
+Here is another sync callstack
+which is safely catching and handling an error
+
+try {
+	deliverTweetTo(tweet, 'bJackson');
+} catch (error) {
+	handleError(error);
+}
+
+//becomes
+
+deliverTweetTo(tweet, 'bJackson')
+.then(undefined, handleError);
+
+
+30min...
+--callback hell example...
+
+chaining.
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</span></code>
+
+    </div>
+    <div class="jsbox"><h2 class="ctr">Here is a DM example</h2>
+   
+example code
+    </div>
+
+    <div class="testbox"><h2 class="ctr">Here is a Tuts+ Example</h2><cite>Tuts+ vid 46</cite>
+    function Order() {
+        var total = 0;
+
+        return function addProduct(price) {
+            var salesTax = price * 0.17;
+            var fee = price * 0.05;
+
+            total += price + salesTax + fee;
+
+            return total;
+        }
+    }
+
+    <span class="wh">This is a constructor function with a returning function.
+    Thus, we have a closure.
+
+    And now, to make the function work for us...</span>
+
+    var myOrder = new Order();
+
+    console.log(myOrder(100));
+    console.log(myOrder(200));
+
+</div>
+<div class="jsbox3">
+    var counter = function() {
+
+        var count = 0;
+
+        return function() {
+            console.log(++count);
+        };
+    }
+
+    var c1 = counter();
+
+    c1();
+    console.log("< br>");
+    c1();
+    var c2 = counter();
+    console.log("< br>");
+    c2();
+    console.log("< br>");
+    c1();
+
+
+
+</div></pre></div><hr>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+function Effort() {
+  var grasp = 0;
+    return function graspOfClosures(hours) {
+      var headway = hours;
+      var msg = '';
+      grasp = grasp + headway;
+      if ((grasp < 1) || !(Number.isInteger(grasp))) {
+          msg = "WTF?";
+      } else {
+      switch (grasp > 0) {
+          case (grasp >= 100):
+              msg = "CONGRATULATIONS! You've mastered closures!";
+              break;
+          case (grasp > 90):
+                  msg = grasp + "%...A-A-A-A-Almost!";
+                  break;
+          case (grasp > 60):
+                  msg = "My GOD! you'are at " + grasp + "%!! Almost there!";
+                  break;
+          case (grasp >= 40):
+                  msg = grasp + "% is great! Don't stop!";
+                  break;
+          case (grasp > 20):
+              msg = "Nice! " + grasp + "% is good. Keep going! It will come.";
+              break;
+          default:
+              msg = "You've learnt " + grasp + "%. Looks like you need to study more.";
+      }
+    }
+      return msg;
+  }
+}
+
+var studySprint = new Effort();
+
+$('#funCall').on('click', function () {
+    var param = $('#inVal').val() % 100;
+    var run = studySprint(param);
+    $('#return').text(run);
+});
+
+});
+
+
+
+    </script>
+</body>
+
+</html>

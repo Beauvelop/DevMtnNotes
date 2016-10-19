@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css" media="screen" title="no title">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet">
+    <title>GreenSockNOTES</title>
+</head>
+<body><pre>
+<h1>Green Sock NOTES</h1>
+<div class="outbox5"><h3 class="ivr">PlSight GreenSock anim ch2.3</h3>
+    <div class="squatbox lemon"><i>HTML links order:</i>
+    < jquery link >
+    < greensock link >
+    < myScripts.js >
+    < /body>
+    <span class="med">$(document).ready(function() {...}); in myScripts.js</span>
+    </div>
+    <div class="innerboxW"><span class="med">.html</span>
+    < img id="toolBox" src="images/tool-box.svg"/></div>
+    <div class="innerbox2"><span class="med">.js</span>
+    $(document).ready(function() {
+        startTween();
+    });
+    <div class="squatbox2">TweenLite<b>.to</b>(<<i>elem</i>>, <<i>time</i>>, {<i>attributes</i>});</div>
+    function startTween() {
+        TweenLite.to($('#toolBox'), <i class="gr">2.5</i>, {
+            x: 300,
+            y: 260
+        });
+    }
+                                <i class="gr"> nums are seconds. (not ms)</i><img src="img/xyanim.png" alt="xy" />
+    </div><hr>
+
+<h3 class="ivr">PlSight GreenSock anim ch2.4</h3>
+        <div class="squatbox lemon"><i>HTML links order:</i>
+        rotation
+        'alpha' = opacity
+        simultaneous movement</div>
+    <div class="innerbox2"><span class="lemon">rotation: flips it on the Z-axis (NOT in 3D, but clockwise <i>neg for counter-clockwise</i>)</span>
+    function startTween() {
+        TweenLite.to($('#toolBox'), 1, {
+            rotation: 720,
+            rotationX: 360
+        });
+    }    <div class="squatbox2">rotationX is on the X-axis that appears to flip in 3d like somersaults</div><div class="squatbox2">combined with rotation, it looks like fips & twists.</div></div><hr>
+
+<h3 class="ivr">Tomatoes GS101 ch1</h3>
+    <div class="squatbox lemon"><i class="pinkish">Topics</i>
+    TweenLite.to(<i>elem</i>, <i>duration</i>, {<i>attrs</i>});
+    jQuery & Javascript selector analogues
+    </div>
+    <div class="innerbox2">var header= $('header');
+        TweenLite.to(header, 1, {opacity: 0, y: 50});</div>
+    <div class="compact2">var header = $('header'),<br><span class="pinkish">var header = document.getElementById('header');</span>
+    <br>h1 = $('h1'), <br><span class="pinkish">var h1 = document.getElementsByTagName('h1');</span>
+    <br>intro = $('.intro'), <br><span class="pinkish">var intro = document.getElementsByClassName('intro');<br></span><br>firstItem = $('li:first-child'),<br><span class="pinkish">var firstItem = document.getElementsByClassName('list')[0].firstElementChild;</span>
+    <br>secondItem = $('li:nth-child(2)'),<br><span class="pinkish">var secondItem = document.getElementsByClassName('list')[0].children[1];</span>
+    <br>thirdItem = $('li:last-child');<br><span class="pinkish">var lastItem = document.getElementsByClassName('list')[0].lastElementChild;</span></div><hr>
+
+<h3 class="ivr">Tomatoes GS101 ch2</h3>
+    <div class="squatbox lemon"><i class="pinkish">Topics</i>
+    Manipulating CSS the CSSPlugin is necessary <a href="https://greensock.com/CSSPlugin">LINK</a>
+    .to()
+    .from()
+    .fromTo()
+    .set()
+    autoAlpha property
+    simultaneous and in succession
+    opacity vs autoAlpha</div>
+
+    .fromTo() takes two {attr values}
+    <div class="innerbox2">TweenLite.fromTo(img, 5, {
+            opacity: 0
+        }, {
+            opacity: 1
+        });</div>
+    .set() takes no duration because it simply offsets with no animation.
+    <div class="innerbox2">TweenLite.set(img, {
+        y: -50
+    });</div>
+    Simultaneous
+    <div class="innerbox2"><span class="lemon">    var h1 = $('h1');
+    var img = $('img');</span>
+    TweenLite.from(img, 3, {y: -50});
+    TweenLite.from(img, 5, {autoAlpha: 0});
+    TweenLite.to(h1, 5, {y: -50, <span class="gr">delay: 3});</span><span class="commentxt"> // delay goes inside with attr</span>
+    TweenLite.from(h1, 5, {autoAlpha: 0});</div>
+
+    <span class="ltgr">rgba() and opacity work differently:
+    <div class="squatbox2">Opacity vs rgba or <a href="http://stackoverflow.com/questions/13385492/css-opacity-vs-rgba-which-one-is-better">AutoAlpha LINK</a></div>
+    1. <span class="lemon">rgba()</span> affects a single property, like color, background-color or border-color, of elements targeted by CSS and only of these elements.
+    2. <span class="lemon">Opacity</span> affects all properties (the whole outlook) of targeted elements along with all their DOM tree children.</span><hr>
+<h3 class="ivr">Tomatoes GS101 ch3 Easing</h3>
+
+<div class="squatbox lemon"><i class="pinkish">Topics</i>
+    ease power0 ~ power5
+    ease plugin <a href="https://cdnjs.com/libraries/gsap
+    ">gsap libraries link</a> gsap/1.19.0/easing/EasePack.min.js
+    .config();
+    </div>
+
+
+
+
+
+
+    <div class="squatbox lemon"><i class="pinkish">Topics</i>
+    What is a timeline?
+    Relative Positioning <i>in a timeline</i>
+    Absolute Positioning <i>in a timeline</i>
+    </div>
+
+
+
+
+
+    <hr>
+    </div>
+
+
+
+
+
+
+</pre>
+</body>
+</html>
+
+<!-- <h3 class="ivr">Tomatoes GS101 ch X</h3>
+<div class="squatbox lemon">
+stuff
+to
+list
+</div>
+    <div class="squatbox2">TweenLite<b>.to</b>(< <i>elem</i> >, < <i>time</i> >, {<i>attributes</i>});</div>
+<div class="innerbox2">
+code stuff
+some more code stuff
+</div>
+<span class="ltgr">Placeholder Placeholder Placeholder </span>
+<div class="box"><span class="ivr">Placeholder Placeholder Placeholder
+Placeholder Placeholder Placeholder </span></div> -->

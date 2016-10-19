@@ -1,0 +1,167 @@
+body {
+    background-color: rgba(103, 154, 93, 1);
+    color: white;
+    font-size: 2vw;
+}
+h1 {
+    font-family: georgia, sans-serif;
+    color: darkgreen;
+    font-weight:  normal;
+}
+
+h2, h3, h4 {
+    font-family: Verdana;
+    font-weight: normal;
+}
+.chtitle {
+    color: rgba(255, 240, 159, 1);
+}
+.hilite1 {
+    color: ivory;
+    font-family: Corsiva;
+}
+.hilite2 {
+    color: teal;
+    font-family: "Source Code Pro", monospace;
+    /* font-weight: 700; */
+}
+
+.ctr {
+    text-align: center;
+}
+code {
+    font-size: 2vw;
+}
+.wh {
+    color: rgb(226, 223, 211);
+}
+.reddrk {
+    color: brown;
+}
+.redlite {
+    color: rgb(245, 127, 127);
+}
+.mango {
+    color: rgb(120, 69, 22);
+}
+.testbox {
+    width: 65vw;
+    margin: 1vw auto auto 5vw;
+    padding: 3%;
+    color: navy;
+    background-color: rgba(104, 133, 129, 1);
+    box-shadow: 10px 10px 25px black;
+    font-family: monospace;
+    font-size: 2.5vw;
+    font-weight: bold;
+}
+.outbox {/*outer*/
+    /*position: relative;*/
+    width: 90vw;
+    margin: 1vw;
+    padding: 1%;
+    color: tan;
+    border: 1px solid rgba(27, 24, 11, 1);
+    background-color: rgba(179, 31, 31, 0.48);
+    font-family: times;
+    font-size: 2vw;
+    font-weight: lighter;
+    letter-spacing: 0.1vw;
+
+}
+.inbox1 {
+    width: 85vw;
+    margin: 1vw;
+    padding: 2%;
+    color: black;
+    border: 1px solid rgba(178, 183, 187, 0.61);
+    background-color: rgba(7, 61, 115, 0.24);
+    font-family: sans-serif;
+    font-size: 2vw;
+    font-weight: lighter;
+    letter-spacing: 0.1vw;
+}
+.inbox2 {
+    width: 80vw;
+    margin: 1vw;
+    padding: 2%;
+    color: rgba(164, 160, 136);
+    border: 1px solid lavender;
+    background-color: rgba(40, 42, 44, 0.5);
+    font-family: sans-serif;
+    font-size: 2vw;
+    font-weight: lighter;
+    letter-spacing: 0.1vw;
+}
+.jsbox {
+    width: 70vw;
+    margin: 1vw auto auto 2vw;
+    padding: 1%;
+    color: black;
+    background-color: rgba(214, 184, 174, 1);
+    box-shadow: 10px 10px 25px black;
+    font-family: "Source Code Pro";
+    font-size: 1.5vw;
+}
+
+.jsbox2 {
+    width: 70vw;
+    margin: 1vw 10vw auto 2vw;
+    padding: 1%;
+    color: black;
+    background-color: rgb(179, 168, 110);
+    box-shadow: 10px 10px 25px black;
+    font-family: "Lucida Console", sans-serif;
+    font-size: 2.5vw;
+    position: relative;
+}
+.jsbox3 {
+    width: 65vw;
+    margin: 1vw auto auto 2vw;
+    padding: 1%;
+    color: black;
+    background-color: indianred;
+    box-shadow: 10px 10px 25px black;
+    font-family: "Source Code Pro", monospace;
+    font-size: 1.7vw;
+    font-weight: 700;
+}
+.jsbox4 {
+    width: 75vw;
+    margin: 1vw auto auto 1vw;
+    padding: 1%;
+    color: deepskyblue;
+    border: 1px solid maroon;
+    background-color: dimgray;
+    box-shadow: 5px 5px 15px black;
+    font-family: "Source Code Pro", monospace;
+    font-size: 1.7vw;
+    font-weight: 400;
+}
+.ans {
+    padding: 0;
+    color: rgb(59, 124, 51);
+    /*opacity     : 0;*/
+    -webkit-filter: blur(10px);
+    /*border      : 1px solid;*/
+    font-family: monospace;
+    display: inline;
+    font-size: inherit;
+    font-weight: bold;
+    opacity: 1%;
+    /*transition  : opacity 1s ease-in-out;*/
+}
+.ans:hover {
+    /*-webkit-filter: blur(0px);*/
+    animation: blurtxt .5s 1 forwards;
+}
+@-webkit-keyframes blurtxt {
+    0% {
+        -webkit-filter: blur(5px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-filter: blur(0px);
+        opacity: 1;
+    }
+}

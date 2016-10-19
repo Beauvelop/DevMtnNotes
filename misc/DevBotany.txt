@@ -1,0 +1,31 @@
+Side Project CV Progress
+
+Every Skill is represented by a seed, a sapling, and eventually a plant.
+
+Each is linked to a single twitter feed called @DevBotany
+
+App reads key words like CSS, GSAP, HTML, etc...
+
+The feed is read by the app and displays latest tweets.
+
+The Tweets--according to what topic the tweet is increment a counter
+
+This counter triggers a water-can that pours over the plant and turns the ground darker brown.
+
+As time goes by, the ground dries up and the leaves begin to brown, if neglected... This triggers a brown color in the plants.
+
+after weeks go by, the sapling grows to a plant, and eventually buds appear and begin to bloom into the logos of the particular technology.
+
+
+They,too, may begin to brown as time passes and if neglected.
+
+https://www.youtube.com/watch?v=sErX8NlVy8I
+
+background can be bokuh
+
+There's a press play button to show a time lapse in hours or days or weeks.
+
+Each flower blooms to reveal the icon of the tech
+
+Each flower has a name like CSSia, or a flower-like name
+And perhaps a latin-name label

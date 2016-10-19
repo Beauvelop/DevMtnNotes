@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Debug Notes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Debug Notes</h1>
+    <h2 class="chtitle">chtitle class</h2>
+    <code><pre>
+<hr>
+<div class="txtbox2">
+    <span class="hilite1">Console API</span>
+    <div class="innerbox3">Breakpoints
+    Breakpoints remain on reload of the page.
+    I could even edit my code and the breakpoint will move
+    (or 'follow') the line down the page and remain attached
+    to that executable line.</div>
+    You can even set breakpoints in your code with...<div class="innerbox2"><code>debugger;</code></div>
+    <div class="hilite1 squatbox bldk"><h4 class="ctr redlite">Breakpoint Variations</h4><ul>
+    <li>Conditional</li>
+    <li>Hardcoded</li>
+    <li>DOM (in elements tab)</li>
+    <li>XHR (for ajax)</li>
+    <li>Event Listener</li>
+</div>
+    For instance you can have a <span class="gr">Conditional Breakpoint</span>:
+    Right now, in the debugger: rt-click and edit a B-point
+    <div class="innerbox2">console.log("this is the");<span class="reddrk b">  c > a </span></div>
+    Because c > a is false, it wont stop.
+
+    Next, @ log line, edit a TRUE condition:<div class="innerbox2">console.log("end of the program");<span class="reddrk b">  a > c </span>
+    Because a is greater than c it will stop<br>and not execute it's line.</div>
+    This is also achieved with:<div class="compact">if (a > c) {   // true
+    debugger;
+}</div>
+    <h4 class="hilite1">Listener events like
+    click events--wont "break" any time there's a click--
+    They will 'activate' any time .js is triggered by a mouseclick.
+    <h3>Pause on exceptions</h3>
+    Often, .js can 'fail silently' and produce errors but NOT BREAK THE CODE
+    entirely. This can also happen with hard-coded "try-catch" exception handling.
+    there is a pause button to the right in the debugger.
+
+    <span class="redlite">"Pause on Exceptions".</span>
+    Click this button to alert you to "quiet errors" in your code.
+
+    <span class="mango">[ lyn debug: chs~~>2.04]</span>
+</div><!--txtbox2-->
+<div class="txtbox3"><h4 class="ctr lemon">ch 2.5 STEPPING</h4>
+        pause | stepover | into | outof | disable  | Exceptions
+        <img id="stepping" src="stepping.png" alt="stepping" />
+        Step Over --> Steps to next executable line.
+        Step into --> inside the function call.
+        Step out --> executes everything it needs to in order to
+            get out of whatever function call you're in.
+
+    rt-click "continue to here" is like a quasi-breakpoint
+
+    clicking the "{}" @ bottom of debugger does a pretty-print
+    (if you were lost in a rabbit hole of a minified file)
+
+</div>
+
+<div class="txtbox3"><h4 class="ctr lemon">ch 2.6 CALLSTACK</h4>
+        list of <i>fn</i> that have been called to get you to where you are.
+    <img src="callstack.png" alt="callstack" />
+
+    Step Over --> Steps to next executable line.
+    Step into --> inside the function call.
+    Step out --> executes everything it needs to in order to
+            get out of whatever function call you're in.
+
+    rt-click "continue to here" is like a quasi-breakpoint
+
+    clicking the "{}" @ bottom of debugger does a pretty-print
+    (if you were lost in a rabbit hole of a minified file)
+
+    <div class="bldk">
+<h5 class="redlite ctr">HOT TIP:</h5>
+    <span class="wh">Option Click the arrow beside folder in sources panel.
+    Automagically view everything!</span>
+
+        <img id="opt" src="optclick.png" alt="optclick" />
+    </div>
+    Renaming anon-fns is really helpful to orient your self in the callstack.
+
+    Every time you step into a <i>fn</i> it is added to the top
+    of the callstack.
+
+    You can click each Callback in the panel.
+    They each are referred to as a "frame".
+
+    As you click you can check the values of your local variables in each "frame".
+
+</div><!--txtbox3-->
+
+<div class="txtbox2">
+    Ch2.7 Watches
+    Any expression is possible.
+    These are OFTEN used to monitor variables that may change.
+
+    You can also modify any variable in code for example
+    <span class="wh">someArray.pop();</span>
+    as a watch expression.
+    <img src="watch.png" alt="watch" />
+</div>
+
+<div class="txtbox">
+    Extra (non-Lynda notes)
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <div style="clear: both"class="innerbox">
+        innerbox Class
+    </div>
+    <div class="mango">Mango div</div><code class="redlite">
+        redlite Code</code>
+    <div class="hilite1">
+    hilite1 div =true white?</div>
+    <div class="hilite2">
+    hilite2 div</div>
+    <div class="blLite">blLite
+    </div>
+    <div class="reddrk">reddrk
+
+    </div>
+    <div class="wh">wh text (off-white)
+
+    </div>
+    <h1>h1 Ans hidden below</h1>
+    <div style="clear: both">
+
+
+
+    <h1><div style="clear: both" class="ans">Answer class div</div>
+    </h1>
+</div>
+    <div class="txtbox">txtbox
+    </div>
+    <div class="txtbox2">Txtbox2
+    </div>
+    <div class="txtbox3" style="position: static">txtbox3</div>
+    <div class="innerbox2">
+        innerbox class
+    </div>
+    <div class="testbox">testbox class
+    </div>
+    <div class="compact">compact class
+    </div>
+    <div class="compact-w"><h1>compact-w in h1
+</div>
+<div class="innerbox">
+innerbox div
+</div>
+<div class="innerbox2">
+innerbox2 div
+</div>
+<div class="innerbox3">
+innerbox3 div
+</div>
+<div class="innerbox4">
+innerbox4 div
+</div>
+<div class="greyBox">
+greyBox
+</div>
+
+
+<div class="">
+
+    </div>
+    <script>
+    (function() {
+        var a = 10;
+        var b = 20;
+        var c = 0;
+        console.log("This is the");
+
+        console.log(a+b);
+
+
+        console.log("end of the program");
+    })();
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+	<title>JavaScript And JSON</title>
+</head>
+<body>
+
+<h2>Links</h2>
+<ul id="links">
+</ul>
+
+<script>
+
+var info = {
+		"full_name" : "Ray Villalobos",
+		"title" : "Staff Author",
+		"nested" : [
+				{ "key1" : "value1" },
+				{ "key2" : "value2" },
+				{ "key3" : "value3" },
+				{ "key4" : "value4" },
+				{ "key5" : "value5" }
+			]
+		};
+
+var output = '';
+var len = info.nested.length;
+
+for (var i = 0; i < len; i++) {
+	for (var prop in info.nested[i]) {
+		output += '<li>' + [prop]+': ' + info.nested[i][prop] + '</li>';
+	}
+}
+
+var update = document.getElementById('links');
+update.innerHTML = output;
+
+</script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ajax Notes - Lyn JS & AJAX</title>
+
+        <link rel="stylesheet" href="styles.css" media="screen" title="no title">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet">
+    <script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+        </head>
+    <body><h2>Ajax Notes - JS AJAX AND JQUERY</h2>
+        <div class="box">
+
+<code><pre>
+
+<h3 class="ctr mango">VII. Lyn JS & JSON vid 3.3 jquery & JSON</h3>
+    <div class="outbox5 sm"><span class="lemon">These are not what you call...
+        These are what get called for you when something interesting happens
+    during the lifecycle of an ajax request.</span>
+    <div class="squatbox"><ul>
+            <li>.ajaxComplete()</li>
+            <li>.ajaxError()</li>
+            <li>.ajaxSend()</li>
+            <li>.ajaxStart()</li>
+            <li>.ajaxStop()</li>
+            <li>.ajaxSuccess()</li>
+        </ul></div>
+
+
+        For example: You may wish to use ajaxStart() and .ajaxComplete() to print to the page
+        info to let user know that an ajax request is happening so "pls be patient...".
+    <div class="ltbg">
+    $(document).ready(function() {
+        $(document).ajaxStart(function () {
+            <span class="ivr">console.log("AJAX starting");</span>
+        });
+
+        $(document).ajaxStop(function () {
+            <span class="ivr">console.log("AJAX request ended");</span>
+        });
+
+        $(document).ajaxSend(function () {
+            <span class="ivr">console.log("About to request data...");</span>
+        });
+
+        $(document).ajaxComplete(function () {
+            <span class="ivr">console.log("Everything's finished!");</span>
+        });
+
+        $(document).ajaxError(function (evt, jqXHR, settings, err) {
+            <span class="ivr">console.log("Hmmm. Seems like there was a problem: " + err);</span>
+        });
+
+        $(document).ajaxSuccess(function () {
+            <span class="ivr">console.log("Looks like everything worked!");</span>
+        });
+
+        <span class="ltgr">The meat of the request begins here</span>
+        getData();
+        });
+
+        function getData() {
+            $.get("testdata.txt", successFn);
+        }
+
+        function successFn(result) {
+            console.log("Setting result");
+        $("#content").append(result);
+        }
+
+        function errorFn(xhr, status, strErr) {
+        alert(strErr);
+    }
+    </div>
+
+    </div><!--endof ch 8.4-->
+
+<h3 class="ctr mango">Lyn JQ Essentials: vid 8.3 Jquery's datatypes:
+    an ajax call to flickr</h3>
+    <div class="compact3">
+    Dealing with data coming back from the server.
+    It may be JSON or XML or binary format...etc.
+    <span class="warn">$.getJSON()</span><br><img src="json.png" alt="json" /><hr>
+    <div class="squatbox2 sm">
+
+    $(document).ready(function() {
+      getJSONData();
+    });
+
+    function getJSONData() {
+      var flickrAPI =
+            "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+      <span class="warn">$.getJSON</span>(flickrAPI, {
+          tags: "space", <span class="aqua"> - this is the topic "tag" content</span>
+          tagmode: "any",
+          format: "json",
+          },
+          successFn);
+    }
+
+    function getXMLData() {
+    }
+
+    function successFn(result) {
+      $.each(result.items, function(i, item){ <span class="aqua">-- i is "index"</span>
+          <span class="warn">$("< img>")</span>.attr("src", item.media.m).appendTo("#content");
+          <span class="aqua">- jquery's html constructor</span>
+          if (i == 4) { <span class="aqua"> - limits the num of photos to come back</span>
+              return false; <span class="aqua"> - tells $.each() iterator to stop running</span>
+          }
+      });
+    }
+
+    function errorFn(xhr, status, strErr) {
+      alert(strErr);
+    }
+    </div>
+
+
+    </div>
+
+<h3 class="ctr mango">Lyn JQ Essentials: vid 8.2 Jquery's Ajax Helper methods</h3>
+    <div class="compact2">Some Methods that help with common tasks when using ajax
+    <ul>
+    <li><i>$.get()</i> - loads data from server with an HTTP GET request</li>
+    <li><i>$.load()</i> - loads data from server and places html into matched selector</li>
+    <li><i>$.getJSON()</i> - loads json data from server with http GET request</li>
+    <li><i>$.post()</i>- loads with a POST function (to manipulate data)</li>
+    </ul><img src="get.png" alt="get" /></div>
+
+        <div class="cssbox"><span class="bldk">with simple get();</span><br>
+    $(document).ready(function() {
+        getData();
+    });
+
+    function getData() {
+        <span class="reddrk">$.get</span>("testdata.txt", <span class="reddrk">name of successFn</span>)
+    }
+    function successFn(result) {
+        console.log("setting result");
+        $('#content').append(result);<span class="reddrk"><--appending content to selector</span>
+    }
+    function errorFn(xhr, status, strE rror) {
+        console.log("There was an error");
+    }
+    <span class="bldk">This is so common that jquery gives you a shorthand to accomplish this entire task</span></div>
+        <div class="cssbox"><span class="bldk">with load();</span><br>
+    $(document).ready(function() {
+    getData();
+    });
+
+    function getData() {
+        <span class="reddrk">$('#content').load("testdata.txt")</span>
+    }
+
+    function successFn(result) {
+        console.log("setting result");
+    }
+
+    function errorFn(xhr, status, strE rror) {
+        console.log("There was an error");
+    }</div>
+
+</div><br> <!--ch 8.2 end-->
+
+<h4 class="ctr mango">Lyn JQ Essentials: vid 8.1 Jquery's Simple Ajax method</h4><br>
+    <pre><div class="squatbox">Basic jq Ajax call format
+    <ul>
+    <li>url</li>
+    <li>type</li>
+    <li>datatype</li>
+    <li>success</li>
+    <li>error</li>
+    </ul></div>
+
+    <div class="lavenbox">
+    $(document).ready(function() {
+        getData();
+    });
+
+    function getData() {
+        $.ajax({
+            url: "testdata.txt", <span class="lemon">//this example's local path</span>
+            type: "GET",
+            datatype: "text",
+            success: successFn,
+            error: errorFn,
+            complete: function(hxr, strErr) {
+                console.log("Request is complete")
+            }
+        });
+    }
+    function successFn(result) {
+        console.log("setting result");
+        $('#content').append(result);
+    }
+    function errorFn(xhr, status, strE rror) {
+        console.log("There was an error");
+    }
+
+</div> <!--ch 8.1 end-->
+
+<h3 class="ctr mango">VII. Lyn JS & JSON vid 3.3 jquery & JSON</h3>
+    <div class="outbox5 sm"><span class="lemon">Enter cdn in the .html</span>
+    < script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">< /script>
+
+    <span class="wh">then 16 lines of code, Baby!</span>
+
+    $(document).ready(function() {
+        $.getJSON('text.json', function(list) {
+            var output = '';
+            for (var entry in list) {
+                if (list.hasOwnProperty(entry)) {
+                    output += '< h1>' + entry + '< /h1>';
+                }
+                for (var subset in list[entry]) {
+                    output += '< h2>' + subset + ': ' +
+                        list[entry][subset] + '< /h2>';
+                }
+            }
+            var update = document.getElementById('demo');
+            update.innerHTML = output;
+        }); //getJSON
+    }); //ready
+</div>
+
+<div class="compact">
+    VII. Lyn JS & JSON vid 3.2 JSONP
+
+        May be a hack. Be careful.</div>
+
+
+<h3 class="ctr mango">VI. Lyn JS & JSON vid 3.1 Importing a JSON file: JSONparse</h3>
+    <div class="testbox">---- this text.json ----
+    {
+        "entry1": {
+            "word": "first",
+            "meaning": "First words meaning",
+            "example": "First Ward example",
+            "tag": ["tagPlaceHolder"]
+        },
+        "entry2": {
+            "word": "second",
+            "meaning": "Second word meaning",
+            "example": "Second word example",
+            "tag": ["tagPlaceHolder"]
+        },
+        ...
+        ...</div><div class="htmlbox"><span class="wh">//1. create a request</span>
+    var request;
+    <span class="wh">//2. check for IE</span>
+    if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest();
+    } else {
+        request = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    <span class="wh">//3. open the request</span>
+    request.open('GET', 'text.json');
+
+    <span class="wh">//4. monitor the comms</span>
+    request.onreadystatechange = function() {
+        if ((request.readyState === 4) && (request.status === 200)) {
+            <span class="wh"> //4.5 parse that shit!</span>
+            var list = JSON.parse(request.responseText);
+            <span class="wh">//5. If all is well, create output</span>
+            var output = '';
+            for (var entry in list) {
+              if (list.hasOwnProperty(entry)) {
+                  output += '< h1>' + entry + '< /h1>';
+              }
+              for (var subset in list[entry]) {
+                  output += '< h2>' + subset + ': '
+                  + list[entry][subset] + '< /h2>';
+              }
+          }
+          <span class="wh">// 7. Create update var to link to the toehold in the document</span>
+          var update = document.getElementById('demo');
+          <span class="wh">//8. use a (?) method on 'update' to 'own' the innerHTML</span>
+          update.innerHTML = output;
+        } <span class="wh">// state & status condition</span>
+    } <span class="wh">// comms check fn</span>
+    <span class="wh">//9. finally the send();</span>
+    request.send();
+</div>
+
+<span class="mango">VI. Lyn JS & JSON vid 2.3 Modifying Arrays</span>
+    <div class="outbox2">
+    <span class="lemon">looping through an array nested within an object</span>
+    < script>
+    var info = {
+    		"full_name" : "Ray Villalobos",
+    		"title" : "Staff Author",
+    		"nested" : [
+    				{ "key1" : "value1" },
+    				{ "key2" : "value2" },
+    				{ "key3" : "value3" },
+    				{ "key4" : "value4" },
+    				{ "key5" : "value5" }
+    			]
+    		};
+    var output = '';
+    var len = info.nested.length;
+
+    for (var i = 0; i < len; i++) {
+    	for (var prop in info.nested[i]) {
+    		output += '< li>' + [prop]+': ' + info.nested[i][prop] + '< /li>';
+    	}
+    }
+
+    var update = document.getElementById('links');
+    update.innerHTML = output;
+
+    </ script></div>
+
+<span class="mango">V. Lyn JS & JSON vid 2.2 Modifying Arrays</span>
+    <div class="compact">
+    objects behave differently from arrays.
+
+    Do not use the delete function with Arrays.
+
+    simply use object.splice(1,1) or splice(2,1), etc...
+
+    use .push(); to add.</div>
+
+<span class="mango">IV. Lyn JS & JSON vid 2.1 debug objects: the console.</span>
+    <div class="compact2">Dot.notation explanation
+
+    JSON obj on a var in < script > tags on the html.</div>
+
+<span class="mango">III. Lyn JS & JSON vid3 an Async request: IE gets some love</span>
+    <div class="innerboxW">
+
+    var request = new XMLHttpRequest(); <span class="wh">--instead of this line.</span>
+    ----
+    var request;
+    if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest();
+    } else {
+        request = new ActiveXObject('Microsoft.XMLHTTP');
+    }
+    ----
+
+    request.open("GET", 'data.txt');
+    request.onreadystatechange = function() {
+        if ((request.readyState === 4) && (request.status === 200)) {
+            console.log(request);
+            document.writeln(request.responseText);
+        }
+    }
+    request.send();
+    --</div>
+
+<span class="mango">II. Lyn JS & JSON vid3 an Async request: onreadystatechange</span>
+
+<div class="lavenbox">An EVENT HANDLER will run function when something happens.
+
+    XMLHttpRequest objs have many events (visible in console):
+    ...
+    onerror
+    onaboart
+    onloadend
+    ... etc.
+
+    Let's use onreadystatechange.
+
+    var request = new XMLHttpRequest();
+    request.open("GET", "data.txt");
+    request.onreadystatechange = function() {
+        if (request.readyState===4 && request.status === 200){
+            console.log(request);
+        }
+    }
+    request.send();</div>
+
+
+<span class="mango">I. Lyn JS & JSON vid2 a SYNCH request</span>
+    XMLHttpRequests
+    <div class="outbox4">var request = new XMLHttpRequest();
+
+    <span class="lemon">on a var create a request:</span>
+
+    request.open("GET", 'data.txt', false);
+                    <span class="redlite">//false = synchronous (bad idea)</span>
+
+    <span class="lemon">run an open method on that request var.</span>
+    request.send();
+
+    <span class="lemon">send it off.</span>
+
+    if (request.status === 200) {
+
+    <span class="lemon">check it's status. If ok--> produce the responseText obj on the request.</span>
+
+        document.writeln(request.responseText);
+    };</div></pre></code>        </div>
+
+</body>
+</html>

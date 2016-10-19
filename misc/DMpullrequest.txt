@@ -1,0 +1,109 @@
+@
+https://github.com/DevMountain/mini-MyFirstAngular"
+
+
+“Opening and closing tags
+Opening and closing and tags”
+
+ought to be
+
+“Opening and closing tags”
+
+—————-
+
+“go ahead a “
+
+ought to be
+
+“Go ahead and..”
+
+
+
+———————
+
+going to be apart
+
+ought to be
+
+“going to be a part..”
+
+—————
+
+one page with facebook changing
+
+ought to be
+
+one page with Facebook..
+
+
+———
+angular.module('friendsList').controller('mainCtrl', function($scope){
+$scope.friends = ['Jordyn', 'Ryan', 'Chelsey'];
+
+
+should read…
+
+angular.module('friendsList').controller('mainCtrl', function($scope){
+$scope.friends = ['Jordyn', 'Ryan', 'Chelsey'];
+}
+
+----
+one more section dealing with tags body and html
+
+——- 
+
+Babies (2 instances) should read “baby’s”
+
+
+
+———
+
+Angular Friends project
+https://github.com/DevMountain/angular-friends
+
+readme.dm file
+————————————
+
+an should be “and”
+
+readme.dm line 18
+——
+
+display that list of friend on the screen
+display that list of friends on the screen
+——
+ocation.country}},
+ocation.country}}
+—-
+
+an attribute called searchTerm…
+an attribute called friendFilter…
+
+——
+https://github.com/DevMountain/mini-userProfiles.git
+readme.dm
+—————
+
+ You can call in `mainService`
+-You can call it …
+
+————
+Our Service will do most of the apps
+Our Service will do most of the app’s
+
+
+————
+(Omit instances of </img> ??)
+
+——
+<button ng-click="toggleFavorite(user.id)">+</button>
+
+<button ng-click="toggleFavorite(user.id - 1)”>+</button>
+
+(troubleshoot all four files from the readme)
+
+—————
+
+
+
+

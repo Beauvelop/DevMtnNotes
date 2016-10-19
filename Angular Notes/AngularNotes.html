@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Angular Notes</title>
+    <link rel="stylesheet" href="styles.css" media="screen" title="no title">
+</head>
+
+<body>
+    <script type="text/javascript">
+    </script>
+    <hr>
+    <h1>Angular Notes</h1>
+    <hr>
+
+
+<div class="outbox2"><h3 class="chtitle">Infinite Skills vid#16 : Filters (cont.)</h3>
+    <h5>(vid15 had date, uppercase filters-very simple)</h5>
+    <code><pre><div class="jsbox">$scope.mydata = {
+        arr: [{
+            country: "china",
+            distance: "really far",
+            population: 90000000
+        }, {
+    ...</div></pre></code>
+
+    <h5>Many vars are simply created for the html</h5>
+    <span class="wh">Dot-syntax parts refer to the .js file code</span>
+    <div class="htmlbox"><code><pre>
+    < input ng-model=<span class="ltgr">"myPoop"</span>>
+
+    < div ng-repeat="<span class="lemon">poop</span> in <span class="wh">mydata.arr</span> | filter: <span class="ltgr">myPoop</span>">
+    < h2>Country: {{<span class="lemon">poop</span><span class="wh">.country</span>}}< /h2>
+    < h2>Dist: {{<span class="lemon">poop</span><span class="wh">.distance</span>}}< /h2>
+    < h2>Pop: {{<span class="lemon">poop</span><span class="wh">.population</span>}}< /h2>
+    < /div></pre></code></div>
+    <pre>orderBy
+    Pass in the string name of the attr that you wish to orderBy.
+    This is done with a series of pipes<h5 class="ctr"><i> filtername </i> | <i> filter: ~~~ </i> |  orderby: <i> property </i></h5></pre>
+
+
+    <div class="htmlbox"><br>
+    < div ng-repeat="poop in mydata.arr | filter: myPoop | orderBy: 'country'"><br><br></div>
+    <h5>limitTo:<i>integer</i></h5>
+    <h5>This, too, can be added on with a pipe and limits the number of results. This might be(?) called Pipe-chaining</h5>
+
+    <div class="htmlbox">
+    <h6>< div ng-repeat="poop in mydata.arr | filter: myPoop | orderBy: 'country' | limitTo: 3"></h6><span class="wh">If you want the last 3 items just put "limitTo: -3"</span></div>
+    <h5>Using filters OUTSIDE the view</h5>
+    <h5>add $filter as an arg to the controller in addtion to $scope</h5>
+
+    <code><pre><div class="jsbox">-app.js-
+    ...
+    app.controller('mainCtrl', function($scope, $filter) {
+        console.log($filter('uppercase')('message to filter'));
+    })<span class="commentxt">--technically possible, but
+    efficiency and separation of concerns dictates caution.
+    This may be an anti-pattern.</span>
+    ...</div></pre></code>
+    <div>uppercase</h5><br>
+    <h5>a built-in filter (vid15)</h5></div>
+    <div>date</h5>
+    <h5>takes unix epoch dates (vid15)</h5>
+    </div>
+    </div>
+
+<!-- ch 14 -->
+<div class="outbox3"><h4 class="chtitle">INFINITE SKILLS Vid#14: Preventing Latency "FLASH"</h4>
+    <div class="compact">
+    <ol>
+        <li>1. HTML has to fetch .js files</li>
+        <li>2. Angular has to download</li>
+        <li>3. Angular has to be initialized</li>
+        <li>4. Angular has to parse the DOM</li>
+    </ol>
+    </div>
+    <h4 class="med">This is taking a non-trivial amount of time.
+    Therefore we are getting a "flash" of latency.</h4>
+    <h3>ng-cloak</h3>
+    <h5>This prevents the angular template from being displayed by the browser in it's raw form while the application is loading.</h5>
+    <div class="innerbox2"><span class="ctr blLite">Enter this CSS</span><pre><div class="cssbox">[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+      display: none !important;
+    }</div></pre></code></div>
+        <code><pre><div class="htmlbox">
+    -----html-----
+    ...
+    < div ng-controller="MainController">
+    < h1>{{myData}}< /h1>
+    < div ng-cloak="myData">
+        < h1>{{myData}}< /h1>
+    < /div>
+    </div>
+    <span style="color: rgb(249, 124, 97)">Watch closely:
+    the top text blinks,
+    the bottom text's Ang template is cloaked!</span></pre></code></div>
+
+
+<div class="outbox"><h2 class="chtitle">INFINITE SKILLS Vid#13: Breaking the Watch</h2><code><pre>
+    Dirty Checking, creating a "digest"
+
+    It's important to maintain when certain properties
+    should be watched and when they can be 'released'
+    <div class="jsbox">--app.js--
+    ...
+    $scope.num = 0;
+    $scope.nums = [];
+    $scope.increment = function() {
+        $scope.num++;<span class="commentxt">--linked to a btn click </span>
+    }</div>
+    <span style="color: rgb(249, 124, 97)"><i>Let's put a watcher on the num value,
+        then push it to nums when it changes</i></span>
+    <div class="jsbox">
+    ...
+    $scope.num = 0;
+    $scope.nums = [];
+    $scope.increment = function() {
+        $scope.num++;
+    });
+    <span class="reddrk">$scope.$watch('num', function() {
+        $scope.nums.push($scope.num);
+    });</span>
+    ...</div><br><div class="htmlbox">-----html-----
+    ...
+    < div>num: {{num}}< /div>
+    < div>nums: {{nums}}< /div>
+    < btn ng-click="increment()">INCREMENT< /btn>
+    ...</div>    <span class="med">This watched change triggers the callback function.
+    However, it will go forever and degrade performance.
+
+    So, we assign the watcher to the $scope itself
+    with a var called <span style="color: rgb(117, 164, 235)">$scope.release</span>
+    This will release or 'cancel' the watcher.</span>
+    <div class="jsbox">----app.js----
+    ...
+    <span style="color: rgb(117, 164, 235)">$scope.release</span> = $scope.$watch('num', function() {
+        $scope.nums.push($scope.num);
+    });<span style="color: rgb(136, 126, 95)">--link this to a btn with ng-click="release()"</span>
+    ...</div><br><div class="htmlbox">---html---
+    ...
+    < button ng-click="release()">Kill Watcher< /button>
+    ...</div></pre></code>
+    </div>
+
+<!-- ch12 -->
+<div class="outbox2"><h2 class="chtitle">INFINITE SKILLS Vid#12: $scope.$watch</h2>
+    <h3>Why use $scope.$watch?</h3>
+    <h5>If you expect some change on the ng-model & want to execute some
+        <br> conditional functionality based on that change.</h5>
+    <code><pre>
+    <div class="jsbox">-----app.js-----
+    ...
+    $scope.mydata = { val: "jake" };
+    ...</div><br><div class="htmlbox">-----html-----
+    ...
+    < input ng-model="mydata.val">
+    < h1>{{ mydata.val }}< /h1>
+    ...</div><br>
+    <span style="color: rgb(136, 126, 95)">We set up mydata.val, we're binding
+    an input to it & interpolating it with {{mydata.val}}.</span>
+    <span style="color: rgb(249, 124, 97)"><i>Let's say we want to do something
+                            when mydata.val changes</i>
+
+    <span style="color: ivory">$scope.$watch(<i>var, callback</i>)</span> is
+    going to put a watch listener on that part of our model</span>
+    <div class="jsbox">
+    ...
+    $scope.mydata = { val: "jake" };
+    $scope.$watch('$scope.mydata', function(){
+        console.log("Something changed!");
+    });
+    ...</div>
+    There is a problem here.
+    This watch executes upon pageload...
+    It is an initialization execution & can be prevented.
+
+    <span style="color: ivory">Let's try to alert the user upon entering too many letters in his name</span>
+    <div class="htmlbox">---html---
+
+    < h2 ng-show="mydata.toolong">Too long! < /h2>
+    </div>
+    This is a toggle. 'toolong' must return a boolean value.
+    <div class="jsbox">---js---
+    ...
+    $scope.$watch("mydata.val", function(newval) {
+    <span class="warn">$scope.mydata.toolong = newval.length > 15;</span>
+    });
+    ...
+    </div>
+    <div class="compact">OFTEN: this $scope.$watch
+        callback can take 2 parameters:
+
+    1) the new value
+    2) the old value
+    <h4>If ONLY ONE PARAMETER IS ENTERED
+    function checks for equality and
+    reads them as the same.</h4>
+    *THIS PREVENTS INITIALIZATION*</span></div></pre></code></div>
+    <br>
+
+<!-- ch 11 -->
+<div class="outbox4"><h2 class="chtitle">INFINITE SKILLS Vid#11: ng-model</h2>
+
+    <h5>Whatever is in ng-model="<span class="redlite">mydata</span>"...the value "<span class="wh">$scope.</span><span class="redlite">myData</span>" is implied</h5>
+    <h5>Therefore...</h5><code><pre>
+    <div class="htmlbox">--html--
+    ...
+    < div ng-controller="MainCtrl">
+    < input ng-model="myData">
+        {{myData}}
+    < /div>
+    < /div>
+    ...</div>
+    Whatever you type into < input>,
+     that value will be bound to the {{}} interpolator.
+
+    **<span class="warn">Caution:</span>
+    There is a pitfall regarding
+    javascript's prototypal inheritance.
+
+    Take a look at the PARENT
+    (mainCtrl) and CHILD (subCtrl)...
+    <div class="jsbox">--app.js--
+    angular.module("app")
+        .controller("mainCtrl", function($scope) {
+    });
+    angular.module("app")
+        .controller("subCtrl", function($scope) {
+    });</div>
+    <div class="htmlbox">---html---
+    ...
+    < div ng-controller="mainCtrl">
+        < input ng-model="myData">Main
+        < h1>{{myData}}< /h1>
+        < div ng-controller="subCtrl">
+            < input ng-model="myData">Sub
+            < h1>{{myData}}< /h1>
+        < /div>
+    < /div>
+    ...</div>
+    Upon entering text, parent and sub are identical.
+    SubCtrl inherits from the controller.
+
+    However, entering in the subctrl input...
+    both are no longer effected.
+
+    ng-model<i>creates a new independent sub-controller</i>
+    that no longer inherits.
+    --This is a quirk of .js.
+
+    <span class="warn">The only way around this is to use dot notation
+    in the quotes or key for controller.</span>
+
+    So, use ng-model="mydata.val"
+
+    <span style="color: ivory">Always have a dot in your model names if
+     you have any kind of inheritance</span>
+    </pre></code></div><br>
+<!-- ch 10 -->
+
+<div class="outbox2"><h2 class="chtitle">INFINITE SKILLS Vid#10: ng-class, ng-include, ng-template</h2>
+    <h5>ng-include & ng-template</h5>
+    <h5>The "partial" html file. Enhances modularization.
+    It creates "Templates" which add to the <strong>"Template Cache"</strong> <i>keyed</i> by a script tag at the bottom of page</h5>
+    <code><pre><div class="htmlbox">----HTML----
+    ....
+    < div ng-controller="MainController">
+
+    < div <span style="color: rgb(58, 199, 173)">ng-include="'temp.html'"</span>>< / div>
+
+    < / div>
+
+    < script type="text/ng-template" id="<span style="color: ivory">todo.html</span>">
+            <sup>(this id creates the "key")</sup>
+    < div ng-include="'todo.html'">
+    < /div>
+
+    < script type="text/ng-template" id="todo.html">
+        < h3>TODO List< /h3>
+        < ol>
+            < li>run< /li>
+            < li>shop< /li>
+            < li>wash car< /li>
+        < /ol>
+    < /script>
+    ...
+    </div>
+        <div class="inspectbox">
+    ---INSPECTOR---
+    ...
+    < div ng-include="'temp.html'" class="ng-scope">
+        < h1 class="ng-scope">My Template< /h1>
+    < /div>
+    ....
+    </div>
+
+    <div class="jsbox">----app.js----*BOILERPLATE*
+    angular.module("app", []);
+
+    angular.module("app").controller("MainController", function($scope) {
+
+    });</div></pre></code>
+        <dd style="color: ivory"><span class="warn">caution:</span> you don't want to use many of these directly in your html.</h5>
+    <br>
+    <br>
+    <div>ng-class</h5>
+    <h5>it can be used as an attr or a class.
+    dynamically change class of elements.</h5>
+    <h5>ng-class accepts a string <span class="teal">OR we can toggle the class</span></h5>
+
+    <code><pre>
+        <div class="cssbox">
+    ----CSS----
+    .formal {font-family: Times;}
+    .informal {font-family: italic;}
+    .underline {text-decoration: underline;}
+    </div>
+    <div class="htmlbox">----html----
+    < h1 ng-class="<span style="color: lightgrey">'formal'</span>">Good Morning< /h1></div>
+    <div class="inspectbox">--page--
+    <span style="font-family: Times">Good Morning</span></div>
+    <br>We could also change class dynamically using $scope</h5>
+    <div class="jsbox">----app.js----
+    angular.module("app", []);
+
+    angular.module("app").controller("MainController", function($scope) {
+        <span style="color: yellow">$scope.myClass = "formal";</span>
+    });</span></div>
+    <div class="htmlbox">----html----
+    ...
+    < h1 ng-class=<span style="color: lightgrey">myClass</span>>Good Morning< /h1>
+    **<span style="color: rgb(204, 99, 99)">NB: no quotes!</span></div>
+
+    Or combine hardcoded class & $scope(var) using an ARRAY
+    <div class="htmlbox">---html---
+    < h1 ng-class="<span style="color: lightgrey">[myClass, 'underline']</span>">Good Morning< /h1></div>
+    <div class="inspectbox">--page--
+    <span class="formal underline">Good Morning</span>
+    </div>
+
+    (or toggle classes with a boolean)
+    <div class="htmlbox">----html----
+    < h1 ng-class="<span class="ivr">{formal: false}</span>">Good Morning< /h1></div>
+    (or toggle classes using angular's $scope)
+    <div class="jsbox">----app.js----
+    ....
+    $scope.myClass = true;
+    ....</div><br><div class="htmlbox">----html----
+    < h1 ng-class="<span class="ivr">{formal: myClass}</span>">Good Morning< /h1></div>
+    </span></pre></code></div>
+    </div>
+
+    <div class="outbox5">
+    <h2 class="chtitle">INFINITE SKILLS Vid#9: Directives</h2>
+    <code><pre>
+    <b>ng-repeat</b>
+    Iterate through a numeral collection of items that you will want to<br>    consume in the view.</h5>
+    <div class="htmlbox">--html--
+    ...
+    < div ng-repeat="poop in arr">
+    {{ poop }}
+    < /div>
+    ...</div>
+    <div class="jsbox">--app.js--
+    app.controller("MainController", function($scope) {
+        $scope.arr = [1, 2, 3, 4, 5];
+    })</div>
+    <b>ng-repeat <span class="ltgr">through an array of objects</span></b>
+    <div class="htmlbox">--html--
+    < div ng-repeat="poop in arr">
+    < h1>{{poop.dest}}< /h1>
+    < h2>{{poop.flight}}< /h2>
+    < h3>{{poop.eta}}< /h3>
+    < hr></div><br><div class="jsbox">--app.js--
+    $scope.arr = [
+        {dest: "LA", flight: "KA324", eta: "413"},
+        {dest: "NYC", flight: "DM302",eta: "1240"},
+        {dest: "Detroit", flight: "HA324", eta: "136"}
+        ];
+    ...</div>
+    <div class="inspectbox">--page--
+    LA
+    KA324
+    413
+    ...</div><span class="wh">ng-repeat as an enclosed template using:</span>
+    ng-repeat-start
+    ng-repeat-end
+
+    <span class="lemon">this creates multiple sybling nodes in the template.</span>
+    <div class="htmlbox">----html----
+    < div <span class="pinkish">ng-repeat-start</span>="poop in arr">
+    < h1>{{poop.dest}}< /h1>
+    < h2>{{poop.flight}}< /h2>
+    < h3>{{poop.eta}}< /h3>
+    < hr <span class="pinkish">ng-repeat-end</span>>
+    < /div></div></pre></code>
+
+    <div class="compact"><h1 class="ctr">** QUICK QUIZ **</h1>
+    What are the 5 primitive types?</h1>
+    <b class="bldk">REMEMBER "NO SWEET BUNS!" --- "NO SWEET BUNS!"</b>
+    <h3>Number, String, Boolean</h3>
+    <b class="bldk">ALSO "UNs are UNIQUE!"</b>
+    <h3>Undefined, Null (SPECIAL data types)</h3>
+    <hr>
+    <b class="bldk">AOs types "Hey-o-oh!"</b>
+    <h3>Arrays, Objects (COMPOSITE data types)</h3>
+    </div>
+
+
+    <code><pre>
+
+    <b>--if the keys are identical,
+    Iterating over an Obj is <span class="ans">NO PROBLEMO!</span>
+    <br><span class="warn">HOWEVER</span> if two items in an array are the same... We're screwed.</h2>
+    <h2>We fix this with <span class="lemon">track by $index</span></h2>
+    <span class="lemon">track by $index</span>is alot like the "i" in "arr[i]" when looping
+    through a for loop. It essentially overrides the normal
+    "poop in array" angular loop--for primitives.
+    <b class="warn">*REMEMBER: NO SWEET BUNS*</b>
+    <div class="jsbox">--app.js--
+    ...
+    app.controller("MainController", function($scope){
+    $scope.num = [1, 2, 3, 4, 5, 6, 6, 7];
+    })</div>
+
+    Hmm... CODE BREAKS Because of identical values at index 5 & 6
+    All we need to do is override the loop at ng-repeat!
+
+    <div class="htmlbox">--html--
+    < div ng-repeat-start="poop in arr<span class="ivr"> track by $index</span>">
+    < h1>At index: {{$index}} it's: {{ poop }}< /h1>
+    < hr <span class="ivr">ng-repeat-end</span>>
+    < / div></div>
+    <div class="inspectbox"><code><pre>
+    At index: 0 it's: 1
+    At index: 1 it's: 2
+    At index: 2 it's: 3
+    </div></pre></code>
+
+
+    <h5>You can also use $first, $middle, $last, $even, $odd.</h5>
+    <code><pre><div class="htmlbox">--html--
+    < div ng-repeat-start="poop in arr track at $index">
+    <span>{{poop}}</span>
+    < span ng-show=<span class="lemon">"$first"</span>>is the first< /span>
+    < span ng-show=<span class="lemon">"$middle"</span>>is the middle< /span>
+    < span ng-show=<span class="lemon">"$last"</span>>is the last< /span>
+    < span ng-show=<span class="lemon">"$even"</span>>is the even< /span>
+    < span ng-show=<span class="lemon">"$odd"</span>>is the odd< /span></div>
+    <div class="inspectbox">    1 is the first is the even
+    2 is the middle is the odd
+    3 is the middle is the even
+    4 is the middle is the odd
+    5 is the middle is the even
+    6 is the middle is the odd
+    6 is the middle is the even
+    7 is the last is the odd
+</div>
+    YOU DON'T even need to loop through objects!
+    Angular has a suprise for you!
+
+    <span class="wh">You can iterate through an abject's attributes!
+    <span class="warn">Caution:</span> they aren't always in order)</span>
+    <div class="jsbox">--app.js--
+    $scope.happyWord = {
+    "word": "Happy",
+    "meaning": "not sad",
+    "example": "I am so happy",
+    "tag": ["gre", "web"],
+    "letters": 5
+    };</div>
+    <div class="htmlbox">--index.html----
+    < div ng-repeat="poop in happyWord">
+    < h1>{{poop}}< / h1>
+    < hr>
+    < / div></div></pre><pre>
+    <div class="inspectbox">    Happy
+    not sad
+    I am so happy
+    ["gre","web"]
+    5</div></pre></code>
+
+</div>
+
+<div class="outbox4">
+
+<h2 class="chtitle">INFINITE SKILLS Vid#8: Directives</h2>
+    There are many built-in directives
+
+    A directive is essentially a function that executes when the Angular compiler finds it in the DOM.
+
+    <div class="compact">
+        <ul>
+            <li>ng-app</li>
+            <li>ng-init</li>
+            <li>ng-click</li>
+            <li>ng-show</li>
+            <li>ng-hide</li>
+            <li>ng-if</li>
+            <li>ng-filter</li>
+            <li>ng-controller</li>
+            <li>ng-repeat</li>
+            <li>ng-src</li>
+        </ul>
+    </div>
+
+    <code><pre><div class="htmlbox">
+    < html ng-app="app">
+    < body ng-controller="MainController">
+    < h1>{{num}}< / h1>
+    < button <span class="ivr">ng-click="calculate()"</span>>Calculate</button>
+    < h3<span class="ivr"> ng-show="isEven()"</span>>EVEN!< /h3><span class="warn">*</span>
+    < h3<span class="ivr"> ng-hide="isEven()"</span>>ODD!< /h3><span class="warn">*</span>
+    < /body >
+    < /html></div>
+    <div class="jsbox">--------app.js--------</span>
+    var app = angular.module("app", []);
+    app.controller("MainController", function($scope) {
+        $scope.num = 1;
+
+        $scope.calculate = function() {
+        $scope.num += 5;
+        }
+
+        $scope.isEven = function() {
+            return $scope.num % 2 === 0;
+        }
+    });</div>
+    It generally not performant to put a <i>fn</i> inside of a state controller.
+    <br>So...we'll just pass booleans</h5>
+    <div class="htmlbox">< h3 ng-show="even">EVEN!</ h3>
+    < h3 ng-hide="even">ODD!</ h3>
+    </div>
+    <div class="jsbox">--app.js------
+    ...
+    $scope.num = 1;
+    $scope.even = false;
+
+    $scope.calculate = function() {
+    $scope.num += 5;
+    $scope.even = ($scope.num % 2 === 0);
+}</div></pre></code></div>
+
+<div class="outbox2">
+
+<h2 class="chtitle">INFINITE SKILLS Vid#7: controllers</h2>
+    <h5>3 ways to declare a controller</h5>
+
+    <h5>(1st) doesn't work 4 me.</h5>
+    <code><pre><div class="htmlbox">    < html ng-app="app">
+    < body>
+    < div <span style="color: ivory">ng-controller="MainController">
+        {{val}}</span><span style="color: rgb(136, 126, 95)">--interpolator</span>
+    < / div>
+    <<i>link to angular</i>>
+    <<i>link to app.js</i>>
+    < /body >
+    < /html></div>
+    <div class="jsbox">--app.js--
+    angular.module("app", []);
+
+    var MainController = function($scope) {
+        $scope.val = "test123";
+    }</div>
+
+    2nd is fine but isn't good for production code.
+    (add <span class="redlite">{{ func() }}</span> to the div )
+    <div class="jsbox">--app.js--
+    <span class="reddrk">var app = </span>angular.module("app", []);</div>
+    <span class="lemon">then, reuse app to declare a controller
+    on entire application</span>
+    <div class="jsbox">
+    <span class="redlite">app</span>.controller('MainController',
+    function($scope) {
+        $scope.val = "456";
+        $scope.func = function() {
+            return "WHASAAAAP?";
+        }
+    });</div>
+    <span class="ivr">We got compartmentalization problems.
+    ALSO: WTF is $scope vs .this ? <a style="background-color: grey" href="http://bit.ly/2b7sCSg">StackOverflow</a></span>
+    <div class="jsbox">
+    var app = angular.module("app", []);
+
+    app.controller('MainController',
+    function($scope) {
+            $scope.val = "456";
+        })</div>
+    This 3rd way observes the rules of separation of concerns
+    and compartmentalization
+
+    <span class="ivr">We have already declared a module with this:</span>
+    var app = angular.module("app", []);
+
+    <span class="mango">Now we declare a new controller in a module
+    & include it in the application</span>
+    <span class="ivr">angular.module("<i class="wh">anyname</i>", []);</span>
+    <span class="mango">and then declare the MainController on <i>that!</i>
+    with<span class="ivr"> .controller</span></span>
+    <div class="jsbox">angular.module("depController", [])
+    .controller("MainController", function($scope){
+        $scope.val = "test789"
+    })</div>
+
+    <span class="gr">This will give us an <span class="warn">ERROR</span> because we need to update
+    the app declaration at the top to let it know that
+    there is a dependency</span>
+    var app = angular.module("app", ["depController"]);
+    <div class="jsbox">var app = angular.module("app", ["depController"]);
+
+    angular.module("depController", [])
+        .controller("MainController", function($scope) {
+            $scope.val = "test789";
+        })</div></pre></code><hr>
+    <div class="compact2">
+        <h3>The DevMountain Way</h3><img src="theDMWay.png" alt="DMWAY" /><pre>angular.module("app", []);
+    angular.module("app")
+    .controller("MainController", function($scope) {
+        $scope.name = "Leroy Jenkins";<br>});</pre></div><hr>
+
+    <h3 class="redlite">When moving across multiple files don't use "var app =..."</h3>
+    <hr>
+</div>
+
+
+<h2 class="chtitle">INFINITE SKILLS Vid#6: The Setup</h2>
+    <div>ng-app</h5>
+    <h5>Entire app is contained in the element --it could be any element</h5>
+    <code><pre>
+    < html <span style="color: ivory">ng-app="app"</span>><span style="color: rgb(136, 126, 95)">--DIRECTIVE</span>
+    < body>
+    < h1>"Hello World"< / h1>
+    < script><i>link to angular</i>< /script>
+    < script><i>link to app.js</i>< /script>
+    < /body >
+    < /html>
+    --------app.js--------
+    <span style="color: ivory">angular.module("app", []);</span>
+    </pre></code>
+
+
+
+<div class="outbox3">
+<h2>Shaping up with vid#lev1a: Directives</h2>
+
+Directive</h5>
+<h5>a marker on an HTML tag that tells Angular to run or reference some .js code</h5>
+<code><pre>
+
+< body ng-controller ="sayHi">
+<span style="color: rgb(149, 136, 135)">// this references the function</span><br>
+function sayHi() {
+alert("hi");
+}
+</pre></code>
+<h5>Directives bind the behavior to that tag</h5>
+<br>
+Modular Line</h5>
+<code><pre>var app = angular.module('store', [<i>dependencies</i>]);</pre></code>
+
+</div>
+<div class="outbox3">
+
+<h2>Shaping up with Ang vid#1b: Controllers</h2>
+</div>
+controllers</h5>
+<h5>A way to define behavior of app using functions and directives</h5>
+<code><pre>
+< div ng-repeat="product in store.products">
+</pre></code>
+
+<div class="outbox3">
+
+<h2>Shaping up with Ang vid#1c: Expressions</h2>
+Expressions</h5>
+<h5>Getting bool values or any value with expressions in the html</h5>
+<code><pre>
+< h1>{{product.name}}< /h1>
+</pre></code>
+<br>
+REVIEW DIRECTIVES</h5>
+<h5>ng-app: attach app module to the page</h5>
+<h5>ng-controller: attach the controller <i>fn</i>to page</h5>
+<h5>ng-hide</h5>
+<h5>ng-show</h5>
+<h5>ng-checked</h5>
+<h5>ng-repeat to iterate through each element in Array</h5>
+
+</div>
+
+<h2>Shaping up with Ang vid#2a: clean code and Filters</h2>
+<div>Filters</h5>
+<h5>Currency filter localizes, adds $sign and formats decimals</h5>
+<code><pre>
+${{product.price | currency}}
+</pre></code>
+<h5>The pipe "|" comes after the result & adds a filter (and options if needed)
+    <br>The pipe takes the result of the first expression and filters "pipe" it into through the filter on the right.</h5>
+<code><pre>
+{{"Leroy Jenkins | uppercase"}}
+//LEROY JENKINS --upper/lowercase
+{{"You gotta fight for your right" | limitTo:9}}
+// You gotta
+
+<span style="color: rgb(230, 222, 207)">This is useful if we wish to limit items in an Array</span>
+< li ng-repeat="books in shelf.books" | limitTo: 4}}
+// "Sybil", "Great Gatsby", "Ulyssees", "1984"
+
+<span style="color: rgb(230, 222, 207)">We can sort with the filter orderBy</span>
+< li ng-repeat="books in shelf.books" | orderBy: name}}
+// "1984", "Great Gatsby", "Sybil", "Ulyssees"
+-price makes descending order;</pre></code>
+</h5>
+<div>ng-source directive</h5>
+<h5><span style="color: rgb(230, 222, 207)">This is necessary for a list of images--> simply using src will try to load the img before the expression evaluates</span></h5>
+<code><pre>
+< li ng-repeat="books in shelf.books"}}
+< img ng-src="{{bookshelf.bookcovers[0].thumbnail}}"
+// img, img, img etc..</pre></code>
+<hr>
+
+
+<h2>Shaping up with Ang vid#2b: clean code and Filters</h2>
+<div>ng-src directive</h5>
+<h5></h5>
+<code><pre>
+code Placeholder
+</pre></code>
+<h5>explain Placeholder</h5>
+<code><pre>
+examples
+</code></pre>
+<span style="color: rgb(230, 222, 207)">Notes on code Placeholder</span>
+<hr>
+
+
+<hr>
+<div class="txtbox">
+
+<h2 class="chtitle">DM lecture Ang Intro</h2>
+<!-- https://vimeo.com/167778687 -->
+<h2>The ROLE OF $scope is the glue between the HTML and the controller's JS</h2>
+<blockquote cite="https://vimeo.com/167778687">
+    <p>The one thing that is constant in code is that your code is never constant</p>
+</blockquote>
+
+<h2>"module" is like the "foreman" that overseas all of your code. It is the boss that organizes all the "workers".</h2>
+
+<h2>The role of the controller is the bridge between the VIEW and the Model.</h2>
+<p>
+    angular.module("app", []);
+    <br> This empty array means "make a module".
+
+</p>
+
+<h1>Question(?) Jeremy Robertson advises 'delete the .min in the Angluar < link > (in order to get more readable errors in the console)'--Is this cool to do with a downloaded min file? </h1>
+<code><pre>
+
+angular.module("app", []); ---this means "make"<br>
+
+angular.module("app"); --this means "GET"
+
+THIS CREATES A GLOBAL VARIABLE:
+
+"var app = angular.module("app", []);"
+
+Therefore "not advisable";
+
+
+$scope.name = "Jeremy";
+
+html{{name}}
+
+This is binding.
+It happens one way. js -to- html: "One way binding.<br>
+from the scope on the controller to the DOM.
+
+if I put a var...
+
+var otherName = "Johnny";
+
+it wont show up in {{otherName}} because it isn't <br>bound to $scope.
+</pre></code>
+--HERE is an example of TWO-WAY binding--
+<code><pre>
+
+
+<div class="lavenbox">
+
+< input ng-model="name"/>** (that looks like"<input ng-model="name"/>")
+{{name}}*
+*One-way binding-->.controller updates the view...(the HTML)
+**Two-way binding
+
+if UI changes value...so does $scope
+if $scope changes in .js...so does the UI
+
+Angular is watching $scope and is always ready for changes.
+
+ng-model equals the property-name ("~~~") on the #scope
+that you want to bind to.
+
+< input ng-model="wordFilter"/><input ng-model="wordFilter"/>
+< li ng-repeat="members in words | filter: {word: wordFilter}"></pre></code>
+@55:00 in this lecture --We do filtering obj properties.
+<h2>REMEMBER-- {{}} is ONE WAY BINDING!</h2>
+
+
+</div>
+
+
+<div class="outbox3">
+
+<h2 class="chtitle">DM LECTURE (my 2nd)Angular lecture:
+<a href="https://vimeo.com/143650041">Oct 26</a></h2>
+<ol>
+    <li>MVC is a Design Pattern. It is not code. It is a conceptual representation of separation of code and how parts fit together.</li>
+    <div class="innerbox4">
+
+    <ol>
+        <li>Model-> representation</li>
+        <li>View-> dealing with UI</li>
+        <li>Controller-> plays middle-man between Model & View</li>
+    </ol>
+</ol>
+
+<img id="bigpic" src="ngthebigpicture.png" alt="the big picture" />
+<code><pre><span style="color: rgb(204, 203, 115)">
+<h4>$timeout</h4>
+$timeout(function() {
+    $scope.foo = "BAR";
+}, 3000);;</pre></code>
+<h2 class="expl">If adding <span class="redlite">$timeout</span> to the fn body. The app.controller callback needs to add '$timeout' in the params</h2>
+<div class="outbox2" style="background-color: rgba(205, 10, 10, 0.22)">
+    <h3>add $timeout method to body</h3>
+    <pre><code><span style="color: ivory">app.controller("myCtrl", function($scope, <span class="redlite">$timeout</span>) {
+$scope.myData = "This is plain text";
+$timeout(function() {
+    $scope.foo = "BAR";
+}, 3000);;
+});</span></div>
+
+</div>
+<div class="jsbox"><code><pre>
+
+--------app.js--------
+...
+$scope.foods = ["fetuccini", "Sloppy-joe",
+"Roast Pork", "Pad-thai", "Bi-Bim-Bap"
+];<span style="color: rgb(136, 126, 95)">--simple array</span>
+...</span></pre></code></div>
+
+<div class="testbox"><code><pre>
+
+-----html-----
+...
+< h1>REPEAT< /h1> FILTERBOX
+< input ng-model=<span class="redlite">"poopFilter"</span>>
+< div ng-repeat="food in foods | filter: <span class="redlite">"poopFilter"</span>>
+  < h1>{{food}}< /h1>
+...</span></pre></code>
+
+<span style="color: rgb(249, 124, 97)">'poopFilter' could be any word
+all is needed is for the HTML to identify it.</span>
+
+<span>---Renders on page---
+
+FILTERBOX<input ng-model="foodFilter">
+fetuccini
+Sloppy-joe
+Roast Pork
+Pad-thai
+Bi-Bim-Bap</span>
+
+----show/hide example----
+
+ng-init
+This is a way to set up data on the angular side.
+IT IS TO BE AVOIDED--but for rare cases.
+
+<span style="color: rgb(150, 170, 255)">-----html-----
+...
+< h1 <span class="redlite">ng-init="isGreat = false"</span>SHOW/HIDE< /h1>
+< div ng-show="<span class="redlite">isGreat</span>">
+  You are SO great!
+< /div>
+...</span>
+<span style="color: rgb(204, 203, 115)">--------app.js--------
+...
+$scope.foods = ["fetuccini", "Sloppy-joe",
+"Roast Pork", "Pad-thai", "Bi-Bim-Bap"
+];<span style="color: rgb(136, 126, 95)">--simple array</span>
+...</span></pre></code>
+<h3>IMPORTANT NOTE:</h3>
+<ol>What is the diference between
+<li>ng-show</li>
+<li>ng-hide</li>
+<li>ng-if</li>
+<li>display: none</li>
+<li>visibility: hidden</li>
+</ol>
+<div>CSS display: none</h5>
+<h5>CSS display:none will not be available in the page and does not occupy any space. height= 0!!
+    </h5>
+
+<br><h5>CSS visibility: hidden</h5>
+<h5>visibility:hidden hides an element, but it will still take up the same space as before. The element will be hidden, but still affect the layout. visibility:hidden preserves the space, whereas display:none doesn't preserve the space. <br>After an element is 'visibility: hidden'-ed there is no reflow.</h5><br>
+<h5>ng-if</h5><h5>It's simply not on the DOM</h5>
+<code><pre>
+<div class="box4">
+ng-show/hide --->visibility: visible/hidden <br>
+ng-if --->display: none
+</div>
+--Events--
+<span style="color: rgb(204, 203, 115)">--------app.js--------
+...
+$scope.clicked = function() {
+$scope.isGreat = !$scope.isGreat;
+};<span style="color: rgb(136, 126, 95)">--just the opposite</span>
+...</span>
+<span style="color: rgb(150, 170, 255)">-----html-----
+...
+<button ><h1>Click me</h1></button>
+< btn <span class="redlite">ng-click="clicked()"</span> Click me < / btn>
+...
+</span><span style="color: rgb(136, 126, 95)">--ng-click can invoke a    function
+which is sought out in the $scope in the js file.</span></div><hr>
+</pre></code>
+
+<div class="outbox3">
+
+
+<h2 class="chtitle">DM LECTURE (my 3rd)Angular lecture:
+<a  href="https://vimeo.com/143778785">Services (hour-long)</a></h2>
+<div>PLACEHOLDER</h5>
+<br>
+
+<div class="box">
+<h2>Smth important in the box</h2>
+<h3 class="ivr">Raw Notes
+separation of concerns is good for
+readability: small digestible pieces =
+code-reuse efficiency.
+
+One large file is slower.
+
+Services enhances organization of code.
+
+
+
+< on vimeo the next lecture Oct 28 is
+all day about http and web calls>
+</h3>
+</div>
+<code><pre>
+<div class="jsbox">
+
+---js--
+app.controller("myCtrl", function($scope){
+    $scope.cars = [];
+
+$scope.$watch('cars', function(){
+    save();<span class="ivr">~~fires if 1st level child changes-->This is a 'Shallow Watch'~~
+</span>})
+
+
+$scope.$watch('selectedCar', function() {
+<span class="ivr">~~fires if any descendent ever changes in any way~~</span>
+},true)<span class="ivr">~~a 'Deep Watch'
+
+**Use this very carefully. It is heavy.
+Processing it goes deep & takes time.
+--useful if I know if I have a small array with small objects</span>
+
+$scope.$watchCollection('likes', function() {
+<span class="ivr">--fires on add, remove, move, delete, change~~</span>
+});
+})
+
+}
+</div>
+
+<h4>
+IF you have a hover event, it fires up Angs digest cycle and
+tells angular that smth mightve changed.
+In a large application,
+the worst thing you can do is 'mouseover'
+
+$log is useful in a live site. locally,
+you should be using the
+debugger.
+If you're scared of a debugger, get over it.
+$log gives info to the server & helps with a live,
+scaled up app.</h4>
+<h3>$filter: makes custom filters</h3>
+<h3>$timeouts: (covered <a href="https://vimeo.com/143650041">Oct 26 (previous day's lecture)</a><br>(not quite sure abt this)</h3>
+
+</pre>
+
+</pre></code>
+
+
+</div>
+
+
+
+
+</div>
+<!-- Services lectures 1st and second -->
+<div class="txtbox">
+
+    <h1 class="chtitle">DM LECTURE First & Second Services Lectures<h1>
+
+    <a href="https://vimeo.com/167918183">Services I</a>
+    <a href="https://vimeo.com/167918184">Services II</a>
+
+    <h2 class="lemon">Services w/Jeremy Robertson DM-11 May 24th 2016</h2>
+
+    <h3>Reasons for Services</h3>
+    <div class="innerbox">
+
+
+    <ol>
+        <li>Better for testing</li>
+        <li>Drier & more maintainable code</li>
+        <li>REusability. Shareable code</li>
+    </ol>
+    <ul>
+        <li>Angular's built-in services.</li>
+        <li>$log</li>
+        <li>$watch</li>
+        <li>$http</li>
+        <li>$filter</li>
+        <li>$timeout</li>
+        <li>$scope</li>
+        <li>$location</li>
+    </ul>
+    </div><code><pre>
+    $log
+    Benefits of $log over console.log():
+    They are configurable because they are part of Angular-
+    Not good in production.
+
+    $watch
+    --------------Placeholder---------------
+
+
+    <div class="jsbox">---js---
+        angular.module('foodApp')
+        .controller('mainCtrl', function($scope, $log, $watch) {
+            $log("this is a log");
+            $scope.beau = "Awesome";
+
+            <span class="wh">$scope.$watch('beau', function() {
+                $log("beau has changed, so this callback fired!")
+            });</span>
+    })
+    </div>
+
+    There are 2 important things about a service.
+
+    ONE: It follows the singleton pattern. THERE IS ONLY ONE.
+    TWO: The whole .service callback function
+    is returned back to the controller.
+    This means we can use context in order to display what
+    comes back to the controller.
+    --> This simply means we put things on '.this'
+
+    <div class="jsbox">
+    angular.module('foodApp').service('foodService', function() {
+        var name = 'beau';
+        this.myName = 'beau';
+    });</div>
+    <h5>Controller can get to 'myName' but not to 'name'.</h5>
+    <h2>Here is an example of a custom service</h2>
+    <div class="jsbox">--app.js--
+        var app = angular.module("foodApp", []);
+            app.controller("myCtrl", function($scope) {
+        });</div><div class="jsbox">--mainCtrl.js--
+    </div>
+<div class="jsbox">--foodService.js--
+    </div></pre></code>
+
+    </div>
+
+
+
+
+<!-- inside of a service -->
+<div class="testbox lemon">
+ <code><pre>
+    Inside of a service...
+    vars are PRIVATE. this.~~~~~ are PUBLIC!
+
+    Dependency Injection
+    Code is keeping a list of available 'workers'.
+
+    That is what mainCtrl, a foodService.js, otherService.js ...
+    It builds this list to figure out what exists.
+    Then it figures out that mainCtrl needs other services...
+    It figures out what each thing needs and produces it as needed.
+    Parameter names of the function "registers" these dependencies.
+    Constructor Pattern (in js)
+
+    Singleton Pattern
+
+    Observer Pattern
+    "Toy Problems"(?) in DevMtn (i.e.)
+    "Find the longest word in a sentence that isn't repeated."
+
+    Remember that
+    functions made in a service can be tied to the
+service via the "this" keyword</pre></code>
+</div>
+
+
+
+
+<!-- DM project debrief -->
+<div class="grtrans">
+
+    <h3>Debrief from mini-project userprofile</h3>
+    <code><pre>
+    An illustrative bit of 'trafficking of data' from one
+    file to another in the mini-userprofile project
+    @https://github.com/DevMountain/mini-userProfiles.git
+
+    <span class="wh">This Button.</span><div class="htmlbox">< btn ng-click="toggleFavorite(user.id - 1)">+< /btn></div>
+    <span class="wh">when clicked, goes to...</span><div class="jsbox">--app.js--
+    angular.module('userProfiles', []);</div>
+    <span class="wh">next to...</span><div class="jsbox">--mainCtrl.js--
+    $scope.toggleFavorite = myServ.toggleFavorite;</div>
+    <span class="wh">next to...</span><div class="jsbox">--serv.js--
+    this.toggleFavorite = function(userIndex) {
+            data[userIndex].isFavorite = !data[userIndex].isFavorite;
+        }</div>
+    <span class="warn">changes from one value to another--
+    then back to the html</span><br>
+    <span class="wh">This expression</span><div class="htmlbox">    ...
+    < btn ng-click="<span class="wh">toggleFavorite(user.id - 1)</span>">+< /btn>
+    ...</div>
+    <span class="wh">Then goes to the CSS file...</span>
+    <div class="cssbox">--styles.css--
+    .favorite {
+    background-color: lightblue;
+    border: 5px solid brown;
+    }</div>
+
+    That, ladies and gents, is one part of the story
+    of dependency injection
+
+    </pre></code>
+</div>
+</body>
+
+</html>

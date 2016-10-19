@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css" media="screen" title="no title">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet">
+    <title>WileyJS</title>
+    </head>
+
+    <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <h1 class="wh">test section</h1>
+    <h2 id="mytxt"></h2>
+    <script type="text/javascript">
+$(document).ready(function() {
+// (function() {
+
+
+
+// })();
+});
+    </script>
+    <hr><pre>
+
+    <h1>WileyJS</h1>
+    <div class="box">
+
+<h3 class="ivr">Wiley js Ch3</h3>
+
+    <div class="squatbox lemon">
+    functions within functions
+    functions as variables
+    </div>
+
+    <div class="innerbox4">
+    <span class="ltgr">Here is a var with a "function value"</span>
+    var spokenWord = function(word) {
+        var content = $('#mytxt').text(word);
+        return content;
+    };
+    var speak = spokenWord("Hey!");
+    <i>// Hey!</i>
+    <hr>
+    <span class="ltgr">Here we put this function within a function & wrap that inner Fn in parens to make it self-executing</span>
+
+    var spokenWord = <span class="redlite">(</span>function() {
+        return (function(word) {
+            var content = $('#mytxt').text(word);
+            return content;
+        });
+    }<span class="redlite">)()</span>;
+
+    var speak = spokenWord("Hey!");
+    <i> // Hey!</i>
+
+    </div> <div class="innerbox2">
+    function sayhi(first, last) {
+        var greet = "Hi, " + first + " " + last;
+        return $('#mytxt').text(greet);
+    }
+    sayhi("Joe", "Shmo");
+    <div class="squatbox2">We get <i>HI, Joe Shmoe</i></div>
+    <hr>
+    <span class="ltgr">Now we can place the Fn onto a var-->Giving that var a <b>"function value"</b></span>
+
+    var sayHi = <span class="ltgr">function(first, last) {
+            var greet = "Hi, " + first + " " + last;
+            return $('#mytxt').text(greet);
+    };</span>
+    var message = sayHi('Bill', 'Gates');
+    <div class="squatbox2">placing a var "message" with params for the "function value" is <br>all that is needed to fire the function.</div>
+    <span class="lemon"> // Hi, Bill Gates</span><hr>
+    <span class="ltgr">Here we will wrap that function within a function to make it self-executing</span>
+    var sayHi = (function() {
+        return function(first, last) {
+                var greet = "Hi, " + first + " " + last;
+                return $('#mytxt').text(greet);
+        };
+    })();
+
+    var message = sayHi('Bill', 'Gates');
+    </div>
+    <div class="box"><span class="ivr">That var "sayHi" (with it's 'function value') takes a semi-colon at the end because... <br>it is an </span><div class="ans">Assignment Statement</div></div><hr>
+
+<h3 class="ivr">Wiley js Ch4</h3>
+    <div class="squatbox lemon">
+    Prompt function
+    Switch statements
+    </div>
+    <div class="squatbox2">2nd param is 'entered' into the box and becomes <br> the value of the variable</div>
+    <div class="rdbg">
+    var value = prompt("What is the value?", " "); <i>// one space or none</i>
+
+    switch (value) {
+        case "Beau":
+            alert("Hi Beau");
+            break;
+        case "John":
+            alert("Hi John")
+            break;
+        default:
+            alert("Hi everyone!");
+            break;
+    }
+    </div>
+    <hr>
+
+<h3 class="ivr">Wiley js Ch5</h3>
+    <div class="squatbox lemon">
+    <span class="wh">continue;</span>
+    Pre-test vs Post-test Loops
+    For loop (pre-test)
+    While loop (pre-test)
+    Do while loop (post-test)</div>
+    <h2 class="chtitle">Pre-test vs Post-test loops</h2>
+    <div class="squatbox2 med"><code class="pinkish">
+    if (x === someNum)...{ // do something }</code><br>
+    all numbers other than zero are <span class="ans">TRUTHY</span>
+    </div>
+    <span class="redlite">continue;</span> tells program to SKIP the particalar bit of code when condition is met.
+    <div class="teal ltbg">for (var i = 0; i <= 5; i++) {
+    if (i === 3) {
+        continue;    <span class="ivr">--hits 3, then skips to next in the loop</span>
+    }
+    console.log(i)<br>}
+    <span class="ivr"> // 0, 1, 2, 4, 5</span></div>
+    Therefore, if we use a modulus (that only produces a truthy if there is a remainder)...
+    Only that condition will fire the "continue;" code.
+    <i>It will skip it and go to the next value of i.</i>
+    <div class="cssbox">
+    var total = 0;
+        for (var i = 0; i < 10; i++) {
+            if (i%2) { <span class="bldk">// fails if zero!</span>
+            continue;
+        }
+    total += i; <span class="reddrk">// 0, 2, 6, 12, 20</span>
+    </div>
+    <i>Only the 2, 4, 6 & 8 will be inserted to add to the accumulated sum</i>
+
+    <hr>
+    <span class="ltgr">While loops with a prompt</span>
+
+    second prompt within the while loop avoids infin looping
+    <div class="cssbox">var i = 0;
+    <br>var name = prompt("name is: ('x' to exit) ", " ");<i>// 1 space or none</i>
+    <br>while (name !== "x") {
+    alert("Hi, " + name + " this has run " + ++i + " times.");
+    var name = prompt("We're in the loop: (type x to exit) ", " ");<br>}
+    </div>
+    <hr>
+    <span class="ltgr">DO WHILE loops run at leat once & then perform the test.</span>
+    <h3>...Hence, the term: "Post-Test Loop"</h3>
+    <div class="cssbox">var i = 0;<br>do {
+    var name = prompt("You're in the do loop: (type x to exit) ", " ");
+    alert("Hey, " + name + ". You've run this " + ++i + " times.");<br>}
+    while (name !== "x");
+    </div><hr>
+
+<h3 class="ivr">Wiley js Ch6: SCOPE</h3>
+    <span class="ltgr">"local scope" = "Functional Scope"</span>
+    <div class="squatbox lemon">
+    Local or 'Functional' Scope
+    Global Scope
+    </div>
+    <div class="ltbg">
+    function shapeArea(base, height, shape) {
+        var area = 0; <i>// local scope var</i>
+        function triangle() {
+            area = (base * 0.5) * height;
+        }
+        function square() {
+            area = base * height;
+        }
+        switch (shape) {
+            case 'triangle':
+                triangle();
+                break;
+            case 'square':
+                square();
+                break;
+            default:
+            console.log("you may wish to check input.");
+        }
+        console.log( shape + " is: " + area);
+        return  area;
+    }
+    var area = shapeArea(20, 50,"square"); <i>//global scope var</i>
+    alert( area );
+    </div>
+    <i>local scope gets ignored and 'skipped over'
+    --Not only because of the global var @ the bottom.
+    Also because of local areas placement within the shapeArea();
+
+    Place it lower, and this function returns "0"</i>
+    <hr>
+
+<h3 class="ivr">Wiley js Ch7: Objects</h3>
+    <span class="hilite2">Placeholder</span>
+    <div class="squatbox lemon">
+     Array Literal vs Array Constructor
+     join(); method
+     getDay(); method
+     </div>
+     <h4>quick quiz: what is the difference between .join() & .join('')?</h4>
+     <div class="innerboxW"><br>I. <b>.join(); </b><div class="ans reddrk">places commas between elements</div>
+     <br><br>II. <b>.join(''); </b><div class="ans reddrk">places spaces between elements</div>
+     </div>
+     <div class="squatbox2">
+     var msgParts = new Array[]; <span class="ivr">--"Array Constructor"</span>
+     var msgParts = []; <span class="ivr">--"Array Literal Notation"</span>
+     </div>
+     <div class="innerbox3"><span class="bldk">
+     function getDayName(index) {
+         var days = ["Monday","Tuesday","Wednesday","Thursday",
+             "Friday", "Saturday","Sunday"];
+
+         return days[index];
+     }
+
+     function abbr(text) {
+         return text.substr(0, 3);
+     }
+
+     var date = new Date(); <span class="reddrk">// date constructor</span>
+
+     var msgParts = [
+         "Hi, ",
+         prompt("Enter Name, ", ""),
+         <span class="reddrk">// function within an array that stores entered value at index 1</span>
+         ". Today is ",
+         abbr( getDayName( date.getDay() ) ),
+         <span class="reddrk">// <b>.getDay();</b> is a built-in method of Date(); </span>
+     ];
+     alert(msgParts.join(''));</span>
+
+     <i>// Hi, Beau. Today is Wed</i>
+     </div>
+
+     <div class="box">
+    I. Date(); without the keyword <i>new</i> renders a String.
+
+    var nowStr = Date();
+    // Mon Aug 08 2016 12:40:48 GMT-0400 (EDT) (as a String)
+    var rawDate = Date();
+    <img src="img/rawDate.png" alt="date" />
+
+    II. Create a date object by using the <i>"new"</i> keyword.
+    var rawDateObj = new Date();
+    // Mon Aug 08 2016 12:40:48 GMT-0400 (EDT) (this is an obj)
+    <img src="img/dateObj.png" alt="dateobj" />
+
+    III. Date(); with a parameter
+
+    Pass a string to Date(); and it will try to parse a date obj out of it
+
+    var obama = "2008, Jan, 20";
+    var obamaObj = new Date(obama);
+    // Sun Jan 20 2008 00:00:00 GMT-0500 (EST) (as an obj)
+    <img src="img/obamaDate.png" alt="" />
+
+    (No time is given, so it defaults to midnight.)
+
+    days & months are zero-based.
+    year | month | day | hour | minute | second | millisecond
+    <div class="squatbox2">Date Objects have methods of three kinds:<br><br> GETTERS<br> SETTERS <br> CONVERTERS
+    </div>
+    <div class="compact2"><span class="mango">GETTERS</span>
+    .getDay();---0, 1, 2, 3, 4, 5, 6---
+    .getDate();
+    .getMonth();---zero to eleven---
+    .getFullYear();
+    .toDateString();---local date without time.
+    .toTimeString();---local time without date.</div>
+
+    <div class="compact2"><span class="mango">SETTERS</span>
+    .setFullYear()
+    .setMonth()
+    .setDate()
+    .setDay()
+    .setHour()
+    .setSeconds()</div>
+    <div class="compact2"><span class="mango">CONVERTER</span>
+    There is a method Date.parse(str); <br>
+    This parses the String into a Date object.<br>
+    If parsing fails, Date.parse(); returns <i>NaN</i>
+    </div></div><hr>
+
+<h3 class="ivr">Wiley js Ch8: Custom Objects</h3>
+     <div class="squatbox lemon">
+        Object Literal vs. Object Constructor
+    </div>
+    <div class="box">
+    var car = new Object();
+    car.engine = "V8";
+    car.topSpeed = "195mph";
+    car.mpg = 34;
+    <i>-----</i>
+    <span class="hilite2">This Object is referred to as an <div class="ans wh">Object Constructor</div></span>
+    </div>
+    <div class="box">
+    var car = {
+        engine: "V8",
+        topSpeed: "195mph",
+        mpg: 34,
+        getFacts: function() {
+        return this.engine + " : "+ this.topSpeed + " : " + this.mpg;
+        }
+    };
+    <i>-----</i>
+    <span class="hilite2">This Object is referred to as an <div class="ans wh">Object Literal</div></span>
+    </div>
+    <div class="squatbox2">The object above is fine if you dont wish to create lots
+     of objects of this type</div>
+    <i>But if you DO want to create lots of objects...</i>
+    <code>
+    function Car(engine, topSpeed, mpg) {
+        this.engine = engine;
+        this.topSpeed = topSpeed;
+        this.mpg;
+
+        this.getFacts = function() {
+        return this.engine + " : "+ this.topSpeed + " : " + this.mpg;
+        };
+        this.speedBrag = function() {
+            return "I can go " + this.topSpeed + "miles per hour!";
+        }
+    }
+    </code>
+     <div class="innerbox2">
+    function Car(engine, topSpeed, mpg, nickName) {
+        this.engine = engine;
+        this.topSpeed = topSpeed;
+        this.mpg = mpg;
+        this.nickName = nickName;
+
+        this.getFacts = function() {
+            return this.engine + " : "+ this.topSpeed + " : " + this.mpg;
+        };
+
+        this.greet = function(nickName) {
+            alert("Hi, " + this.nickName + "!");
+        }
+
+        this.speedBrag = function() {
+            return "I can go " + this.topSpeed + " miles per hour!";
+        }
+    }
+
+    var hisCar = new Car("v6", "200", 35, "Rusty");
+    var herCar = new Car("v8", "120", 30, "Slick");
+
+    hisCar.greet(herCar);
+    <i>// Hi, Rusty!</i>
+     </div></div>
+     <hr>
+
+<h3 class="ivr">Wiley js Ch9: Inheritance</h3>
+    <span class="ltgr">Some methods can be shared!
+    These belong on the prototype</span>
+    <div class="box">VOCABULARY:<span class="ivr">
+    Member:
+    an object or property of a data-type
+
+    Method:
+    a member of an obj that is a function</span></div>
+    <div class="squatbox lemon">
+    There are many types of Inheritance.
+    This is Prototypal Inheritance
+    </div>
+    A simple example...
+    <div class="box">
+    function Word(word, definition) {
+        this.word = word;
+        this.definition = definition;
+
+        <span class="lemon">this.summary = function() {
+            return this.word + " : " + this.definition;
+        }</span>
+    }
+    var wrd1 = new Word("Bucholic", "pastoral");
+    alert(wrd1.summary()); <i> // Bucholic : pastoral</i><hr>
+    <span class="hilite2">Among the members of the Word object, <span class="lemon">this.summary();</span>
+    is the one that wont be changing.
+
+    It can be shared by all objects AS IS.<br>
+    Therefore, we put this baby on the <i>prototype</i>.
+
+    That is to say we remove it from the Constructor Function and put it on the
+    prototype of the Custom Object "Word".</span>
+    <hr>
+    Prototype is a property of...<span class="ans">A function</span>
+    <span class="wh">What does this mean?</span>
+    It simply means we place it (with dot notation) on the function name!
+    <div class="squatbox2">
+    Word.prototype.summary = function() {
+        return this.word + " : " + this.definition;
+    }
+
+    <span class="pinkish">This is created once and it's shared among all objects
+    of type: Word</span>
+    </div>
+    So, Now...
+    <div class="sm wh dkbg">
+    function Word(word, definition) {
+        this.word = word;
+        this.definition = definition;
+    }
+
+    Word.prototype.summary = function() {
+        return this.word + " : " + this.definition;
+    }
+
+    var wrd1 = new Word("Bucholic", "pastoral");
+    </div>
+    We can tap into that method!
+    <span class="sm wh">
+    alert(wrd1.summary());</span>
+    <i>// Bucholic : pastoral</i>
+
+    If we wanted to, we could even override this method, customizing it.
+    <div class="innerboxW">    wrd1.summary = function() {
+        return "This is customized";
+    }
+    alert(wrd1.summary());</span>
+    <b>// This is customized</b></div>
+
+    <hr><h4>And Now... Inheritance.</h4>
+    The "Word" object is what kind of object? --><div class="ans wh">A Function Object</div>
+
+    <div class="ans wh">call();</div> is a method that every "function object" has built-in.
+    <div class="squatbox2">
+    Let's remember what <span class="ans sm">call();</span> does.<br>
+    It specifies what <i>this</i> is.
+    It can fire a function with a different current object.
+    </div>
+    So we have this code...
+    <div class="jsbox">
+    function Word(word, definition) {
+            this.word = word;
+            this.definition = definition;
+    }
+    Word.prototype.summary = function() {
+        return this.word + " : " + this.definition;
+    }
+    </div>
+    Let's create a function object that requires--not 2, but 3--parameters.
+    <div class="jsbox">
+    function Nerdword(word, definition, topic) {
+        Word.call(<span class="reddrk b">this</span>, word, definition);
+        <span class="reddrk b">this</span>.topic = topic;
+    }
+    <span class="reddrk"><b>this</b> calls Word as if it were a Nerdword object
+
+    Next, we need to add the features of <b>Word</b> to <b>Nerdword</b></span>
+
+    <div class="squatbox2">    1) create a new <b>Word</b> object,
+    2) assign it to the prototype of <b>Nerdword</b>.</span></div>
+
+    Nerdword.prototype = new Word;
+
+    <span class="reddrk"><b>+</b> a new instance of <b>Nerdword</b> with 3 params.</span>
+    var nerdWord1 = new Nerdword("Kludge", "Messy code", "Software");
+    <hr><span class="sm reddrk">So, all together now...</span>
+
+    function Word(word, definition) {
+        this.word = word;
+        this.definition = definition;
+    }
+    Word.prototype.summary = function() {
+        return this.word + " : " + this.definition;
+    }
+    function Nerdword(word, definition, topic) {
+        Word.call(this, word, definition);
+        this.topic = topic;
+    }
+    Nerdword.prototype = new Word;
+    var nerdWord1 = new Nerdword("Kludge", "Messy code", "Software");
+    <span class="gr">// Kludge : Messy Code</span>
+
+    <span class="reddrk"><span class="gr">Problem:</span>
+    We now have 3 params, but <b>summary();</b> wont yet yield <b>topic</b></span>
+    <hr><span class="sm reddrk">
+    We need to create a custom method on the prototype of <b>Nerdword</b>
+    (but we also want to use the initial <b>summary();</b> method on the prototype of <b>Word</b>)</span>
+
+    Nerdword.prototype.summary = function() {
+        var summary = Word.prototype.summary.call(<span class="reddrk b">this</span>);
+        <div class="squatbox2">(<span class="reddrk b">this</span> calls <b>summary()</b> as if it were a <b>Nerdword</b> object)</div>
+        return summary + " : " + this.topic;
+    };
+    <span class="gr">// Kludge : Messy code : Software</span><hr>
+    <span class="gr">Ship it!</span>
+    <span class=""><code>
+    function Word(word, definition) {
+        this.word = word;
+        this.definition = definition;
+    }
+
+    Word.prototype.summary = function() {
+        return this.word + " : " + this.definition;
+    }
+
+    function Nerdword(word, definition, topic) {
+        Word.call(this, word, definition);
+        this.topic = topic;
+    }
+
+    Nerdword.prototype = new Word();
+
+    Nerdword.prototype.summary = function() {
+        var summary = Word.prototype.summary.call(this);
+        return summary + " : " + this.topic;
+    };
+
+    var wrd1 = new Nerdword("kludge", "Messy code", "Software");
+    $('#mytxt').text(wrd1.summary());</code>
+
+    <code class="gr">// Kludge : Messy code : Software</code>
+
+    </div>
+    <hr>
+    <h3 class="ivr">Wiley js Ch10</h3>
+    <div class="squatbox lemon">
+    The window Object and it's methods
+    Accessing globals from within a function
+    </div>
+
+    <div class="box"><span class="chtitle">Quick Quiz:</span> <span class="warn">How do we make <i>hotdogs & icecream</i> ?</span>
+    <span class="wh sm">
+    var lunch = "hotdogs";
+
+    function meal() {
+        var lunch = "hamburgers";
+        var dessert = "ice cream";
+        return lunch + " & " + dessert;
+    }</span>
+    <i>// hamburgers & ice cream</i>
+
+    <span class="commentxt">Answer:</span><code class="ans wh sm">
+        return <span class="ltgr">window.lunch</span> + " & " + dessert;
+    </code></div>
+    <div class="compact2 ctr"><i>lunch</i> ("hotdogs") is a global var
+
+    <i>meal();</i> is a "global function"</div>
+    <hr>
+    Both can ALSO be named:
+    <span class="wh">window.lunch;
+    window.meal();</span>
+
+    Many methods are built on the <span class="wh">window</span> object.
+    <div class="box">
+    alert();
+    prompt();
+    confirm(); -- which returns truthy/falsey
+    <div class="squatbox2">
+        function ask() {
+            if(<span class="hilite2">confirm("do you like me?")</span>){
+                alert("I like you, too!");
+            }
+        }
+        ask();</div>
+    location();
+    <div class="squatbox2"><span class="mango">This "fires" a URL</span>
+    location(http://www.npr.org);    </div>
+    <span class="chtitle">We can, therefore, do some cool stuff.</span>
+    <div class="ltbg bldk">
+    function Goog() {
+        if (confirm("Ya wanna go to Google?")) {
+            <i>location</i> = "http://www.google.com";
+        } else {
+            alert("Yeah. Google sucks.");
+        }
+    };
+    Goog();
+    </div>
+    <div class="squatbox2">
+    <span class="lemon">window.location(); has a built-in method: "reload()"</span>
+
+    I.<span class="mango">NO PARAMETER will reload within cache of page</span>
+
+    <code>location.reload();</code>
+
+    II.<span class="mango">Inserting the parameter <span class="blLite">true</span> reloads a "hard refresh".</span>
+
+    <code>location.reload(<span class="blLite">true</span>);</code>
+    </div>
+    <div class="ltbg bldk">
+    function refresh() {
+        if (confirm("Hard Refresh?")) {
+            location<b>.reload(<code class="blLite sm">true</code>)</b>;
+        } else if (confirm("soft?")) {
+            location<b>.reload()</b>;
+        } else {
+            alert("bye!");
+        }
+    };
+    refresh();
+    </div>
+
+    </div>
+<hr>
+<h3 class="ivr">Wiley js Ch13: the DOM</h3>
+    <div class="squatbox lemon">
+    In the DOM what is a node?
+    How can they be accessed?
+    </div>
+
+    <div class="lavenbox"><span class="ivr">These are nodes</span>
+        ELEMENTS <span class="commentxt">< img>, < p>, < div>, etc.</span>
+        ATTRIBUTES <span class="commentxt">class, id, href, src, attr, etc.</span>
+    </div>
+    <div class="htmlbox sm">    < body>
+        < p>It is a nice day.< /p>
+        < p>The skies are clear.< /p>
+        < p><b>< span id="hilite"></b>Dude,<b>< /span></b> go running!< /p>
+    < /body></div>
+    Let's access that <span class="lemon">< /span></span> !
+    <div class="squatbox2"><i>3 ways to access that ELEMENT:</i>
+    document.getElementsByTagName.("span")[0];
+    document.getElementsByClassName();
+    document.getElementsById("hilite");
+    </div>
+    Okay, now... How to we change it's text?
+    <div class="squatbox2"><i>3 ways to access that ELEMENT:</i>
+
+    var adverb = document.getElementById("mySpan");
+    adverb.childNodes[0].nodeValue = "Hey!";<hr><i>Or...</i>
+    var adverb = document.getElementById("mySpan");
+    adverb.firstChild.nodeValue = "Hey!";
+    </div>
+    <hr>
+<h3 class="ivr">Wiley js Ch14: adding HTML with .js</h3>
+
+    <div class="squatbox lemon">
+    Creating Elements in the DOM with .js
+    </div>
+    <div class="box">
+        var bands = ["Van Halen","Queen","RATM","Jimi Hendrix","U2"];
+        var ul = document.createElement("ul");
+
+        for (var i = 0; i < bands.length; i++) {
+            var li = document.createElement("li");
+            ul.innerHTML += "< li>" + bands[i] + "< /li>";
+        }
+        document.body.appendChild(ul);
+    </div>
+    <div class="compact2 sm">
+    Create an Element
+    <span class="wh">var div = document.createElement("div");</span><hr>
+    Create Text
+    <span class="wh">div.appendChild(document.createTextNode("Hello"));</span><hr>
+    APPEND TO THE HTML PAGE
+    <span class="wh">document.body.appendChild(div);</span><hr>
+    <br><code class="pinkish">These Methods are Also Useful:</code>
+
+    Edit attributes
+    <span class="wh">div.setAttribute("data-list", "music");</span>
+
+    <img src="img/dataMusic.png" alt="data-listEdit" /><hr>
+
+
+</div><hr>
+<h3 class="ivr">Wiley js Ch18 .js Event Handlers</h3>
+    <div class="squatbox lemon">
+        onload event</div>
+        onload is a property of the window object
+        <i>window.onload();</i>
+
+        <div class="innerbox2">
+            <button id="myBtn" type="button" name="button">Click Here!</button>
+            var btn = document.getElementById("myBtn");
+
+            btn.addEventListener('click', function() {
+                btn.innerHTML = "GREAT";
+            });
+        </div>
+    <script type="text/javascript">
+        var btn = document.getElementById("myBtn");
+        btn.addEventListener('click', function() {
+            btn.innerHTML = "GREAT";
+        });
+    </script>
+    <div class="innerbox4">
+    <code>btn.addEventListener(event, function, <i>true/false</i>)</code><hr>
+    this <i>true</i> or <i>false</i> influences bubbling and capture.
+
+    a value of <i>false</i> supports bubbling and is more common.
+
+    <a href="https://youtu.be/0sfPDJiMTXk">Here is a link to Kirupa on bubbling</a>
+    </div>
+    <h2>See Lynda Javascript EVENTS for further details!</h2>
+</div>
+
+
+    </div>
+    </pre>
+
+</body>
+
+</html>
+<!-- <h3 class="ivr">Wiley js Ch9</h3>
+<div class="squatbox lemon">
+Each ELEMENT, PROPERTY & ATTRIBUTE is a node.
+so HTML TEXT and ATTRIBUTE (class, id, href, src, etc etc.) is a node.
+</div>
+        <div class="squatbox2">TweenLite<b>.to</b>(< <i>elem</i> >, < <i>time</i> >, {<i>attributes</i>});</div>
+    <div class="innerbox2">
+    code stuff
+    some more code stuff
+    </div>
+    <span class="ltgr">Placeholder Placeholder Placeholder </span>
+    <div class="box"><span class="ivr">Placeholder Placeholder Placeholder
+    Placeholder Placeholder Placeholder </span></div> -->

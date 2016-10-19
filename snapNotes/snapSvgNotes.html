@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css" media="screen" title="no title">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet">
+    <script src="snap/snap.svg-min.js"></script>
+    <title>SnapSvgNotes</title>
+</head>
+
+<body>
+    <!-- <svg id="svg"></svg> -->
+
+    <script>
+    (function() {
+        // var s = Snap("#svg");
+        var s = Snap(800, 400);
+        var circle = s.circle(200, 200, 200);
+        circle.attr({
+            fill: "#242334",
+            stroke: "red",
+            strokeWidth: 1
+        });
+        var tri = s.polygon(45, 290, 200, 25, 355, 290);
+        tri.attr({
+            fill: "#f79045"
+        })
+        var incircle = s.circle(200, 200, 90);
+        incircle.attr({
+            fill: "#242344",
+            opacity: 1
+        });
+        var line = s.line(180, 180, 220, 220);
+        var line2 = s.line(220, 180, 180, 220);
+        line.attr({
+            stroke: "red",
+            strokeWidth: 3
+        });
+        line2.attr({
+            stroke: "red",
+            strokeWidth: 3
+        });
+        var crest = s.g(circle, tri, incircle);
+        var cross = s.g(line, line2);
+        crest.add(cross);
+
+        // crest.transform("s.5, 100, 100");
+        // crest.transform("t150, 150");
+        // crest.transform("r180");
+        // crest.transform("t100,0r180s.5");
+        // crest.animate({transform: "r180, 200, 200"}, 25000);
+        // crest.animate({transform: "t100, 100"}, 25000);
+        // crest.animate({transform: "s.5, 200, 200"}, 25000);
+        // crest.animate({transform: "t400, 0r180, 200, 200"}, 25000);
+        // circle.animate({transform: "s.5, 200, 200"}, 2000);
+        // tri.animate({opacity: 0}, 4000);
+        // incircle.animate({opacity: 0}, 2000);
+        // incircle.animate({opacity: 0}, 2000, function() {
+        //     crest.animate({transform: "r180, 200, 200"}, 5000, function() {
+        //         incircle.animate({opacity: 1}, 2000);
+        //     });
+        // });
+        incircle.animate({opacity: 0}, 2000, function() {
+        crest.animate({transform: "r1920, 200, 200"}, 5000, mina.easein, function() {
+            incircle.animate({opacity: 1}, 2000);
+            });
+        });
+
+    })();
+
+    </script>
+
+    <pre>
+
+    <h2 class="ctr">TUTS+ ANIMATING SNAP SVG NOTES</h2>
+
+<div class="box"><h4 class="ltgr">Tuts+ SNAP SVG animations ch1.2</h4>
+    if you want to load < script> in < head> do this...
+
+    <div class="compact2">window.load = function() {
+        <span class="gr">put code in here</span><br>}
+    </div>
+    if you put it at the end of the body, you don't need it.
+
+    Creating a new "snap object" is done with
+    <div class="jsbox2">
+        <code>
+        var s = Snap("#snap");
+    or
+        var s = Snap(200, 200);  <span class="commentxt">// 200px X 200px</span>
+    </code>
+    IN SNAP (& svg in general?)...
+    X and Y coordinates refer to the CENTER of the circle.
+    <i>< not the top left></i>
+
+    Third item is the radius
+    var circle = s.circle(X coords, Ycoords, Radius);
+    </div>
+
+</div><!--end of ch1.2-->
+
+<div class="box"><h4 class="ltgr">Tuts+ SNAP SVG animations ch2.1</h4>
+
+    the var s = snap('#svg')  --or-- snap(300, 300)
+    is very much like a container...or an SVG "canvas".
+    I can, then, make a rectangle using the keyword (convention?) <i>rect</i> which needs
+    X & Y coords (top left NOT CENTER) and it needs width and height
+    <div class="compact2">    var s = Snap(400, 200);
+    var bigCircle = s.circle( 100, 100, 100);
+    var rect = s.rect(200, 0, 200, 200);</div><!--end of ch-->
+</div>
+
+<div class="box"><h4 class="ltgr">Tuts+ SNAP SVG animations ch2.2</h4>
+    Ellipse
+    Rounded rectangles
+    Lines
+    Polygon
+
+    Ellipses are very much like rectangles: <i>top left coords</i>
+
+    --but they also have height and width radii.
+
+    <div class="compact2">
+    var s = Snap(400, 200);
+    var ellipse = s.ellipse(200, 200, 100, 30);
+    </div>
+
+    Rounded rects 2 have more parameters (for X-"roundedness" and Y-"roundedness").
+    <div class="compact2">
+    var s = Snap(400, 200);
+    var rndRect = s.rndRect(200, 200, 100, 100, 20, 20);
+    <i>or simply...</i>
+    var rndRect = s.rndRect(200, 200, 100, 100, <i>20</i>);
+    </div>
+    Lines have X/Y for start and end
+    <div class="box"><span class="ivr">
+    var line = s.line(0, 0, 400, 400)</span>
+    This would produce nothing visible.
+    By default shapes have no STROKE.
+    They Do have a black fill, but no stroke.
+    </div>
+    Stroke can be produced by the "attr() method".
+    <div class="compact2">
+    var line = s.line(0, 0, 400, 400);
+    <i>line.attr({
+        stroke:  "#F00"
+    });</i>
+    </div>
+    This produces a diagonal red line.
+
+    Polygons are simply lines connected that end up making a fill.
+    <div class="compact2">
+    var poly = s.polyline(0, 200, 100, 50, 200, 50, 300, 200);
+    <i>the more coords, the more points in our polygon</i>
+    So, any number of x/y value pairs.
+    </div>
+
+</div><!--end of ch-->
+
+<div class="box"><h4 class="ltgr">Tuts+ SNAP SVG animations ch2.3 shapes</h4>
+    attr method!
+
+    <span class="ltgr">attrs are just like JSON objects </span>
+
+    <div class="box"><span class="ivr">var circle = s.circle(200, 200, 180);
+    circle.attr({
+        fill: "#85a3a2",
+        stroke: "#306bf0",
+        strokeWidth: 4
+    });</span>
+    stroke: "red", <span class="commentxt">// is also possible</span></div>
+    </div>
+
+<div class="box"><h4 class="ltgr">Tuts+ SNAP SVG animations ch2.4 Grouping</h4>
+    attr method!
+
+    <span class="ltgr">attrs are just like JSON objects </span>
+
+    <div class="box"><span class="ivr">var circle = s.circle(200, 200, 180);
+    circle.attr({
+        fill: "#85a3a2",
+        stroke: "#306bf0",
+        strokeWidth: 4
+    });</span>
+    stroke: "red", <span class="ltgr"> // is also possible</span></div>
+    <img src="img/crest.png" style="width: 200px" alt="crest" />
+    This is achieved by
+    <div class="squatbox ivr"><ul>
+            <li>creating a canvas</li>
+            <li>creating 5 objects</li>
+            <li>modifying attrs</li>
+            <li>grouping them and/or adding them</li>
+        </ul>
+    </div>
+    <div class="squatbox2"><code>
+    var s = Snap(400, 400); <span class="ltgr"> // create</span>
+    var <i>circle</i> = s.circle(200, 200, 200);
+    circle.attr({
+        fill: "#242334",
+        stroke: "red",
+        strokeWidth: 1
+    });
+    var <i>tri</i> = s.polygon(45, 290, 200, 25, 355, 290);
+    tri.attr({
+        fill: "#f79045"
+    });
+    var <i>incircle</i> = s.circle(200, 200, 90);
+    incircle.attr({
+        fill: "#242344",
+        opacity: 1
+    });
+    var <i>line</i> = s.line(180, 180, 220, 220);
+    var <i>line2</i> = s.line(220, 180, 180, 220);
+    line.attr({
+        stroke: "red",
+        strokeWidth: 3
+    });
+    line2.attr({
+        stroke: "red",
+        strokeWidth: 3
+    });
+    var <i>crest = s.g</i>(circle, tri, incircle);<span class="ltgr"> // grouping</span>
+    var <i>cross = s.g</i>(line, line2);<span class="ltgr"> // grouping</span>
+    crest.add(cross);<span class="ltgr"> // adding or combining to make one object</span>
+</code></div>
+</div><!--ch end-->
+
+<div class="box2"><h2 class="blLite">Tuts+ SNAP SVG animations ch2.5 Transform()</h2>
+        Transform()
+        Translation
+        Scale
+        Rotation
+        "Transformation string=> <i>t</i> for translate, <i>r</i> for rotate, <i>s</i> for scale"
+
+        <div class="compact2">SCALING
+        crest.transform("s.5");
+        </div>
+        We also can provide a "Transformation Origin" <i>add X/Y coords</i>
+        <div class="compact2">SCALING:
+        crest.transform("s.5, 100, 100");
+        </div>
+        Let's do a translation with <i>t</i>!
+        <div class="compact2">Translate:
+        crest.transform("t150, 150");
+        </div>
+        Let's do a rotation with <i>r</i>!
+        <div class="compact2">Rotate:
+        crest.transform("r180");
+        </div>
+
+        <span class="ltgr">Let's combine them and
+        Move (translate),
+        Rotate (with r)
+        Scale (with s)</span><div class="box">3 Animations in one line:<span class="ivr">
+        crest.transform("t100,0r180s.5");</span></div>
+    </div>
+
+<div class="inspectbox"><h2 class="pinkish">Tuts+ SNAP SVG animations ch3 Animation Basics</h2>
+
+    .animate();
+
+    <div class="grtransbox2">
+    .animate({transform: "r45"}, 2000);
+    <span class="commentxt">// nothing animates. We need a point of origin</span>
+    </div>
+
+    This, with an X/Y coord, will be just fine.
+    <div class="grtransbox2">
+    crest.animate({transform: "r180, 200, 200"}, 25000);
+    </div>
+    Great. Now let's move (or "translate") this baby 100px to the right & 1000px down.
+    <div class="grtransbox2">
+    crest.animate({transform: "t100, 100"}, 5000);
+    </div>
+    And, now, let's scale it (around it's X/Y coord);
+    <div class="grtransbox2">
+    crest.animate({transform: "s.25, 200, 200"}, 25000);
+    </div>
+    Let's animate translate and rotate.
+    <div class="grtransbox2">
+    crest.animate({transform: "t400, 0r180, 200, 200"}, 25000);
+    </div>
+    <span class="reddrk">There is a limitation to be aware of</span>
+    We cannot animate the height of the entire object with "height: 300".
+    We can, however, 'go into' the object to select one component.
+    <div class="compact2">
+    incircle.animate({height: 20}, 2000);
+    <span class="commentxt">// This works (allegedly). Doesn't work for me.</span>
+    <span class="wh">This, however, DID work!</span>
+    incircle.animate({opacity: 0}, 2000);
+    </div>
+
+</div>
+
+<div class="outbox4"><h3>Tuts+ SNAP SVG animations: Callbacks</h3>
+
+    All we need do is insert a callback after the initial animation <span class="wh">as another parameter </span>
+    <div class="compact2">
+    incircle.animate({opacity: 0}, 2000<span class="wh">, function() {
+        crest.animate({transform: "r180, 200, 200"}, 5000);
+    }</span>);
+    </div>
+
+    We can even nest these. Here are 3 animations with two callbacks.
+    <div class="jsbox3"><code>incircle.animate({opacity: 0}, 2000, function() {
+        crest.animate({transform: "r180, 200, 200"}, 5000, function() {
+            incircle.animate({opacity: 1}, 2000);
+        });<br>});</code></div>
+</div>
+
+<div class="outbox5"><h4 class="bldk">tuts+ Snap SVG animation ch 3.3 Easing</h4>
+    Let's revisit this code...
+    <div class="ltbg bldk"><code>incircle.animate({opacity: 0}, 2000, function() {
+        crest.animate({transform: "r180, 200, 200"}, 5000,<i>*</i> function() {
+            incircle.animate({opacity: 1}, 2000);
+    });<br>});</code>
+    </div>
+    <i>*</i>Between duration and callback function we can insert easing
+    <div class="innerboxN">mina.easein</div>
+    <span class="pinkish">"mina" is "anim" backwards</span>
+    <div class="htmlbox">incircle.animate({opacity: 0}, 2000, function() {
+        crest.animate({transform: "r180, 200, 200"}, 5000, <span class="blLite">mina.easein</span>, function() {
+            incircle.animate({opacity: 1}, 2000);
+    });<br>});</div>
+</div>
+
+<div class="outbox4"><h4>tuts+ Snap SVG animation ch 4.2 Using an external SVG File</h4>
+    Declare the var that points to the .svg file.
+    Load that file with <span class="ivr">Snap.load();</span>
+    <div class="ltbg2">< script>
+    var myIcon = Snap('#myIcon');
+
+    Snap.load('myIcon.svg'<i>--location of file</i>, function() {
+
+        <span class="bldk b">--this callback will 'operate on' that svg file--</span>
+    });<br>< /script>
+    <span class="med">--html--</span><br>< div id="myIcon"></div>
+    Nothing will render with this code because..?
+    <div class="ans pinkish">Nothing connects it to the "myIcon" variable at the first line.</div>
+    <div class="ltbg2">var myIcon = Snap('#myIcon');
+    <div class="innerboxW">By default, the <b>Snap.load()</b> function needs data passed into the subsequent callback.<br>The Snap object has been created.<br>Now, we need to 'capture' the data that <b>.load()</b> is sending to the callback.<br>We use a parameter called <b>"data".</b><br>This parameter will be passed into the callback.</div>
+    Snap.load('myIcon.svg', function(<b>data</b>) {
+        <div class="innerboxW">We use <span class="reddrk b">.append()</span> to feed the "myIcon" object data from that callback.</div>
+        myIcon<span class="reddrk b">.append(<span class="b bldk">data</span>);</span>
+
+    });<br>< /script>
+    <span class="med">--html--</span><br>< div id="myIcon">< /div></div>
+    This ought to do the trick:
+    <div class="compact3">    var myIcon = Snap('#myIcon');
+    Snap.load('myIcon.svg', function(data) {
+        myIcon.append(data);
+    });</div>
+    </div>
+
+<div class="box2"><h2 class="blLite">Tuts+ SNAP SVG animations ch4.3 External File Manipulation</h2>
+
+    .select()
+    click event.
+
+    <div class="compact2">
+    I. Insert the svg div.<div class="innerboxN1">< div id="robot">< /div></div>
+    II. Create the Snap object with a var & <b class="wh">objectName.</b>
+    <div class="innerboxN1">var robo = Snap.('#robot');</div>
+    III. Snap.load() that sucker with a data param in the callback <i>fn</i>.
+    <div class="innerboxN1">Snap.load('robot.svg', function(data) {<br><br>})</div>
+    IV. 1st line of callback uses <i>.append(<span class="redlite b">data</span>);</i>
+    <div class="innerboxN1">Snap.load('robot.svg', function(data) {
+        robo.append(data);<br>})</div>
+    V. Create an obj. for every component that has an id in the svg file using <b class="wh">objectName</b><i>.select(<span class="redlite b">#id</span>);</i>
+    <div class="innerboxN1">Snap.load('robot.svg', function(data) {
+    var head = myIcon.select('<span class="redlite b">#circle</span>');
+    var rArm = myIcon.select('<span class="redlite b">#rect1</span>');
+    var lArm = myIcon.select('<span class="redlite b">#rect2</span>');<br>})</div>
+
+    VI. Create a click event with <b class="wh">objectName</b><i>.click(<span class="redlite b">function() {<br>}</span>);</i>
+    <div class="innerboxN1">robo.click(function() {<br><br>});</div>
+
+    VII. In that function, do that voodoo that you do.
+    <div class="ltbg">myIcon.click(function() {<br>head.animate({transform: 'r......'}, 1000, mina.elastic);<br>lArm.animate({transform: 'r......'}, 1000, mina.elastic);<br>rArm.animate({transform: 'r......'}, 1000, mina.elastic);<br>});</div>
+    </div>
+
+    </div>
+
+</div><!--ch end-->
+
+<div class="box"><h3 class="ltgr">Tuts+ SNAP SVG animations ch4.4 Hover Event </h3>
+    Hover event
+    mouseout()
+
+    <span class="ltgr">Very simple:
+    Replace click with hover in the function.
+    Create function with original state as a "mouseout" event.</span>
+    <div class="cssbox">myIcon.<span class="reddrk b">hover</span>(function() {
+    house.animate({transform: 's<span class="reddrk b">1.2</span>, 100, 100'}, 1000, mina.elastic);
+    ring.animate({transform: 's<span class="reddrk b">1.8</span>, 100, 100'}, 1000, mina.elastic);
+    bg.animate({opacity: <span class="reddrk b">.8</span>}, 200, mina.elastic);<br>});</div>
+    <div class="cssbox">myIcon.<span class="reddrk b">mouseout</span>(function() {
+    house.animate({transform: 's<span class="reddrk b">1</span>, 100, 100'}, 1000, mina.elastic);
+    ring.animate({transform: 's<span class="reddrk b">1</span>, 100, 100'}, 1000, mina.elastic);
+    bg.animate({opacity: <span class="reddrk b">1</span>}, 200, mina.elastic);<br>});</div>
+
+    </div>
+
+<hr>final clock project Chapter 5<hr><div class="outbox5"><h3 class="ivr">Tuts+ SNAP SVG animations ch5.2: .svg files & Date();</h3>
+    <div class="squatbox lemon">
+    I. Window.onload = function() {};
+    II. Instantiating the Date() obj.
+    III. Configuring the Date obj.
+    IV. Fun with modulus.
+    </div>
+
+    Links and <i>src</i>ing files...<div class="innerbox2">
+    <i>In the < head>...</i>
+                < script src="snap.svg.js"></ script>
+                < script src="main.js"></ script>
+
+    <i>In the < body>...</i>
+                < div id="clock">< /div>
+
+    <i>In <span class="gr">main.js</span> create an obj on a var with Snap()...</i>
+                var clock = Snap('#clock');
+
+    <i>load up that Snap() with a callback~! (This feeds the param 'data' into the function.)</i>
+                Snap<b>.load</b>('clock.svg', function(data) {
+                });
+    <i>Within the callback, append the data to the object on the var on line #1.</i>
+                Snap<b>.load</b>('clock.svg', function(data) {
+                    clock.append(data);
+                });
+    </div>
+    <span class="ltgr">This is a nice start. <span class="redlite">BUT:</span> what is the main reason that it wont render?</span>
+    <div class="ans ivr">
+    Because the html page needs to load it.
+
+    Wrap your code:    <span class="wh">window.load = function () {...};</span>
+    </div>
+
+    Configging the <i>Date()</i>object...
+    <div class="box">This creates a friendly date object.
+    <span class="ivr">var date = new Date();</span>
+    Now, pull in the hrs, mins, secs.
+    <span class="ivr">var hours = date.getHours();</span>
+    <span class="ivr">var mins = date.getMinutes();</span>
+    <span class="ivr">var secs = date.getSeconds();</span>
+    </div>
+    So...
+    <div class="innerboxN1">alert(hours); gives us--> 14</div>
+    <div class="innerboxN1">alert(mins); gives us--> 55</div>
+    <div class="innerboxN1">alert(secs); gives us--> 2</div>
+    <div class="innerboxN1">alert(hours+":"+mins+":"+secs); => 15:0:13</div>
+
+    14 is military time. So, we use modulus on the hours object.
+    <div class="box"><span class="ivr">var hours = date.getHours() % 12;</span></div>
+
+<h3 class="ivr">Tuts+ SNAP SVG animations ch5.3: organizing the code</h3>
+    The plan is to use the time objects and reinterpret them into geometric degrees.
+    <span class="med">
+    30 secs needs to be 180deg of the secondHand obj
+    6 hours needs to be 180deg of the hourHand and so on...</span>
+
+    First, though, we've got scope problem.
+    We're going to need to access some of those vars~!
+    <div class="inspectbox2">
+    window.onload = function() {
+        var <i>clock</i> = Snap('#clock');
+        Snap.load('clock.svg', function(data) {
+            clock.append(data);
+
+            var <i>secondHand</i> = clock.select('#second_hand');
+            var <i>minuteHand</i> = clock.select('#minute_hand');
+            var <i>hourHand</i> = clock.select('#hour_hand');
+        });
+        var date = new Date();
+        var hours = date.getHours() % 12;
+        var mins = date.getMinutes();
+        var secs = date.getSeconds();
+
+        <span class="reddrk b">secondHand</span>.transform('r..., ..., ...');
+        <span class="reddrk b">minuteHand</span>.transform('r..., ..., ...');
+        <span class="reddrk b">hourHand</span>.transform('r..., ..., ...');
+    };
+
+
+                        <span class="reddrk b">*vars not accessible. Code fails.</span>
+    </div>
+    All we need to do is refactor a bit.
+    <div class="inspectbox2">
+    <span class="med">var clock, secondHand, minuteHand, hourHand;</span>
+    window.onload = function() {
+        clock = Snap('#clock');
+        Snap.load('clock.svg', function(data) {
+            clock.append(data);
+            secondHand = clock.select('#second_hand');
+            minuteHand = clock.select('#minute_hand');
+            hourHand = clock.select('#hour_hand');
+        });
+        var date = new Date();
+        var hours = date.getHours() % 12;
+        var mins = date.getMinutes();
+        var secs = date.getSeconds();
+
+        <code class="b">secondHand.transform('r180, 150, 150');</code>
+    };
+
+    <span class="reddrk b">   This ought to run, but it doesn't :(</span>
+    </div>
+    Why doesn't this run?
+    <div class="ans ivr">Because the last line runs at the same time that Snap.load() does.... 'clock.svg' hasn't finished loading yet.</div>
+    The solution?
+    <div class="ans ivr">Put code that transforms min/sec/hourHand into another function, then call that function from within the Snap.load() function!</div>
+    <div class="inspectbox2">
+    var clock, secondHand, minuteHand, hourHand;
+
+    window.onload = function() {
+        clock = Snap('#clock');
+
+        Snap.load('clock.svg', function(data) {
+            clock.append(data);
+            secondHand = clock.select('#second_hand');
+            minuteHand = clock.select('#minute_hand');
+            hourHand = clock.select('#hour_hand');
+            <span class="wh">showTime();</span>
+        });
+
+        var date = new Date();
+        var hours = date.getHours() % 12;
+        var mins = date.getMinutes();
+        var secs = date.getSeconds();
+    };
+
+    function showTime() {
+        <code class="b">secondHand.transform('r180, 150, 150');</code>
+    }
+
+                    <span class="reddrk">NICE!</span><img src="img/180Clock.png" alt="180" />
+
+</div>
+
+<h3 class="ivr">Tuts+ SNAP SVG animations ch5.4: convert time objects to degrees</h3>
+    <div class="squatbox lemon">Topics Covered<hr>1. A function call per second.<br>2. Dividing time objects into 360 degrees.</div>
+
+    Let's take a closer look at that code. Why do we even have a separate <i>showTime fn</i>?
+    <div class="innerbox2">
+    var clock, secondHand, minuteHand, hourHand;
+
+    window.onload = function() {
+        clock = Snap('#clock');
+
+        Snap.load('clock.svg', function(data) {
+            clock.append(data);
+            secondHand = clock.select('#second_hand');
+            minuteHand = clock.select('#minute_hand');
+            hourHand = clock.select('#hour_hand');
+            <code class="bldk b">showTime();</code>
+        });
+
+        var date = new Date();
+        var hours = date.getHours() % 12;
+        var mins = date.getMinutes();
+        var secs = date.getSeconds();
+    };
+
+    <code class="bldk b">function showTime() {
+        secondHand.transform('r180, 150, 150');
+    }</code></div>
+    Why not just put transform-ations into Snap.load()'s callback?
+    (try to think of a couple of reasons...)
+    <div class="box"><div class="ans ivr">1. Componentization, modularization. Modular code is clean, safe and reusable.<br><br>2. This .svg is going to change states every second. It makes good sense to create a component which you can call repeatedly with showTime();</div></div>
+    In fact, we should place the var declarations for the 'date.get()-methods' all in that function as well.<div class="innerbox2">function showTime() {
+        var date = new Date();
+        var hours = date.getHours() % 12;
+        var mins = date.getMinutes();
+        var secs = date.getSeconds();
+        secondHand.transform('r180, 150, 150');<br>}
+                                        <span class="ivr">It even looks nicer... :)</span></div>
+<span class="ltgr">The simple angles of a clock-face</span>
+<div class="box"><span class="ivr">360 degrees.
+    60 seconds.<div class="innerboxN1">divide 360 by 60 = 6deg</div>
+    date.getSeconds() value must be multiplied by 6
+    This will give us the full 360 degrees.
+
+    So, we change the line:<div class="innerboxN1">var secs = date.getSeconds() * (360 / 60);</div>
+    Or:<div class="innerboxN1">var secs = date.getSeconds() * 6;</div>
+    For minutes its the same:<div class="innerboxN1">var mins = date.getMinutes() * 6;</div>
+    Lastly, hours is 12. So 12 parts of 360.
+    <div class="innerboxN1">var hours = (date.getHours()%12) * (360 / 12);</div>
+    Or:<div class="innerboxN1">var hours = (date.getHours() % 12) * 30;</div>
+    <i class="med">The hour hand moves 30 degrees each hour in a 12-hour cycle</i>
+
+</div>
+    We can update our showTime function...
+    <div class="innerbox2">function showTime() {
+        var date = new Date();
+        var hours = (date.getHours() % 12)<span class="hilite2"> * 30</span>;
+        var mins = date.getMinutes()<span class="hilite2"> * 6</span>;
+        var secs = date.getSeconds()<span class="hilite2"> * 6</span>;
+
+        secondHand.transform('r<span class="hilite2">180</span>, 150, 150');<br>}
+                        <span class="hilite2">For the transform, only the rotation value must change.</div>
+    <div class="ltbg">
+    secondHand.transform('r<span class="hilite2">180</span>, 150, 150');
+    <span class="med">We need everything but the rotation value to remain the same.
+
+     We use a concatenation technique.</span>
+    <code class="bldk b">secondHand.transform("r" +<span class="hilite2"> someValue </span> + ", 150, 150");</code>
+    <span class="hilite2"> someValue </span>is a placeholder for a degree of rotation.
+
+    In fact, we've already got values like this in the code directly above! All we need to do is plug them in!
+    <div class="innerboxW">
+    secondHand.transform("r" +<span class="reddrk b"> secs </span> + ", 150, 150");
+    minuteHand.transform("r" +<span class="reddrk b"> mins </span> + ", 150, 150");
+    hourHand.transform("r" +<span class="reddrk b"> hours </span> + ", 150, 150");
+    </div>
+    </div>
+    So, let's update this code and have a look!
+    <div class="innerboxW">// main.js
+    var clock, secondHand, minuteHand, hourHand;
+
+    window.onload = function() {
+        clock = Snap('#clock');
+
+        Snap.load('clock.svg', function(data) {
+            clock.append(data);
+            secondHand = clock.select('#second_hand');
+            minuteHand = clock.select('#minute_hand');
+            hourHand = clock.select('#hour_hand');
+            showTime();
+        });
+    };
+
+    function showTime() {
+        var date = new Date();
+        var hours = (date.getHours() % 12) * 30;
+        var mins = date.getMinutes() * 6;
+        var secs = date.getSeconds() * 6;
+
+        secondHand.transform("r" + secs + ", 150, 150");
+        minuteHand.transform("r" + mins + ", 150, 150");
+        hourHand.transform("r" + hours + ", 150, 150");
+    }
+    </div>
+    It's useful.
+    <span class="pinkish">But...</span>it only gives us accurate time at time of window.onload();
+
+    <span class="wh">We need to create some kind of loop that keeps checking for change every second.</span>
+
+<h3 class="ivr">Tuts+ SNAP SVG animations ch5.5: setInterval()</h3>
+    <div class="squatbox lemon">
+    calling a fn over and over again
+    </div>
+    Incredibly easy.
+    <div class="innerbox2">
+    1. create a timer on a var
+    <div class="innerboxN1">var timer = </div>
+    2. have that var equal to the setInterval() js method
+    <div class="innerboxN1">var timer = setInterval();</div>
+    3. feed in the function to be updated
+    <div class="innerboxN1">var timer = setInterval(showTime);</div>
+    4. indicate the time interval to let javascript know how often it should be called
+    <div class="innerboxN1">var timer = setInterval(showTime, 1000);</div>
+    </div>
+    <span class="ltgr">As of now, the Snap.load() callback calls showTime() only once.
+
+    We need to replace it with this neat new timer var.</span>
+    <div class="box"><span class="ivr">Snap.load('clock.svg', function(data) {
+        clock.append(data);
+        secondHand = clock.select('#second_hand');
+        minuteHand = clock.select('#minute_hand');
+        hourHand = clock.select('#hour_hand');
+        <i class="hilite2">var timer = setInterval(showTime, 1000);</i><br>});</span></div>
+    This is great!
+    <span class="pinkish">But...</span> on the hour, there is no animation of the hourhand.
+    It simply jumps 30 degrees every 60 minutes.
+    In fact, there is no animation in this clock AT ALL! Everything is simply jumping from one angle to the next calculated angle.
+
+    <h3 class="ivr">Tuts+ SNAP SVG animations ch5.6: animating the hands.</h3><div class="squatbox med">
+    creating an .animate(); method from a
+                                    .transform(); method
+
+    inserting a transformation string
+    </div>
+    <div class="innerbox2">
+    <span class="lemon">We have the following:</span>
+    secondHand.transform("r" + secs + ", 150, 150");
+    <span class="lemon">Instead of just transforming it, we want to animate it.
+
+    Within this showTime() function (that is called every second), we need an animation whose
+    duration is 1000ms.</span>
+    <div class="innerboxN1">secondHand.animate({}, 1000);</div>
+    Now, within those {} all we need to insert is a transformation string (from the original
+                transform("r" + secs + ", 150, 150") code).
+    <div class="innerboxW">secondHand.animate({transform: <span class="bldk b">"r" + secs + ", 150, 150"</span>}, 1000);</div>
+    Now this is fine, but we have a problem.
+    When second hand reaches 360degrees it resets to 6degrees &
+    swings back counter-clockwise(!!) to the one second mark.
+    </div>
+        <div class="box"><span class="ivr">We need a var that tracks the seconds value.<br><br>We then need an if statement that says "when that counter is zero then counter++". </span></div>
+
+<h3 class="ivr">Tuts+ SNAP SVG animations ch5.~~~~~:</h3>
+        <div class="squatbox lemon">
+        stuff
+        to
+        list
+        </div>
+        <div class="innerbox2">
+        code stuff
+        some more code stuff
+        </div>
+        <span class="ltgr">Placeholder Placeholder Placeholder </span>
+        <div class="box"><span class="ivr">Placeholder Placeholder Placeholder
+        Placeholder Placeholder Placeholder </span></div>
+    
+
+</div><!--section end-->
+
+</pre>
+</body>
+
+</html>
+
+<!-- <div class="outbox5"><h3 class="ivr">Tuts+ SNAP SVG animations ch5.~~~~~:</h3>
+    <div class="squatbox lemon">
+    stuff
+    to
+    list
+    </div>
+    <div class="innerbox2">
+    code stuff
+    some more code stuff
+    </div>
+    <span class="ltgr">Placeholder Placeholder Placeholder </span>
+    <div class="box"><span class="ivr">Placeholder Placeholder Placeholder
+    Placeholder Placeholder Placeholder </span></div>
+</div> -->

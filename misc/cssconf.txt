@@ -1,0 +1,135 @@
+Sara D.
+kyle simpson
+we spend 70% of the time maintianing Code
+30% creating.
+
+Flow vs hyperfocus.
+Kathy Sierra badass Making users awesome
+
+Aframe (mozilla)
+
+Brian Jordan
+
+code.org
+Selenium Testing..
+
+cucumber is a higher-level lang to use with
+selenium
+chromedriver
+sauce connect
+
+applitools eyes
+
+Jessica Lord
+
+Electron
+
+http://electron.atom.io/
+Spectron
+gihub.com/electron/electron-quick-start
+barebonds electron app to get started with.
+
+enabling you to write node in your html
+
+smyte
+
+stubbornella.com
+nichole sullivan's comments on css components
+referring to it as a "media object"
+
+extensive web manifesto
+
+
+jen kramer
+
+what would happen if the same two different elements were configured to cover the same cell?
+Q?
+
+Will Boyd
+
+Silky smooth css
+
+Compositor layer
+
+easy on the gpu
+In devtools
+
+( go to rendering> layer borders check-box)
+
+
+typescale.com
+
+Typography comparison site
+Keith J. Grant
+use a scalar to adjust reduction expansion of typography
+
+:root: a selector that refers to the html.
+
+vmin
+vmax
+
+Lea Verou
+css variables
+
+-- syntax
+--color: #f06
+color: var(--color);
+
+--corners: 20px;
+
+css var function supports a second argument (with which you can employ a fallback);
+
+Fallbacks can be daisychained.
+
+CALC
+
+Sara Sueidan
+try to use 80% of the design using 20% of css
+flexible typography with css locks
+
+"I love svg because it's both an image format and a document format".
+
+Scrn readers read all caps as EACH LETTER E-A-C-H L-E-T-T-E-R.
+
+provide a skip-to-main content link, because useer has to tab through all of the crap above the fold before
+getting to the real stuff.
+
+Henri
+perf.
+Kyle Simpson
+
+Images are the lowest hanging fruit when it comes to performance.
+
+Herni Helvetica
+unflash
+
+2016 : avg page wieight 2.4mb
+retina
+
+opensignal.com
+
+https://wpostats.com/
+
+perf = conversion
+
+ExifData
+Stripping it.
+image cdns
+
+
+the tao of web design.
+
+MapCSS
+
+Sass Belief: css should look like css
+(sass should look like sass)
+
+——
+For profile & nav button sprites that splash
+
+Amelia said to look up 
+
+dudley story
+selectively calling images
+
+Use three images and work the opacities.

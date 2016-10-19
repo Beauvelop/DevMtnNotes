@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+    <html>
+
+    <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css" media="screen" title="no title">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet">
+    <title>Tuts+JsFundNotes</title>
+    </head>
+
+    <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <h1 class="wh">test section</h1>
+    <h2 id="mytxt"></h2>
+<script type="text/javascript">
+    $(document).ready(function() {
+// (function() {
+'use strict';
+
+var pizza = {
+        crust: "thick",
+        toppings: ["pepperoni", "mushrooms"],
+        size: "large"
+    };
+    //
+    // console.log(["how","are","you?"].toString());
+var pt = Object.prototype.toString.call(pizza.toppings);
+console.log(pt);
+});</script>
+
+    <hr><h1 class="teal ctr">Tuts+JsFundNotes</h1>
+<pre>
+<div class="box"><h3 class="ivr">Tuts+ JS Fundamentals Ch6: Data-types</h3>
+    <div class="squatbox lemon">
+    Truthy and Falsey
+    Data-types
+    Difference between composite data-types
+    </div>
+    <div class="squatbox2">
+        The 6 Falsey Values are:
+        <div class="ans teal">false</div>
+        <div class="ans teal">0</div>
+        <div class="ans teal">''</div>
+        <div class="ans teal">null</div>
+        <div class="ans teal">undefined</div>
+        <div class="ans teal">NaN</div>
+    </div>
+    Note: Nan does <i>not</i> equal NaN
+    We use isNan(); to check for is not a number.
+
+    <div class="compact2"><h3 class="ctr ivr">** QUICK QUIZ **</h3>
+    What are the 5 primitive types?</h1>
+    <b class="bldk">REMEMBER "NO SWEET BUNS!" --- "NO SWEET BUNS!"</b>
+    <h3 class="ans">Number, String, Boolean</h3>
+    <b class="bldk">ALSO "UNs are UNIQUE!"</b>
+    <h3 class="ans">Undefined, Null (SPECIAL data types)</h3>
+    <hr>
+    <b class="bldk">AOs types "Hey-o-oh!"</b>
+    <h3 class="ans">Arrays, Objects (COMPOSITE data types)</h3>
+    </div>
+
+
+    <div class="box"><span class="ltgr">One difference between composite data-types</span>
+
+    <span class="ans ivr">Arrays are containers for multiple values </span>
+    <span class="ans ivr">Objects are containers for key-value pairs </span></div>
+    <hr>
+
+<h3 class="ivr">Tuts+ JS Fundamentals Ch7: Operators</h3>
+    <div class="squatbox lemon">
+    Prefix Mode vs Postfix Mode
+    </div>
+    Postfix:
+    <div class="squatbox2">The expression returns the value, then increments it.
+    </div>
+    <div class="innerboxN1">
+    var postfix = 5;
+    var prefix = 5;
+    console.log("first pf = " + postfix<b>++</b>);
+    console.log("second pf = " + postfix);
+    <img src="img/postfix.png" alt="pf" />
+    <span class="reddrk">Expressions returns a different num
+    than the actual value that has been
+    incremented</span>
+    </div>
+    The prefix variables do NOT suffer from this subtle issue.
+    <div class="innerboxN1">
+    console.log("first preF= " + ++prefix);
+    console.log("second preF= " + prefix);
+    <img src="img/prefix.png" alt="" />
+    <span class="reddrk">The value is incremented or
+    decremented, and THEN returned.</span>
+    </div>
+
+    This confusion leads to off-by-one errors that are never fun. :(
+    So, avoid them wherever possible.
+    <div class="box"><span class="ltgr">Of course there is addition assignment:</span>
+    counter+= 2;<br><br><span class="ltgr">But there's also:</span>
+    Multiplication Assignment : counter*= 4;
+    Division Assignment: counter/= 6;
+    Modulus Assignment: counter%= 4; <span class="lemon">COOL! --Who Knew?</span>
+    </div>
+    <div class="innerboxN">
+    1 == true;
+    <i>// true</i>
+    1 === true;
+    <i>// false!</i>
+    </div>
+    What's going on?
+
+    <b>Type coercion.</b>
+    No type coercion takes place in strict equality comparison.
+    <div class="innerboxN">
+    console.log(2 > "1");
+    <i class="ans">// true</i>
+    console.log(2 > "Hello!");
+    <i class="ans">// false</i>
+    </div>
+    <i>Why? Because</i>
+    <span class="ans">if the str value can be interpreted as a number
+    it will be. If not, it will be the value NaN</span>
+
+    <i>The true result of the second line of code is</i>
+    <span class="ans"> NaN. And 2 is not greater than NaN</span>
+    <hr>
+
+<h3 class="ivr">Tuts+ JS Fundamentals Ch#9 Operators (cont.)</h3>
+    <div class="innerboxN">
+    what does <i>+true;</i>return?
+    // <div class="ans b"> 1</div>
+    <i>typeof true; ?</i>
+    // <span class="ans b">boolean</span>
+    <i>typeof []?</i>
+    // <span class="ans b">object</span>
+    <i>typeof null?</i>
+    // <span class="ans b">object
+    <span class="wh">This is due to a bug
+    and is maintained for
+    backwards compatibility</span></span>
+    </div>
+    This will blow your mind.
+    <div class="innerboxW">
+    <code>true && 1</code>
+    // <span class="ans b">1
+    <span class="reddrk sm">Interprets the last operand</span></span>
+    <code>true && false</code>
+    // <span class="ans b">false
+    <span class="reddrk sm">Interprets the last operand</span></span>
+    <code>!1</code>
+    // <span class="ans b">false
+    <span class="reddrk sm">I don't know why</span></span>
+    <code>!(true && 1)</code>
+    // <span class="ans b">false
+    <span class="reddrk sm">Interprets the last operand</span></span>
+    <code>!!(true && 1)</code>
+    // <span class="ans b">true
+    <span class="reddrk sm">!! converts it to a true boolean</span></span>
+    <code>false && false</code>
+    // <span class="ans b">false
+    <span class="reddrk sm">The first operand is evaluated.
+    If false, the operation is aborted and returns "false".
+    </span><span class="teal">This is called "short-circuiting"</span></span>
+    <hr><div class="ltbg gr ctr"><h2>The comma IS an operator!</h2></div>
+    <code>console.log('compound operator'), 5 + 5;</code>
+    <span class="ans b"> // compound operator
+    // 10
+    <span class="reddrk">This is uncommon.</span>
+    <span class="teal">Only the last operation is evaluated</span>
+    </span>
+    <code>alert('Look Down!'), 600 + 100</code>
+    <span class="ans b"> alert executes and 700 appears
+    after clicking OK.
+</div><hr>
+
+<h3 class="ivr">Tuts+ JS Fundamentals Ch#10 Objects</h3>
+    <span class="ltgr">In Wiley, we learned to distinguish Literals from Constructors</span>
+    <div class="box"><span class="ivr">
+    Arrays:
+    <div class="squatbox2">
+    var msgParts = new Array[]; <span class="ivr">--"Array Constructor"</span>
+    var msgParts = []; <span class="ivr">--"Array Literal Notation"</span>
+    </div>
+    Objects:
+    <div class="squatbox2">
+    var car = new Object();<span class="ivr">--"Object Constructor"</span>
+    car.engine = "V8";
+    car.topSpeed = "195mph";
+    <hr>
+    var car = {<span class="ivr">     -- "Object Literal"</span>
+        engine: "V8",
+        topSpeed: "195mph",
+        getFacts: function() {
+            return this.engine + " : "+ this.topSpeed;
+        }
+    };</div></span></div>
+    Strings are commonly created as "string literals".
+    <div class="squatbox2">
+    var myLitString = "Hi There!";<span class="ivr">--"String Literal"</span>
+    </div>
+    But in truth, .js treats this as an object when we 'operate' on it with methods.
+
+    We can create this string as an object as well!
+    <div class="squatbox2">
+    var myObjString = <span class="gr">new</span> String("Hi There!");
+
+    <span class="ivr">(string created with a "String Object Constructor")</span>
+    <hr>
+    simply entering the variable <i>myObjStr</i> returns:
+    <span class="lemon">
+        String {0: "H",
+                1: "i",
+                2: " ",
+                3: "T",
+                4: "h",
+                5: "e",
+                6: "r",
+                7: "e",
+                8: "!",
+                length: 9,
+                [[PrimitiveValue]]: "Hi"}</span>
+    <hr>
+    <i>typeof</i> returns: <img src="img/strObj.png" alt="" /><hr>
+    <i>myObjstr.valueOf();</i> returns: <img src="img/strVal.png" alt="" />
+
+    </div>
+    Anyway, it is very inadvisable to create primitives in this way.
+    <hr>
+
+<h3 class="ivr">Tuts+ JS Fundamentals Ch#11 Functions</h3>
+    <div class="squatbox lemon">
+    Function Expressions
+    Function Hoisting
+
+    </div>
+    <div class="ltbg">
+    <div class="dkbg ivr">function funky(base, drums) {
+    if (base && drums) {
+        alert("Get down, get funky");
+    } else {
+        alert("Sorry. You can't get down, get funky.");<br>}</div>
+    This form of defining a function is called...
+    <div class="ans ivr">
+        A "Function declaration"
+    </div>
+    The (base, drums) params of the function "funky" are called
+    <div class="ans ivr">
+        "The Function Signature"
+
+    This is the ORDER and AMOUNT of args that a function takes.
+    </div>
+    <div class="dkbg ivr">var myFunk = function() {
+    alert("Get down, get funky");<br>}</div>
+    A function placed upon a variable is called:
+    <div class="ans ivr">
+        A function expression
+
+    These are incredibly useful in "Function Hoisting".
+
+    <span class="lemon">FUNCTION EXPRESSIONS ARE NOT HOISTED!</span>
+    </div>
+    The be clear:
+    <div class="dkbg ivr">var fun = function() {
+        return "this is fun!";<br>}
+    </div>
+    "fun" is the name of the <b>Variable</b> & not the name of the function itself.
+
+    How is this function invoked?
+    <div class="ans">
+    fun<span class="gr">();</span>
+    </div>
+    </div>
+
+    <span class="ltgr">Variables are processed before any other lines of code.
+
+    Therefore, variables in the middle of a function body are "visible" at <thead>
+    top of the function.
+    <span class="lemon">Javascript "Hoists" variables to the top of the scope.</span>
+    </thead></span>
+    <div class="box"><span class="ivr">
+    Let's take a look:
+    <div class="squatbox2">
+    console.log(sayHi);
+    var sayHi = "Hi";
+    This returns: <span class="ans commentxt">  // undefined
+
+    </div><span class="ans gr sm">Yes, it knows of the variable but has no value to provide.</span>
+
+
+    (When no variable is known, it gives us an error.)
+    <div class="squatbox">
+    console.log(undeclaredHi);
+    This returns: <span class="ans reddrk sm dkbg">  // Uncaught reference error...</span>
+    </div>
+    </div>
+    <div class="ltbg">
+    <code>We can also define functions so they fire automatically</code>
+    This is done by: <span class="ans wh">Wrapping them in parentheses</span>
+
+    <div class="dkbg ivr"><span class="gr">(</span>function youRock() {
+        alert("You Rock!");<br>}<span class="gr">)()</span>;
+    <span class="sm wh">--The <span class="gr">()</span> are needed to fire this self-invoking function</span></div>
+    You can do THE SAME THING if you prepend a UNARY OPERATOR to the function.
+    You WONT need parentheses!
+    <div class="dkbg ivr"><span class="gr">!</span>function youRock() {
+        alert("You Rock!");<br>}<span class="gr">()</span>;
+    <span class="sm wh">You will need the <span class="gr">()</span> to fire the function though.</span></div>
+
+    This second format is known as...<span class="ans ivr">"Leading BANG syntax"</span>
+
+    These are often used when devs wish to take advantage of
+    Javascript's ASI ("automatic semi-colon insertion").
+
+    <code class="pinkish ctr">This is subject of much debate.</code>
+
+    </div><hr>
+
+<h3 class="ivr">Tuts+ JS Fundamentals Ch#12: Scope</h3>
+    <div class="squatbox ivr">
+    Properties of <code class="wh">window</code>
+    .href
+    .location
+    "Leaky Code"
+    </div>
+
+    <div class="box"><span class="wh">window.location;
+    returns</span><br><span class="mango sm">Location {hash: "", search: "", pathname: "/tuts%2BjsFun/tutsPlusJsFundamentNotes.html", port: "8080", hostname: "127.0.0.1"…}</span></div>
+
+    <div class="squatbox2">window.location.href;
+    returns<br><span class="mango">"http://127.0.0.1:8080/tuts%2BjsFun/tutsPlusJsFundamentNotes.html"</span></div>
+
+    <span class="ltgr"><i>href</i> = "Hypertext reference" it can be
+            -a relative URL,
+            -an absolute URL,
+            -a target within a page or
+            -a script (like href="javascript:alert('Hello');")
+
+    <i>location</i> = a window object that contains information about the URL</span>
+
+
+    <div class="box"><span class="ivr">Leaky code
+    Code that creates variables in the global scope.
+
+    This is avoided by wrapping all of our variables in an immediately invoked function </span></div>
+    <hr>
+
+<h3 class="ivr">Tuts+ JS Fundamentals Ch#13: this</h3>
+    <div class="squatbox lemon">
+    'use strict';
+    this located in a custom object
+    this located in a constructor function
+    </div>
+    <i>'use strict';</i>
+    --throws silent errors
+    --prevents accidental creation of globals (when omitting <i>var</i>)
+    <div class="compact3"><span class="chtitle">Here is a function as a constructor</span>
+    <span class="commentxt">'use strict';</span>
+    function Person(name) {
+        this.name = name;
+    }
+    var susan = new Person("Susan");
+    alert(susan.name);
+    <div class="squatbox2">susan here is an <i>instance</i> of the Person object</div>
+
+    </div>
+
+    <div class="innerbox2">
+    <span class="ltgr b">1)</span> If <i>this</i> is inside of a method that is part of a custom object...
+    <div class="dkbg">
+    var car = {
+        color: "red",
+        sound: function() {
+            this.horn = "vroom!";
+            return this.horn;
+        }
+    }
+    console.log(car.color);  <i>// red</i>
+    console.log(car.sound());  <i>// honk!</i></div>
+
+    Then, <i>this</i> points to the custom object
+    <hr>
+
+    <span class="ltgr b">2)</span> If <i>this</i> is inside of a constructor function...
+
+    <div class="dkbg">function Person(name) {
+        this.name = name;
+    }
+
+    var bob = new Person("Bob");
+
+    document.write(bob.name);   <i>// Bob</i></div>
+
+    <i>This</i> points to the instance created by the function
+    </div>
+    <div class="jsbox"><span class="reddrk b">What to remember when you get [object Object]</span>
+    var shape = {
+        kind: 'triangle',
+        color: 'green',
+        size: 'medium',
+        animation: 'none'
+    };
+
+    document.write(shape) gives us: [object Object]<hr>
+    <code>Basically, the spec says create a string like the following:
+    <span class="reddrk b">"[object " + InternalClassName + "]"</span>
+
+    <span class="underline">InternalClassName</span> is the native constructor for the object, "Object" in your case.
+
+    The first is lowercase because the spec says use that string, the second is upperCase <span class="underline">because that is the name of the native constructor</span></code>.
+
+    <div class="box">Bonus:
+        A nice link to JS is sexy
+        <a href="http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/
+">"this with clarity"</a></div></div>
+    <hr>
+<h3 class="ivr">Tuts+ JS Fundamentals Ch#14 ternaries</h3>
+    <div class="squatbox lemon">
+    Ternary operator
+    </div>
+    <span class="ltbg ltgr">"Ternary" - Comprised of three parts. </span>
+
+    <div class="box">
+    Ternary is a special operator that takes 3 operands:
+    <div class="squatbox2">
+    <span class="mango b">expression to evaluate</span>  ?  <span class="mango b">if true</span>  :  <span class="mango b">if false</span><hr>
+    <span class="mango">20%2 === 0</span>  ?  <span class="mango">alert("even")</span>  :  <span class="mango">alert("odd");</span></div>
+    <div class="innerboxW"><code>var x = 4;<br>var y = 2;<br>x - (y * y) <span class="reddrk b">?</span> alert("Positive!") <span class="reddrk b">:</span> alert("Zero or Less!");</code>
+    <br><b>// Zero or Less!</b></div>
+    Ternaries are really convenient to put code onto one line.
+
+    They can reduce readability, however, and should be used with caution.
+    </div>
+
+<hr>
+<h3 class="ivr">Tuts+ JS Fundamentals Ch#15: Switch Statements</h3>
+    <div class="squatbox lemon">
+    Switch Statements
+    break;
+    </div>
+
+    <div class="compact">function translate(word) {
+    switch (word) {
+        case 'hello':
+            console.log("Bon Jour!");
+            break;
+        case 'brother':
+            console.log("Frere");
+            break;
+        case 'Wonderful':
+            console.log("Formidable!");
+            break;
+        default:
+            console.log("Hmm. Dunno " + word);
+            break;
+    }<br>}<br><br>translate("hello");     <code class="reddrk">// Bon Jour!</code></div>
+
+<hr>
+<h3 class="ivr">Tuts+ JS Fundamentals Ch#16 & Ch#17: Loops</h3>
+    <div class="innerboxN">for<br>for in<br>while<br>do while<br><b>.hasOwnProperty();</b></div>
+
+    <div class="box ltbg"><span class="teal">The for loop</span>
+
+    var weeks = ['mon', 'tues', 'wed', 'thur', 'fri'];
+        for (var x = 0; x < weeks.length; x++) {
+            console.log(weeks[x] + ". ")
+        }
+    <i>// mon. tues. wed. thur. fri.</i></div>
+    <div class="squatbox2 med">
+    var shape = {
+
+      kind: 'triangle',
+
+      color: 'green',
+
+      size: 'medium',
+
+      animation: 'none'
+
+    };
+
+
+    <span class="blLite">for</span> (<span class="ivr">var </span>prop <span class="blLite">in</span> shape) {
+
+        console.log(shape[prop]);
+
+    }    <span class="commentxt">// triangle green medium none</span>
+
+    </div>
+    It's important to filter out all of the built-in key-value pairs and meta-information about an object.
+
+    NB: "Functions have prototypes. Objects have __proto__ s."
+
+    <code class="gr">We should ALWAYS perform a check inside the block</code>
+    <div class="innerboxN">if(<i>object</i>.hasOwnProperty(<i>prop</i>)) {
+        // body of loop
+    }</div>
+    So-- Properly written...
+    <div class="squatbox2 med">
+    <span class="blLite">for</span> (<span class="ivr">var </span>prop <span class="blLite">in</span> shape) {
+
+        if (shape<span class="warn">.hasOwnProperty(</span>prop<span class="warn">)</span>) {
+
+            console.log(shape[prop]);
+        }
+
+    }    <span class="commentxt">// triangle green medium none</span>
+
+    </div>
+    <hr>
+    2 More Loops
+    <span class="chtitle">
+    while loop
+    do while loop</span>
+    <div class="innerbox2">    <div class="dkbg">The while loop</div>
+    <code>  var limit = 4;
+    while (x <= limit) {
+        console.log("x is: " + x);
+        x++;
+    }
+    <img src="img/limit.png" alt="limit" /></code></div>
+
+
+    <span class="ivr">The first expression <i>WHETHER TRUE OR FALSE</i> always runs the loop</span>
+    <div class="innerbox2">    <div class="dkbg">The do while loop</div>
+    <code>  var x = 5;
+    var y = 0;
+    do {
+    console.log(x + " is greater than " + y);
+    x--;
+    } while (x > y);
+    <img src="img/dowhile.png" alt="limit" /></code></div>
+    <hr>
+
+<h3 class="ivr">Tuts+ JS Fundamentals Ch#20 Timers</h3>
+    <div class="squatbox lemon">
+    setTimeout
+    setInterval
+    clearTimeout
+    clearInterval
+    </div>
+    <code class="warn">When using <i>setTimeout</i> Never pass a string for opsec reasons</code>
+
+    <div class="compact2 ctr">setTimeout(function(){ alert("Seven"); }, 7000);
+
+    </div>
+    <div class="squatbox2"><span class="mango sm">Here we're passing a function name as 1st argument.</span>
+
+    function ouch() {
+        alert("ouch!");
+    }
+
+    setTimeout(<span class="mango">ouch</span>, 7000);
+
+    <span class="mango sm">Note there is no <i>"()"</i>--just the name</span>
+    </div>
+    <span class="lemon">If you want to pass args to the function...Use a function expression!</span>
+    <div class="squatbox2"><span class="mango sm">Using <span class="blLite">a function expression</span> & passing <i>args</i> to the function</span>
+
+    var ouch = function(reason) {
+
+        alert("ouch!" + reason);
+
+    }
+
+
+    setTimeout(<span class="blLite">function() {
+
+        <span class="wh">ouch(<i>"--that's HOT!"</i>);</span>
+
+    }</span>, 7000);
+    </div>
+    <span class="lemon"><i>setInterval</i> has identical syntax and simply repeats itself</span>
+
+    So, how to we stop a <i>setInterval</i> or a <i>setTimeout</i> ?
+    <div class="squatbox">clearTimeout<br>clearInterval</div>
+
+    Here, we have a simple setInterval:
+    <div class="squatbox2">
+    'use strict';
+    function heartBeat() {
+
+        console.log("thump, thump");
+    }
+
+    setInterval(heartBeat, 2000);
+    </div>
+    1) We set up a timer with <i>setInterval();</i>
+    2) Increment that sucker within the function.
+    3) Set up an if condition.
+    4) Insert <i>clearInterval</i> feeding it an <span class="ltgr">identifier for the interval</span>--done.
+    <div class="squatbox2">
+    var counter = 0;
+
+    function <span class="blLite">heartBeat</span>() {
+
+        console.log("thump, thump");
+
+        counter+= 1;
+
+        if (counter === 10) {
+            <span class="ivr">clearInterval</span>(<span class="ltgr">interval</span>);
+        }
+
+    }
+
+    var <span class="ltgr">interval</span> = setInterval(<span class="blLite">heartBeat</span>, 2000);
+    </div>
+    <h3 style="chtitle">You can also put an if statement if (x === 1){break;} to stop it.</h3><hr>
+
+<h3 class="ivr">Tuts+ JS Fundamentals Ch#22: Working with Strings</h3>
+    <div class="squatbox lemon">
+    Type coercion
+    <span class="underline">String Properties & Methods</span>
+    length; <i>(property)</i>
+
+    <span class="wh">split();
+    indexOf();
+    lastIndexOf();
+    toUpperCase(); toLowercase();
+    substring();
+    trim();</span>
+    </div>
+    A "string literal" is coerced, by javascript, into "wrapper objects" so as to access properties or methods on that string literal.
+
+    This is true for all primitives.
+
+    <code class="sm blLite">[remember: "No Sweet Buns"] <i>N</i>ums, <i>S</i>trings, <i>B</i>ooleans </code>
+
+    .length();
+    <div class="cssbox"><code class="bldk">
+    var feeling = "I feel wonderful!";
+    <i>How many characters?</i>
+    feeling<span class="reddrk">.length;</span>
+    // 17
+    </code></div>
+
+    .split();
+    <div class="cssbox"><code class="bldk">
+    var feeling = "I feel wonderful!";
+    <i>String into an array.</i>
+    feeling<span class="reddrk">.split(" ");</span>
+    // ["I", "feel", "wonderful!"]
+    </code><div class="dkbg sm">Because we used the " " to split on, we separated the words</div>
+    </div>
+    .indexOf();
+    <div class="cssbox"><code class="bldk">
+    var feeling = "I feel wonderful!";
+    <i>Find a string within this string</i>
+    feeling<span class="reddrk">.indexOf("w");</span>
+    // 7
+    </code><div class="dkbg sm">Note: This finds the FIRST OCCURENCE of the character.</div>
+    </div>
+    <div class="squatbox2"><span class="redlite">NB:</span><span class="gr"> indexOf() can take a second arg indicating
+    the startpoint of the search.</span>
+
+    feeling.indexOf("e", 4);<span class="commentxt"> // 4</span>
+    (if not found, it returns // -1 --which is falsey)
+    </div>
+    .lastIndexOf();
+    <div class="cssbox"><code class="bldk">
+    var feeling = "I feel wonderful!";
+    <i>Find a string within this string</i>
+    feeling<span class="reddrk">.lastIndexOf("l");</span>
+    // 15
+    </code><div class="dkbg sm">Note: This finds the LAST OCCURENCE of the character.</div>
+    </div>
+    <div class="squatbox2"><span class="redlite">NB:</span><span class="gr"> indexOf() can take a second arg indicating
+    the startpoint of the search.</span>
+
+    feeling.lastIndexOf("e", 2);<span class="commentxt"> // -1</span>
+    (if not found, it returns // -1 --which is falsey)
+    </div>
+    .toUpperCase(); / .toLowerCase();
+    <div class="cssbox"><code class="bldk">
+    var feeling = "I feel wonderful!";
+    <i>Convert to caps</i>
+    feeling<span class="reddrk">.toUpperCase();</span>
+    // I FEEL WONDERFUL!
+    </code>
+    </div>
+    .substring();
+    <div class="cssbox"><code class="bldk">
+    var feeling = "I feel wonderful!";
+    <i>select a portion of the string</i>
+    feeling<span class="reddrk">.substring(2, 6);</span>
+    // feel
+    <div class="squatbox"><span class="sm pinkish">2nd arg must be <i>after</i> last desired letter</span>
+
+    <code>"I feel wonder<i>f</i>ul!"
+
+    feeling.substring(7, <i>13</i>);</code><span class="commentxt"> // wonder</span>
+    </div></code>
+    <div class="dkbg sm">Only one arg specifies startpoint and goes to the end.</div>
+    </div>
+    .slice();
+    <div class="cssbox"><code class="bldk">
+    var feeling = "I feel wonderful!";
+    <i>Alternate way to select part of a string</i>
+    feeling<span class="reddrk">.slice(7);</span>
+    // wonderful!
+    </code><div class="dkbg sm">With one argument, this works the same as .substring();</div>
+    feeling<span class="reddrk">.slice(7, 13);</span>
+    // wonder
+    </code><div class="dkbg sm">With two args it's function is identical to .substring();</div>
+    <div class="squatbox"><span class="sm pinkish">The magic of .slice();
+    Selection begins at the end of the string with negative numbers</span>
+
+    <code>"I feel <i>w</i>onder<i class="blLite">f</i>ul!"
+
+    feeling.slice(<i>-10</i>, <i class="blLite">-4</i>);</code><span class="commentxt"> // wonder</span>
+    </div>
+
+
+    </div>
+    .trim();
+    <div class="cssbox"><code class="bldk">
+    var feeling = "  I feel wonderful!  ";
+    <i>delete spaces</i>
+    feeling<span class="reddrk">.trim();</span>
+    // I feel wonderful!
+    <div class="squatbox2"><span class="redlite">NB:</span>Trim is simple:
+    It just snips off the spaces at both ends of a string</span></div>
+    </code></div>
+    <hr>
+
+<h3 class="ivr">Tuts+ JS Fundamentals Ch#24: Arrays</h3>
+    <div class="squatbox lemon">
+    <span class="underline"><span class="blLite">Mutator Methods</span> vs. <span class="pinkish">Accessor Methods</span></span>
+
+    <span class="blLite">push();
+    unshift();
+    pop();
+    shift();
+    splice();
+    reverse();
+    sort();</span>
+    <span class="pinkish">
+    indexOf()
+    join();
+    slice();</span>
+    </div>
+    <div class="box"><span class="blLite">Mutator Methods change the underlying Array Permanently </span>
+    <span class="pinkish">Accessor Methods change nothing</span></div>
+
+    <h3 class="dkbg ivr ctr">var mean = ["Mongo", "Ember", "Angular", "Node"];</h3>
+    .push();
+    <div class="htmlbox"><code class="bldk">
+    <i>add to the end</i>
+    mean<span class="gr">.push("Gulp");</span>
+    console.log(mean);
+    // ["Mongo", "Ember", "Angular", "Node", "Gulp"]</code>
+    </div>
+    .unshift();
+    <div class="htmlbox"><code class="bldk">
+    <i>add to the start</i>
+    mean<span class="gr">.unshift("Sass");</span>
+    console.log(mean);
+    // ["Sass", "Mongo", "Ember", "Angular", "Node"]
+    </code></div>
+    .pop();
+    <div class="htmlbox"><code class="bldk">
+    <i>clip last</i>
+    mean<span class="gr">.pop();</span>
+    console.log(mean);
+    // ["Mongo", "Ember", "Angular"]
+    </code></div>
+    .shift();
+    <div class="htmlbox"><code class="bldk">
+    <i>clip first</i>
+    mean<span class="gr">.shift();</span>
+    console.log(mean);
+    // ["Ember", "Angular", "Node"]
+    </code></div>
+    .splice();
+    <div class="htmlbox"><code class="bldk">
+    <i>replace or erase items from the Array</i>
+    <div class="squatbox2">One argument removes all starting at the index</div>
+    mean<span class="gr">.splice(2);</span>
+    console.log(mean);
+    // ["Mongo", "Ember"]
+    <div class="squatbox2">2nd arg is number of items to remove</div>
+    mean<span class="gr">.splice(2, 1);</span>
+    console.log(mean);
+    // ["Mongo", "Ember", "Node"]
+    <div class="squatbox2">3rd arg is items to insert</div>
+    mean<span class="gr">.splice(2, 1, "Grunt", "React", "Greensock");</span>
+    console.log(mean);
+    // ["Mongo", "Ember", "Grunt", "React", "Greensock", "Node"]
+    </code></div>
+    .reverse();
+    <div class="htmlbox"><code class="bldk">
+    <i>reverse Array</i>
+    mean<span class="gr">.reverse();</span>
+    console.log(mean);
+    // ["Node", "Angular", "Ember", "Mongo"]
+    </code></div>
+    .sort();
+    <div class="htmlbox"><code class="bldk">
+    <i>sort Array alphabetically</i>
+    mean<span class="gr">.sort();</span>
+    console.log(mean);
+    // ["Angular", "Ember", "Mongo", "Node"]
+    </code></div>
+    <span class="ltgr">All the quirks of UNICODE apply to sort(); so results may vary.
+    This includes numbers as well as lower case v. uppercase letters. </span>
+    <div class="squatbox2">
+    var nums = [60, 7, 1000, 50];
+    console.log(nums.sort());
+
+    // [1000, 50, 60, 7]
+    </div>
+    <div class="innerbox4">
+    Dan Wellman refers to this as the <span class="ivr">"comparison function".</span>
+
+    var nums = [60, 7, 1000, 50];
+
+    nums.sort(function(a, b) {
+        if (a < b) {
+            return -1;
+        } else if (a === b){
+            return 0;
+        } else {
+            return 1;
+        }
+    });
+
+    console.log(nums);<span class="commentxt"> // 7, 50, 60, 1000</span>
+</div>
+
+<hr><span class="blLite">Accessor Methods</span><hr>
+    .join();
+    <div class="htmlbox"><code class="bldk">
+    <i>Array to a string</i>
+    mean<span class="gr">.join();</span>
+    console.log(mean);
+    // ["Mongo", "Ember", "Angular", "Node"]<span class="redlite">(!)
+    <div class="dkbg sm">Remember: <i>accessor methods</i> make temporary modifications</div>
+    So...</span>
+    console.log(mean<span class="gr">.join()</span>);
+    // Mongo,Ember,Angular,Node</code>
+    <div class="dkbg"><code class="commentxt">join() with no args renders members of array divided by commas.
+    <br><b>join("")</b> (with an empty string) renders all with no spaces between them.
+    <br><span class="bldk">// MongoEmberAngularNode</span></code></div></div>
+    .indexOf(); / .lastIndexOf();
+    <div class="htmlbox"><code class="bldk">
+    <i>Find the index of a member of the array</i>
+    mean<span class="gr">.indexOf("Ember");</span>
+    console.log(mean);
+    // ["Mongo", "Ember", "Angular", "Node"]<span class="redlite">(!)
+    <div class="dkbg sm">Remember: <i>accessor methods</i> make temporary modifications</div>
+    BUT...</span>
+    console.log(mean<span class="gr">.indexOf("Ember")</span>);
+    // <b>1</b></code></div>
+    .slice();
+    <div class="htmlbox"><code class="bldk">
+    <i>one arg specifies the index to start slicing from (inclusive)</i>
+    mean<span class="gr">.slice(2);</span>
+    console.log(mean);
+    // ["Mongo", "Ember", "Angular", "Node"]<span class="redlite">(!)
+    <div class="dkbg sm">Remember: <i>accessor methods</i> make temporary modifications</div>
+    BUT...</span>
+    console.log(mean<span class="gr">.slice(2)</span>);
+    // ["Angular", "Node"]
+    <hr>
+    <i>Negative slice nums count backwards & slice to the end.</i>
+    console.log(mean<span class="gr">.slice(-2)</span>);
+    // ["Angular", "Node"]
+    <i>2 args: sliced portion ends at the second arg exclusive</i>
+    console.log(mean<span class="gr">.slice(-3, -1)</span>);
+    // ["Ember", "Angular"]
+    </code></div>
+    <div class="jsbox3"><code class="pinkish">Slice Quiz:</code>
+
+    <code class="ltbg ivr">["Regex", "is", "clearly", "the", "work", "of", "Satan"];</code>
+
+    <span class="blLite">
+    console.log(regex.slice(3));
+    // <span class="wh ans sm"> ["the", "work", "of", "Satan"]</span>
+
+    console.log(regex.slice(-5, -2));
+    // <span class="wh ans sm"> ["clearly", "the", "work"]</span>
+
+    console.log(regex.slice(-3));
+    // <span class="wh ans sm">  ["work", "of", "Satan"]</span>
+
+    console.log(regex.slice(4));
+    // <span class="wh ans sm">  ["work", "of", "Satan"]</span>
+
+    console.log(regex.slice(0, -3));
+    // <span class="wh ans sm">["Regex", "is", "clearly", "the"]</span>
+    <div class="box">Bonus Round:
+    <hr><code class="pinkish sm">poem = ["Chin", "up!", "You'll", "drown", "a", "little", "slower."];</code><hr>
+    <i>What 4 ways could I slice just the word "drown"?</i>
+
+    <span class="blLite">slice(<i>+</i>arg, <i>+</i>arg) - <span class="ans wh">poem.slice(3, 4);</span></span>
+
+    <span class="blLite">slice(<i>+</i>arg, <i>-</i>arg) - <span class="ans wh">poem.slice(3, -3);</span></span>
+
+    <span class="blLite">slice(<i>-</i>arg, <i>-</i>arg) - <span class="ans wh">poem.slice(-4, -3);</span></span>
+
+    <span class="blLite">slice(<i>-</i>arg, <i>+</i>arg) - <span class="ans wh">poem.slice(-4, 4);</span></span>
+    </div>
+
+    </span>
+    </div>
+    <hr>
+
+<h3 class="ivr">Tuts+ JS Fundamentals Ch#24</h3>
+    <div class="squatbox lemon">
+    <span class="pinkish">Array Iterator Methods</span>
+
+    forEach();
+    every();
+    filter();
+    some();
+    map();
+    reduce();
+    reduceRight();
+    </div>
+
+    <code class="ltbg">var joke = ["two", "foos", "walk", "into", "a", "var"];</code>
+    <br>.forEach(); <span class="ltgr">template</span>
+    <div class="box3"><code class="bldk">
+    <i>iterate through each item</i>
+    joke<span class="gr">.forEach(<span class="commentxt">anon function(<span class="bldk">value, index</span>) {
+        console.log(<span class="bldk">value</span> + " is at " + <span class="bldk">index</span> + " of " + <span class="bldk">joke</span>);
+    }</span>);</span>
+    <span class="bldk">// two is at 0 of two,foos,walk,into,a,var
+    // foos is at 1 of two,foos,walk,into,a,var
+    // walk is at 2 of two,foos,walk,into,a,var
+    ...</span>
+    <div class="sm warn box">Anon func inside of forEach() takes 3 things:
+    It 'knows' the value,
+    the index
+    and the entire array.</div></code></div>
+    So, again...
+    <div class="squatbox2">joke.forEach(function(value, index) {
+    console.log(index + " is " + value);<br>});
+    <br>// 0 is two <br>// 1 is foos <br>// 2 is walk...</div>
+    <div class="compact2">* A second argument for Obj to be used as its 'this' object inside the callback function
+    <div class="redlite">I don't yet, understand this-9/16 </div></div>
+    <br>.every();
+    <div class="box3"><code class="bldk">
+    <i>Do all items in an Array satisfy a certain condition?</i>
+    <div class="box sm">var newJoke = ["two", "foos", "walk", "into", <i>1</i>, "var"];</div>
+    newJoke<span class="gr">.every(<span class="bldk">function(value, index) {
+        return typeof value === 'string';
+    }</span>);</span>
+
+    <span class="bldk">// <b>false</b></span>
+    <div class="squatbox2 dkbg">
+    for <i>every();</i> As soon as it returns a Falsey value,
+    the method returns <b>false</b>
+    </div>
+    <div class="innerbox4 sm">Like <b>forEach()</b>, the callback inside of <span class="gr b">.every()</span> is passed the same 3 args.
+    <span class="ivr">1. value
+    2. index
+    3. entire Array<span></div>
+    </code></div>
+    <span class="wh">Compare this to some();</span>
+    <br>.some();
+    <div class="box3"><code class="bldk">
+    <i>Do any items in an Array satisfy a certain condition?</i>
+    <div class="box sm">var newJoke = ["two", "foos", "walk", "into", <i>1</i>, "var"];</div>
+    newJoke<span class="gr">.some(<span class="bldk">function(value, index) {
+        return typeof value === 'string';
+    }</span>);</span>
+
+    <span class="bldk">// <b>true</b></span>
+    <div class="squatbox2 dkbg">
+    for <i>some();</i> As soon as it returns a Truthy value,
+        the method returns <b>true</b>
+    </div>
+    </code></div>
+    <br>.filter();
+    <div class="box3"><code class="bldk">
+    <i>Return an array (from this array) and filter out the crap!</i>
+    <div class="box sm">var notAllCrap = ["icecream", "crap", "money", "crap", "friendship", "crap"];
+    </div>
+    notAllCrap<span class="gr">.filter(<span class="bldk">function(value) {
+        return value !== 'crap';
+    }</span>);</span>
+    <span class="bldk">// <b>["icecream", "money", "friendship"]</b></span>
+    <div class="squatbox2 dkbg">
+    for <i>.filter();</i> As with others...
+    <div class="box">The callback is passed three things:
+    1) index
+    2) value
+    3) entire array.</div>
+    It ALSO has the optional second arg within the method that determines <i>this</i>!
+    </div></code></div>
+    <br>.map();
+    <div class="box3"><code class="bldk">
+    <i>Let's iterate and modify each item of an array</i>
+    <div class="box sm">var joke = ["two", "foos", "walk", "into", "a", "var"];</div>
+    <div class="ltbg">joke<span class="gr">.map(<span class="bldk">function(value) {
+        return value.toUpperCase();
+    }</span>);</span>
+    <span class="bldk">// <b>["TWO", "FOOS", "WALK", "INTO", "A", "VAR"]</b></span></div>
+    <span class="pinkish">The underlying Array is left unchanged.
+    This <b>.map()</b> method returns a new array.</span>
+    </code></div>
+
+    <br>.reduce();
+    <div class="box3"><code class="bldk">
+    <i>Return an array that performs math on all items in an array as operands</i>
+    <div class="box sm">var evens = [2, 4, 6, 8, 10];</div>
+    evens<span class="gr">.reduce(<span class="bldk">function(total, value) {
+        return total+= value;
+    }</span>);</span>
+    <span class="bldk">// <b>30</b></span>
+    <div class="squatbox2 dkbg"><div class="box">the callback for <i>.reduce();</i> can take up to four arguments
+    1) total
+    <span class="wh sm">(this is really the return val from previous func call--the running total)</span>
+    2) value
+    <span class="wh sm">(current array item)</span>
+    3) index of the item
+    3) source array</div>
+    *The first arg (<i>total</i> above) has no value when it starts.
+
+    <span class="ivr">We can manipulate this by adding a second arg TO THE METHOD.</span>
+    </div>
+    evens<span class="gr">.reduce(<span class="bldk">function(total, value) {
+        return total+= value;
+    }</span>, <span class="pinkish">10</span>);</span>    <span class="bldk">// <b>40</b></span>
+
+    <span class="pinkish">Here, the count starts from 10. So it returns 40</span>
+
+    There is a method <a class="underline" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/ReduceRight">reduceRight();</a> that performs this same operation "in reverse"
+    </code></div>
+    <h2 class="chtitle ctr"><hr>🔥Quiz Time💥<hr></h2>
+    When operating on values of keys in properties...
+    How do you tell the difference between an Array & an Object?
+
+    <div class="innerboxW">
+    The <b>typeof</b> operator returns <code><b>object</b></code> for both Arrays & Objects.
+    <h3 class="reddrk b ctr">BEFORE YOU SCROLL DOWN!</h3>
+    <div class="box">Methods exist on the Object.prototype <span class="teal sm">(HINT!)</span><br>that can be invoked to return the name (category) of the data-type of the value of each key</div>
+    <b>The answer is:</b>
+    console.log(<div class="ans">Object</div><div class="ans">.prototype</div><div class="ans">.toString</div><div class="ans">.call(<<span class="reddrk b">object.property</span>>)</div>);
+    <code class="b">var woman = {
+        face: ["happy", "flushed", "freckled"],
+        height: 7,
+        nose: "red"
+    };</code>
+    <div class="squatbox">
+        <code class="blLite sm">
+    woman.face;
+    Object.prototype.toString.call(woman.face);
+
+    woman.height;
+    Object.prototype.toString.call(woman.height);
+
+    woman.nose;
+    Object.prototype.toString.call(woman.nose);
+    </code>
+    console.log these and you get this:
+    <img src="img/woman.png" alt="" /></div>
+
+    </div>
+    So... again...<br>
+    <code class="dkbg wh">Object.prototype.toString.call();</code>
+    <br><hr>
+
+<h3 class="ivr">Tuts+ JS Fundamentals Ch#25 working with Instances of Objects</h3>
+    <div class="squatbox lemon">
+    Instance Methods and properties that are automatically inherited
+    constructor;
+    hasOwnProperty();
+    propertyIsEnumerable();
+    toString();
+    </div>
+    <div class="squatbox2">var pizza = {
+        crust: "thick",
+        toppings: ["pepperoni", "mushrooms"],
+        size: "large"
+    };</div>
+    <div class="innerbox4"><div class="innerboxN ctr">constructor;</div>
+    "What constructor function that created this object?"
+
+    console.log(pizza.constructor);
+    <span class="commentxt b">// function Object() { [native code] }  </span>
+    <sub class="mango">(The Object constructor)<i> capital "O"</i></span>
+
+    Objects, Arrays, Strings, Numbers also have this property.</sub></div>
+
+    <div class="innerbox4"><div class="innerboxN ctr">hasOwnProperty();</div>
+    "Does <i>myObject</i> have a <i>prop</i> as a defined own property?"
+
+    console.log(pizza.hasOwnProperty("toppings"));
+    <span class="commentxt b">// true  </span>
+    console.log(pizza.hasOwnProperty("constructor"));
+    <span class="commentxt b">// false  </span>
+    <sub class="mango">constructor is inherited from the prototype chain</sub></div>
+
+    <div class="innerbox4"><div class="innerboxN ctr">isEnumerable();</div>
+    "Does <i>myObject</i> have a <i>prop</i> that I can iterate over
+    with a <b>for in loop</b>?"
+
+    console.log(pizza.propertyIsEnumerable("size"));
+    <span class="commentxt b">// true  </span>
+    console.log(pizza.propertyIsEnumerable("constructor"));
+    <span class="mango b">// false  </span>
+    console.log(pizza.hasOwnProperty("toppings"));
+    <span class="commentxt b">// true  </span>
+
+    <sub class="mango">"own", defined properties are Enumerable by default
+                                            (bools, Nums, str, etc.)</sub></div>
+    <div class="innerbox4"><sub class="mango">All objects inherit a toString() method that returns
+    a string representation of the object.</sub><div class="innerboxN ctr">toString();</div>
+    "Computer! Give me a string representation of <i>myObject</i>!"
+
+    console.log(pizza.toString());<span class="commentxt">// [object Object]  </span>
+    <div class="squatbox2">[<span class="blLite">object</span><i>Object</i>]
+    This tells us that the object is an <span class="blLite">object</span>
+    and that it "extends" the <i>Object</i> constructor</div>
+    <span class="bldk">If we called this on an Array...</span>
+    console.log(["how","are","you?"].toString());
+    <span class="commentxt b">// how,are,you?  </span>
+
+    <span class="bldk">Nice, but is it a string or array or object⁉️</span>
+    <div class="squatbox2">var pt = Object.prototype.toString.call(pizza.toppings);</div>
+    console.log(pt);
+    <span class="commentxt b">// [object Array]  </span>
+    <div class="squatbox2">[<span class="blLite">object</span><i>Array</i>]
+    This tells us that the object is an <span class="blLite">object</span>
+    and that it "extends" the <i>Array</i> constructor</div>
+</div>
+
+
+
+
+</div></pre></div>
+    </body>
+</html>
+
+<!-- <h3 class="ivr">Tuts+ JS Fundamentals Ch#</h3>
+<div class="squatbox lemon">
+Each ELEMENT, PROPERTY & ATTRIBUTE is a node.
+so HTML TEXT and ATTRIBUTE (class, id, href, src, etc etc.) is a node.
+</div>
+        <div class="squatbox2">TweenLite<b>.to</b>(< <i>elem</i> >, < <i>time</i> >, {<i>attributes</i>});</div>
+    <div class="innerbox2">
+    code stuff
+    some more code stuff
+    </div>
+    <span class="ltgr">Placeholder Placeholder Placeholder </span>
+    <div class="box"><span class="ivr">Placeholder Placeholder Placeholder
+    Placeholder Placeholder Placeholder </span></div> -->

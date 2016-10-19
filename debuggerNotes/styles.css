@@ -1,0 +1,227 @@
+body {
+    color: rgb(143, 135, 135);
+    background-color: black;
+    font-size: 2.5vw;
+    font-family: "Source Code Pro", monospace;
+
+}
+.chtitle {
+    color: rgb(121, 47, 47);
+
+}
+.hilite1 {
+    color: ivory;
+    font-family: Corsiva;
+}
+.hilite2 {
+    color: #6bf57f;
+    font-family: "Source Code Pro", monospace;
+    /* font-weight: 700; */
+}
+.testbox {
+    width: 75vw;
+    margin: 1vw auto auto 2vw;
+    padding: 3%;
+    color: navy;
+    background-color: rgba(104, 133, 129, 1);
+    box-shadow: 10px 10px 25px black;
+    font-family: monospace;
+    font-size: 1.8vw;
+    font-weight: bold;
+}
+.squatbox {
+    line-height: 1vw;
+    width: 50vw;
+    padding-top: .5vw;
+    margin: auto 20vw 1vw 20vw
+}
+.compact {
+    color: wheat;
+    margin: auto 20vw;
+    font-family: "Source Code Pro", monospace;
+    font-size: 1.5vw;
+    padding: 2% 2% 1% 2%;
+    background-color: rgb(92, 127, 142);
+    width: 50;
+    border: 1px solid wheat;
+}
+/*wider compact box*/
+.compact-w {
+    color: black;
+    font-size: 1.3vw;
+    font-family: Helvetica;
+    margin: auto 15vw;
+    line-height: .8vw;
+    padding: 2% 2% 0% 2%;
+    background-color: rgb(92, 127, 142);
+    width: 50;
+    border: 1px solid white;
+}
+.txtbox {/*outer*/
+    /*position: relative;*/
+    width: 90vw;
+    margin: 1vw;
+    padding: 1%;
+    color: wheat;
+    border: 1px solid rgb(84, 39, 10);
+    background-color: rgba(39, 62, 50, 0.78);
+    font-family: sans-serif;
+    font-size: 2.5vw;
+    font-weight: lighter;
+    letter-spacing: 0.1vw;
+}
+.txtbox2 {
+    width: 90vw;
+    margin: 1vw;
+    padding: 2%;
+    color: rgba(164, 160, 136);
+    border: 1px solid coral;
+    background-color: rgba(40, 42, 44, .75);
+    font-family: sans-serif;
+    font-size: 2vw;
+    font-weight: lighter;
+    letter-spacing: 0.1vw;
+}
+.txtbox3 {
+    width: 90vw;
+    margin: 1vw;
+    padding: 2%;
+    color: rgba(255, 206, 166, 1);
+    border: 1px solid white;
+    background-color: rgba(45, 41, 41, 1);
+    font-family: sans-serif;
+    font-size: 2vw;
+    font-weight: lighter;
+    letter-spacing: 0.2vw;
+    /*position: absolute;*/
+}
+.innerbox {
+    width: 90vw;
+    margin: 1vw auto auto 2vw;
+    padding: 1%;
+    color: black;
+    border: 1px solid rgba(185, 185, 185, 0.68);
+    background-color: rgb(173, 88, 73);
+    box-shadow: 10px 10px 25px black;
+    font-family: "Source Code Pro";
+    font-size: 1.5vw;
+}
+
+.innerbox2 {
+    width: 75vw;
+    margin: 1vw 10vw auto 2vw;
+    padding: 1%;
+    color: black;
+    background-color: rgb(179, 168, 110);
+    box-shadow: 5px 5px 15px black;
+    font-family: "Lucida Console", sans-serif;
+    font-size: 2.5vw;
+}
+.innerbox3 {
+    width: 85vw;
+    margin: 1vw auto auto 2vw;
+    padding: 1%;
+    color: black;
+    border: 1px solid wheat;
+    background-color: indianred;
+    box-shadow: 10px 10px 25px black;
+    font-family: "Source Code Pro", monospace;
+    font-size: 1.7vw;
+    font-weight: 700;
+}
+.innerbox4 {
+    width: 75vw;
+    margin: 1vw auto auto 1vw;
+    padding: 1%;
+    color: deepskyblue;
+    border: 1px solid maroon;
+    background-color: dimgray;
+    box-shadow: 5px 5px 15px black;
+    font-family: "Source Code Pro", monospace;
+    font-size: 1.7vw;
+    font-weight: 400;
+}
+.greyBox {
+    width: 70vw;
+    margin: 1vw auto auto 1vw;
+    padding: 1%;
+    color: rgb(255, 234, 145);
+    background-color: rgb(144, 144, 144);
+    border: 1px solid white;
+    box-shadow: 5px 5px 15px black;
+    font-family: "Source Code Pro", monospace;
+    font-size: 1.7vw;
+    font-weight: 400;
+}
+.ans {
+    padding: 0;
+    color: rgb(59, 124, 51);
+    /*opacity     : 0;*/
+    -webkit-filter: blur(10px);
+    /*border      : 1px solid;*/
+    font-family: monospace;
+    display: inline;
+    font-size: inherit;
+    font-weight: bold;
+    opacity: 1%;
+    /*transition  : opacity 1s ease-in-out;*/
+}
+.ans:hover {
+    /*-webkit-filter: blur(0px);*/
+    animation: blurtxt .5s 1 forwards;
+}
+@-webkit-keyframes blurtxt {
+    0% {
+        -webkit-filter: blur(5px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+.ctr {
+    text-align: center;
+}
+code {
+    font-size: 1.8vw;
+}
+.wh {
+    color: #ffffe8;
+    font-weight: lighter;
+}
+.reddrk {
+    color: brown;
+}
+.redlite {
+    color: #ff3f45;
+}
+.mango {
+    color: rgb(120, 69, 22);
+}
+.blLite {
+    color: aqua;
+}
+.bldk {
+    background-color: rgb(30, 31, 41);
+}
+.pinkish {
+    color: rgb(237, 162, 162);
+}
+.lemon {
+    color: rgb(217, 202, 105);
+}
+.gr {
+    color: rgb(84, 120, 97);
+    font-weight: bolder;
+}
+.b {
+    font-weight: bold;
+}
+#stepping {
+    width: 60%;
+}
+#opt {
+    margin: auto;
+}

@@ -1,0 +1,203 @@
+body {
+    color: rgb(189, 180, 175);
+    background-color: rgb(101, 90, 84);
+    font-size: 2.5vw;
+}
+.chtitle {
+    color: coral;
+}
+.hilite1 {
+    color: ivory;
+    font-family: Corsiva;
+}
+.hilite2 {
+    color: teal;
+    font-family: "Source Code Pro", monospace;
+    /* font-weight: 700; */
+}
+.testbox {
+    width: 75vw;
+    margin: 1vw auto auto 2vw;
+    padding: 3%;
+    color: navy;
+    background-color: rgba(104, 133, 129, 1);
+    box-shadow: 10px 10px 25px black;
+    font-family: monospace;
+    font-size: 1.8vw;
+    font-weight: bold;
+}
+.compact {
+    color: wheat;
+    margin: auto 20vw;
+    line-height: 2vw;
+    padding: 2% 2% 1% 2%;
+    background-color: rgb(92, 127, 142);
+    width: 50;
+    border: 1px solid wheat;
+}
+/*wider compact box*/
+.compact-w {
+    color: black;
+    font-size: 1.3vw;
+    font-family: Helvetica;
+    margin: auto 15vw;
+    line-height: .8vw;
+    padding: 2% 2% 0% 2%;
+    background-color: rgb(92, 127, 142);
+    width: 50;
+    border: 1px solid white;
+}
+.txtbox {/*outer*/
+    /*position: relative;*/
+    width: 90vw;
+    margin: 1vw;
+    padding: 1%;
+    color: rgba(164, 160, 136);
+    border: 1px solid lightgreen;
+    background-color: rgba(0, 0, 0, 0.14);
+    font-family: sans-serif;
+    font-size: 2.5vw;
+    font-weight: lighter;
+    letter-spacing: 0.1vw;
+
+}
+.txtbox2 {
+    width: 85vw;
+    margin: 1vw;
+    padding: 2%;
+    color: rgba(164, 160, 136);
+    border: 1px solid coral;
+    background-color: rgba(40, 42, 44, 0.5);
+    font-family: sans-serif;
+    font-size: 2vw;
+    font-weight: lighter;
+    letter-spacing: 0.1vw;
+}
+.txtbox3 {
+    width: 80vw;
+    margin: 1vw;
+    padding: 2%;
+    color: rgba(164, 160, 136);
+    border: 1px solid lavender;
+    background-color: rgba(40, 42, 44, 0.5);
+    font-family: sans-serif;
+    font-size: 2vw;
+    font-weight: lighter;
+    letter-spacing: 0.1vw;
+}
+.jsbox {
+    width: 70vw;
+    margin: 1vw auto auto 2vw;
+    padding: 1%;
+    color: black;
+    background-color: rgba(214, 184, 174, 1);
+    box-shadow: 10px 10px 25px black;
+    font-family: "Source Code Pro";
+    font-size: 1.5vw;
+}
+
+.jsbox2 {
+    width: 75vw;
+    margin: 1vw 10vw auto 2vw;
+    padding: 1%;
+    color: black;
+    background-color: rgb(179, 168, 110);
+    box-shadow: 5px 5px 15px black;
+    font-family: "Lucida Console", sans-serif;
+    font-size: 2.5vw;
+    position: relative;
+}
+.jsbox3 {
+    width: 75vw;
+    margin: 1vw auto auto 2vw;
+    padding: 1%;
+    color: black;
+    background-color: indianred;
+    box-shadow: 10px 10px 25px black;
+    font-family: "Source Code Pro", monospace;
+    font-size: 1.7vw;
+    font-weight: 700;
+}
+.jsbox4 {
+    width: 75vw;
+    margin: 1vw auto auto 1vw;
+    padding: 1%;
+    color: deepskyblue;
+    border: 1px solid maroon;
+    background-color: dimgray;
+    box-shadow: 5px 5px 15px black;
+    font-family: "Source Code Pro", monospace;
+    font-size: 1.7vw;
+    font-weight: 400;
+}
+.greyBox {
+    width: 70vw;
+    margin: 1vw auto auto 1vw;
+    padding: 1%;
+    color: deepskyblue;
+    border: 1px solid maroon;
+    background-color: rgb(84, 69, 76);
+    box-shadow: 5px 5px 15px black;
+    font-family: "Source Code Pro", monospace;
+    font-size: 1.7vw;
+    font-weight: 400;
+}
+.ans {
+    padding: 0;
+    color: rgb(59, 124, 51);
+    /*opacity     : 0;*/
+    -webkit-filter: blur(10px);
+    /*border      : 1px solid;*/
+    font-family: monospace;
+    display: inline;
+    font-size: inherit;
+    font-weight: bold;
+    opacity: 1%;
+    /*transition  : opacity 1s ease-in-out;*/
+}
+.ans:hover {
+    /*-webkit-filter: blur(0px);*/
+    animation: blurtxt .5s 1 forwards;
+}
+@-webkit-keyframes blurtxt {
+    0% {
+        -webkit-filter: blur(5px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+.ctr {
+    text-align: center;
+}
+code {
+    font-size: 1.8vw;
+}
+.wh {
+    color: rgb(226, 223, 211);
+    font-weight: lighter;
+}
+.reddrk {
+    color: brown;
+}
+.redlite {
+    color: rgb(245, 127, 127);
+}
+.mango {
+    color: rgb(120, 69, 22);
+}
+.blLite {
+    color: aqua;
+}
+.pinkish {
+    color: rgb(237, 162, 162);
+}
+.lemon {
+    color: rgb(217, 202, 105);
+}
+.gr {
+    color: rgb(166, 165, 165);
+}
